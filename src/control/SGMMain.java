@@ -10,8 +10,8 @@ public class SGMMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLogin frame = new TelaLogin();
-					frame.visualizar(true);
+					TelaLogin frame = TelaLogin.getInstance();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -1,54 +1,57 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class TelaPrincipal {
+public class TelaPrincipalModelo {
 
-	private JFrame frmSistemaDeGerenciamento;
+	private JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					TelaPrincipal window = new TelaPrincipal();
-//					window.frmSistemaDeGerenciamento.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaPrincipalModelo window = new TelaPrincipalModelo();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.
 	 */
-	public TelaPrincipal() {
+	public TelaPrincipalModelo() {
 		initialize();
-	}
-	
-	public void visualizar(boolean visualizar) {
-		frmSistemaDeGerenciamento.setVisible(visualizar);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmSistemaDeGerenciamento = new JFrame();
-		frmSistemaDeGerenciamento.setTitle("Sistema de Gerenciamento Comercial");
-		frmSistemaDeGerenciamento.setBounds(100, 100, 450, 300);
-		frmSistemaDeGerenciamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+			}
+		});
+		frame.setTitle("Sistema de Gerenciamento Comercial");
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frmSistemaDeGerenciamento.setJMenuBar(menuBar);
+		frame.setJMenuBar(menuBar);
 		
 		JMenu mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
@@ -110,7 +113,7 @@ public class TelaPrincipal {
 		JMenuItem mntmAlterarEstoque = new JMenuItem("Alterar estoque");
 		mnEstoque.add(mntmAlterarEstoque);
 		
-		frmSistemaDeGerenciamento.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
 }

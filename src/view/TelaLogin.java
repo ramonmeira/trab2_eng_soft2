@@ -3,95 +3,56 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import view.models.SingletonJFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import control.LoginControl;
-
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class TelaLogin {
-
-	private JFrame frmSistemaDeGerenciamento;
+public class TelaLogin extends JFrame {
 	private JTextField loginField;
-	private JPasswordField passwordField;
+	private JPasswordField senhaField;
+	private static TelaLogin INSTANCE = null;
 	
-	private LoginControl loginControl;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					TelaLogin window = new TelaLogin();
-//					window.frmSistemaDeGerenciamento.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the application.
-	 */
-	public TelaLogin() {
-		initialize();
-	}
-	
-	public void visualizar(boolean visualizar) {
-		frmSistemaDeGerenciamento.setVisible(visualizar);
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmSistemaDeGerenciamento = new JFrame();
-		frmSistemaDeGerenciamento.setTitle("Sistema de Gerenciamento Comercial - Login");
-		frmSistemaDeGerenciamento.setBounds(100, 100, 398, 219);
-		frmSistemaDeGerenciamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmSistemaDeGerenciamento.getContentPane().setLayout(null);
+	public static TelaLogin getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new TelaLogin();
+		}
 		
-		loginControl = new LoginControl(this);
+		return INSTANCE;
+	}
+
+	private TelaLogin() {
+		setResizable(false);		
+		setBounds(100, 100, 397, 207);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(35, 35, 46, 14);
-		frmSistemaDeGerenciamento.getContentPane().add(lblLogin);
-		
-		loginField = new JTextField();
-		loginField.setBounds(73, 32, 264, 20);
-		frmSistemaDeGerenciamento.getContentPane().add(loginField);
-		loginField.setColumns(10);
+		lblLogin.setBounds(35, 30, 46, 14);
+		getContentPane().add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(35, 80, 46, 14);
-		frmSistemaDeGerenciamento.getContentPane().add(lblSenha);
+		lblSenha.setBounds(35, 70, 46, 14);
+		getContentPane().add(lblSenha);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(73, 77, 264, 20);
-		frmSistemaDeGerenciamento.getContentPane().add(passwordField);
+		loginField = new JTextField();
+		loginField.setBounds(76, 27, 263, 20);
+		getContentPane().add(loginField);
+		loginField.setColumns(10);
+		
+		senhaField = new JPasswordField();
+		senhaField.setBounds(76, 67, 263, 20);
+		getContentPane().add(senhaField);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(loginControl.usuarioValido()) {
-					loginControl.iniciaTelaPrincipal();
-				}
-			}
-		});
-		btnLogin.setBounds(213, 123, 89, 23);
-		frmSistemaDeGerenciamento.getContentPane().add(btnLogin);
+		btnLogin.setBounds(205, 115, 89, 23);
+		getContentPane().add(btnLogin);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(96, 123, 89, 23);
-		frmSistemaDeGerenciamento.getContentPane().add(btnCancelar);
-	}
+		btnCancelar.setBounds(91, 115, 89, 23);
+		getContentPane().add(btnCancelar);
 
+	}
 }
