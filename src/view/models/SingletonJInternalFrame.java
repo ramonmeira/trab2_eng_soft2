@@ -22,15 +22,8 @@ public class SingletonJInternalFrame extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setResizable(true);
-		try {
-			setMaximum(true);
-		} catch (PropertyVetoException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(instance, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
-		}
 		setMaximizable(true);
 		setBounds(100, 100, 450, 300);
-
 	}
 	
 	public static SingletonJInternalFrame getInstance() {
