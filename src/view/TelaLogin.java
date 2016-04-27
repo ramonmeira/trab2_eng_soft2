@@ -71,7 +71,7 @@ public class TelaLogin extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(loginControl.usuarioValido()) {
-					
+					TelaPrincipal telaPrincipal = new TelaPrincipal();
 				}
 			}
 		});
