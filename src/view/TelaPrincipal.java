@@ -33,6 +33,10 @@ public class TelaPrincipal {
 	public TelaPrincipal() {
 		initialize();
 	}
+	
+	public void visualizar(boolean visualizar) {
+		frmSistemaDeGerenciamento.setVisible(visualizar);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
