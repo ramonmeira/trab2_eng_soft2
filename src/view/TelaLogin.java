@@ -6,15 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.LoginControl;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField loginTextField;
 	private JTextField senhaTextField;
+	
+	private LoginControl loginControl;
 
 	/**
 	 * Launch the application.
@@ -43,6 +50,8 @@ public class TelaLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		loginControl = new LoginControl();
+		
 		JLabel lblLogin = new JLabel("Login:");
 		lblLogin.setBounds(46, 39, 46, 14);
 		contentPane.add(lblLogin);
@@ -62,6 +71,14 @@ public class TelaLogin extends JFrame {
 		senhaTextField.setColumns(10);
 		
 		JButton okButton = new JButton("OK");
+		okButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(loginControl.usuarioValido()) {
+					
+				}
+			}
+		});
 		okButton.setBounds(230, 140, 89, 23);
 		contentPane.add(okButton);
 		
