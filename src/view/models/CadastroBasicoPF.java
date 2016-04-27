@@ -37,7 +37,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 
 	protected CadastroBasicoPF(){
 		super();
-		setBounds(100, 100, 711, 400);
+		setBounds(100, 100, 711, 429);
 		
 		getContentPane().setLayout(null);
 		
@@ -54,7 +54,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(lblDataDeNascimento);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(578, 110, 46, 14);
+		lblSexo.setBounds(591, 110, 46, 14);
 		getContentPane().add(lblSexo);
 		
 		JLabel lblEndereo = new JLabel("Logradouro");
@@ -90,16 +90,16 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino"}));
-		comboBox.setBounds(578, 125, 98, 20);
+		comboBox.setBounds(591, 125, 85, 20);
 		getContentPane().add(comboBox);
 		
 		JComboBox cmbBoxEstado = new JComboBox();
 		cmbBoxEstado.setModel(new DefaultComboBoxModel(new String[] {"Acre", "Alagoas", "Amap\u00E1", "Bahia", "Cear\u00E1", "Distrito Federal", "Esp\u00EDrito Santo", "Goi\u00E1s", "Maranh\u00E3o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Par\u00E1", "Para\u00EDba", "Paran\u00E1", "Pernambuco", "Piau\u00ED", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rond\u00F4nia", "Roraima", "Santa Catarina", "S\u00E3o Paulo", "Sergipe", "Tocantins"}));
-		cmbBoxEstado.setBounds(450, 125, 118, 20);
+		cmbBoxEstado.setBounds(450, 125, 131, 20);
 		getContentPane().add(cmbBoxEstado);
 		
 		txtCidade = new JTextField();
-		txtCidade.setBounds(290, 215, 258, 20);
+		txtCidade.setBounds(290, 215, 245, 20);
 		getContentPane().add(txtCidade);
 		txtCidade.setColumns(10);
 		
@@ -187,12 +187,12 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(lblN);
 		
 		JLabel label = new JLabel("UF");
-		label.setBounds(558, 200, 46, 14);
+		label.setBounds(545, 200, 46, 14);
 		getContentPane().add(label);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Acre", "Alagoas", "Amap\u00E1", "Bahia", "Cear\u00E1", "Distrito Federal", "Esp\u00EDrito Santo", "Goi\u00E1s", "Maranh\u00E3o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Par\u00E1", "Para\u00EDba", "Paran\u00E1", "Pernambuco", "Piau\u00ED", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rond\u00F4nia", "Roraima", "Santa Catarina", "S\u00E3o Paulo", "Sergipe", "Tocantins"}));
-		comboBox_1.setBounds(558, 215, 118, 20);
+		comboBox_1.setBounds(545, 215, 131, 20);
 		getContentPane().add(comboBox_1);
 		
 		JLabel lblTelResidencial = new JLabel("Tel. Residencial");
@@ -208,23 +208,23 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(lblEmail);
 		
 		txtTelResidencial = new JTextField();
-		txtTelResidencial.setBounds(20, 259, 100, 20);
+		txtTelResidencial.setBounds(20, 260, 100, 20);
 		getContentPane().add(txtTelResidencial);
 		txtTelResidencial.setColumns(10);
 		
 		txtTelCelular = new JTextField();
 		txtTelCelular.setColumns(10);
-		txtTelCelular.setBounds(130, 259, 100, 20);
+		txtTelCelular.setBounds(130, 260, 100, 20);
 		getContentPane().add(txtTelCelular);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(240, 259, 214, 20);
+		txtEmail.setBounds(240, 260, 214, 20);
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(464, 259, 212, 20);
+		textField.setBounds(464, 260, 212, 20);
 		getContentPane().add(textField);
 		
 		JLabel lblEmailComercial = new JLabel("Email comercial");
@@ -232,13 +232,9 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(lblEmailComercial);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(16, 331, 89, 23);
+		btnCancelar.setBounds(20, 365, 89, 23);
 		getContentPane().add(btnCancelar);
-		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(130, 331, 89, 23);
-		getContentPane().add(btnCadastrar);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblId, txtId, lblNome, txtNome, lblCpf, txtCpf, lblRg, txtRg, lblExpedicao, txtExpedicao, lblUf, cmbUf, lblEmisso, txtEmissao, lblDataDeNascimento, dtNascimentoField, lblNacionalidade, txtNacionalidade, lblNaturalidade, txtNaturalidade, lblEstado, cmbBoxEstado, lblSexo, comboBox, lblEndereo, txtEndereco, lblN, txtNumero, lblComplemento, txtComplemento, lblCidade, txtCidade, label, comboBox_1, lblTelResidencial, txtTelResidencial, lblTelCelular, txtTelCelular, lblEmail, txtEmail, lblEmailComercial, textField, btnCancelar, btnCadastrar}));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblId, txtId, lblNome, txtNome, lblCpf, txtCpf, lblRg, txtRg, lblExpedicao, txtExpedicao, lblUf, cmbUf, lblEmisso, txtEmissao, lblDataDeNascimento, dtNascimentoField, lblNacionalidade, txtNacionalidade, lblNaturalidade, txtNaturalidade, lblEstado, cmbBoxEstado, lblSexo, comboBox, lblEndereo, txtEndereco, lblN, txtNumero, lblComplemento, txtComplemento, lblCidade, txtCidade, label, comboBox_1, lblTelResidencial, txtTelResidencial, lblTelCelular, txtTelCelular, lblEmail, txtEmail, lblEmailComercial, textField, btnCancelar, btnCadastrar, getContentPane()}));
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblId, txtId, lblNome, txtNome, lblCpf, txtCpf, lblRg, txtRg, lblExpedicao, txtExpedicao, lblUf, cmbUf, lblEmisso, txtEmissao, lblDataDeNascimento, dtNascimentoField, lblNacionalidade, txtNacionalidade, lblNaturalidade, txtNaturalidade, lblEstado, cmbBoxEstado, lblSexo, comboBox, lblEndereo, txtEndereco, lblN, txtNumero, lblComplemento, txtComplemento, lblCidade, txtCidade, label, comboBox_1, lblTelResidencial, txtTelResidencial, lblTelCelular, txtTelCelular, lblEmail, txtEmail, lblEmailComercial, textField, btnCancelar}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblId, txtId, lblNome, txtNome, lblCpf, txtCpf, lblRg, txtRg, lblExpedicao, txtExpedicao, lblUf, cmbUf, lblEmisso, txtEmissao, lblDataDeNascimento, dtNascimentoField, lblNacionalidade, txtNacionalidade, lblNaturalidade, txtNaturalidade, lblEstado, cmbBoxEstado, lblSexo, comboBox, lblEndereo, txtEndereco, lblN, txtNumero, lblComplemento, txtComplemento, lblCidade, txtCidade, label, comboBox_1, lblTelResidencial, txtTelResidencial, lblTelCelular, txtTelCelular, lblEmail, txtEmail, lblEmailComercial, textField, btnCancelar, getContentPane()}));
 	}
 }
