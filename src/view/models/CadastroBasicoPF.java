@@ -6,7 +6,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Component;
 import javax.swing.JButton;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class CadastroBasicoPF extends SingletonJInternalFrame {
 
@@ -239,7 +238,5 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setBounds(20, 155, 46, 14);
 		getContentPane().add(lblCep);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblId, txtId, lblNome, txtNome, lblCpf, txtCpf, lblRg, txtRg, lblExpedicao, txtExpedicao, lblUf, cmbUfExpedissao, lblEmisso, txtEmissao, lblDataDeNascimento, dtNascimentoField, lblNacionalidade, txtNacionalidade, lblNaturalidade, txtNaturalidade, lblEstado, cmbUfNascimento, lblSexo, cmbSexo, lblEndereo, txtEndereco, lblN, txtNumero, lblComplemento, txtComplemento, lblCidade, txtCidade, label, cmbUfEndereco, lblTelResidencial, txtTelResidencial, lblTelCelular, txtTelCelular, lblEmail, txtEmail, lblEmailComercial, textField, btnCancelar}));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblId, txtId, lblNome, txtNome, lblCpf, txtCpf, lblRg, txtRg, lblExpedicao, txtExpedicao, lblUf, cmbUfExpedissao, lblEmisso, txtEmissao, lblDataDeNascimento, dtNascimentoField, lblNacionalidade, txtNacionalidade, lblNaturalidade, txtNaturalidade, lblEstado, cmbUfNascimento, lblSexo, cmbSexo, lblEndereo, txtEndereco, lblN, txtNumero, lblComplemento, txtComplemento, lblCidade, txtCidade, label, cmbUfEndereco, lblTelResidencial, txtTelResidencial, lblTelCelular, txtTelCelular, lblEmail, txtEmail, lblEmailComercial, textField, btnCancelar, getContentPane()}));
 	}
 }
