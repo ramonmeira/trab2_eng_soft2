@@ -5,6 +5,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 public class CadastroBasicoPJ extends SingletonJInternalFrame {
 	private JTextField textField;
@@ -24,7 +25,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 	private JTextField txtRamal;
 
 	public CadastroBasicoPJ() {
-		setBounds(100, 100, 711, 380);
+		setBounds(100, 100, 711, 395);
 		getContentPane().setLayout(null);
 		
 		JLabel lblId = new JLabel("ID");
@@ -172,8 +173,12 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(lblEmail);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(20, 316, 89, 23);
+		btnCancelar.setBounds(20, 331, 89, 23);
 		getContentPane().add(btnCancelar);
+		
+		JCheckBox chckbxAtivo = new JCheckBox("Ativo");
+		chckbxAtivo.setBounds(20, 287, 97, 23);
+		getContentPane().add(chckbxAtivo);
 	}
 
 }
