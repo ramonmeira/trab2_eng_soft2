@@ -14,14 +14,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JPasswordField;
 
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField loginTextField;
-	private JTextField senhaTextField;
 	
 	private LoginControl loginControl;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -65,11 +66,6 @@ public class TelaLogin extends JFrame {
 		contentPane.add(loginTextField);
 		loginTextField.setColumns(10);
 		
-		senhaTextField = new JTextField();
-		senhaTextField.setBounds(84, 83, 266, 20);
-		contentPane.add(senhaTextField);
-		senhaTextField.setColumns(10);
-		
 		JButton okButton = new JButton("OK");
 		okButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -85,5 +81,9 @@ public class TelaLogin extends JFrame {
 		JButton cancelarButton = new JButton("Cancelar");
 		cancelarButton.setBounds(110, 140, 89, 23);
 		contentPane.add(cancelarButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(84, 83, 266, 20);
+		contentPane.add(passwordField);
 	}
 }
