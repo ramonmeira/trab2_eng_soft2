@@ -48,12 +48,8 @@ public class TelaLogin extends JFrame {
 		getContentPane().add(senhaField);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(205, 115, 89, 23);
+		btnLogin.setBounds(158, 113, 89, 23);
 		getContentPane().add(btnLogin);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(91, 115, 89, 23);
-		getContentPane().add(btnCancelar);
 
 	}
 }

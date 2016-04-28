@@ -46,7 +46,7 @@ public class TelaPrincipalModelo {
 			public void windowClosed(WindowEvent arg0) {
 			}
 		});
-		frame.setTitle("Sistema de Gerenciamento Comercial");
+		frame.setTitle("Sistema de Gerenciamento Comercial - Modelo");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

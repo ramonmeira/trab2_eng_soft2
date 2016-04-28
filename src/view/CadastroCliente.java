@@ -16,17 +16,9 @@ public class CadastroCliente extends CadastroBasicoPF {
 		super();
 		setTitle("Cadastro de Cliente");
 		
-		try {
-			setMaximum(true);
-			
-			JButton btnCadastrar = new JButton("Cadastrar");
-			btnCadastrar.setBounds(130, 365, 89, 23);
-			getContentPane().add(btnCadastrar);
-		}
-		catch(PropertyVetoException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
-		}
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(130, 365, 89, 23);
+		getContentPane().add(btnCadastrar);
 		
 	}
 	

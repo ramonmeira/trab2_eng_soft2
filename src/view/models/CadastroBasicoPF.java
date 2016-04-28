@@ -47,7 +47,9 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 
 	protected CadastroBasicoPF(){
 		super();
-		setBounds(100, 100, 711, 429);
+		setMaximizable(false);
+		setResizable(false);
+		setBounds(100, 100, 711, 340);
 		
 		getContentPane().setLayout(null);
 		
@@ -268,10 +270,6 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		JLabel lblEmailComercial = new JLabel("Email comercial");
 		lblEmailComercial.setBounds(464, 245, 75, 14);
 		getContentPane().add(lblEmailComercial);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(20, 365, 89, 23);
-		getContentPane().add(btnCancelar);
 		
 		try {
 			txtCep = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
