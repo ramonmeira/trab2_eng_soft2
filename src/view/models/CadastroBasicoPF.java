@@ -1,10 +1,13 @@
 package view.models;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Component;
+import java.text.ParseException;
+
 import javax.swing.JButton;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import javax.swing.JFormattedTextField;
@@ -75,10 +78,16 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
-		txtCpf = new JFormattedTextField();
+		try {
+			txtCpf = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(this, "CPF inválido", "O número de CPF informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
+		}
+		txtCpf.setColumns(11);
 		txtCpf.setBounds(20, 80, 150, 20);
 		getContentPane().add(txtCpf);
-		txtCpf.setColumns(10);
+		txtCpf.setColumns(11);
 		
 		dtNascimentoField = new JFormattedTextField();
 		dtNascimentoField.setBounds(20, 125, 100, 20);
