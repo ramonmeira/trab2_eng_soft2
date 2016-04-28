@@ -17,6 +17,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 	private JFormattedTextField txtIdProduto;
 	private JTextField txtDescricaoProduto;
 	private JTextField textField;
+	private JFormattedTextField txtPreco;
 
 	public CadastroEstoque() {
 		super();
@@ -91,6 +92,16 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			JLabel lblDtValidade = new JLabel("Dt. Validade");
 			lblDtValidade.setBounds(116, 111, 66, 14);
 			getContentPane().add(lblDtValidade);
+			
+			txtPreco = new JFormattedTextField();
+			txtPreco.setText("Preco");
+			txtPreco.setBounds(212, 125, 86, 20);
+			getContentPane().add(txtPreco);
+			txtPreco.setColumns(10);
+			
+			JLabel lblPrecoUnit = new JLabel("Pre\u00E7o Unit.");
+			lblPrecoUnit.setBounds(212, 110, 66, 14);
+			getContentPane().add(lblPrecoUnit);
 			
 		}
 		catch(PropertyVetoException e) {
