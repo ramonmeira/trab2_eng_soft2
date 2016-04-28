@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import javax.swing.JFormattedTextField;
 
@@ -233,7 +232,6 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		JCheckBox chckbxAtivo = new JCheckBox("Ativo");
 		chckbxAtivo.setBounds(20, 287, 97, 23);
 		getContentPane().add(chckbxAtivo);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtId, txtRazaoSocial, txtCnpj, txtNomeFantasia, txtRepresentante, txtCpf, txtCep, txtLogradouro, txtNumero, txtComplemento, txtCidade, comboBox, txtTelefone, txtRamal, txtFax, txtEmail, chckbxAtivo, btnCancelar}));
 	}
 
 }

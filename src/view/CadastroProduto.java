@@ -11,7 +11,6 @@ import view.models.SingletonJInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import javax.swing.JFormattedTextField;
 
@@ -89,7 +88,6 @@ public class CadastroProduto extends SingletonJInternalFrame {
 			JButton btnCadastrar = new JButton("Cadastrar");
 			btnCadastrar.setBounds(152, 182, 89, 23);
 			getContentPane().add(btnCadastrar);
-			setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtId, txtDescricao, txtFabricante, txtModelo, txtCodEan, cmbFornecedor, btnCancelar, btnCadastrar}));
 		}
 		catch(PropertyVetoException e) {
 			e.printStackTrace();

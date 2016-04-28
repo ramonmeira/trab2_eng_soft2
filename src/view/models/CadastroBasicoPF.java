@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import com.jgoodies.common.format.DisplayableFormat;
 
@@ -287,6 +286,5 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setBounds(20, 155, 46, 14);
 		getContentPane().add(lblCep);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtId, txtNome, txtCpf, txtRg, txtExpedicao, cmbUfExpedissao, txtEmissao, dtNascimentoField, txtNacionalidade, txtNaturalidade, cmbUfNascimento, cmbSexo, txtCep, txtEndereco, txtNumero, txtComplemento, txtCidade, cmbUfEndereco, txtTelResidencial, txtTelCelular, txtEmail, textField, btnCancelar}));
 	}
 }

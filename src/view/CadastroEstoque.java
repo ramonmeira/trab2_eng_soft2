@@ -5,11 +5,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 
 import view.models.SingletonJInternalFrame;
 
 import java.beans.PropertyVetoException;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -19,7 +23,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 	private JTextField txtLocal;
 	private JFormattedTextField txtIdProduto;
 	private JTextField txtDescricaoProduto;
-	private JTextField textField;
+	private JFormattedTextField txtQtd;
 	private JFormattedTextField txtPreco;
 
 	public CadastroEstoque() {
@@ -33,15 +37,24 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			DateFormatter editFormat = new DateFormatter(new SimpleDateFormat("ddMMyyyy"));
 			DefaultFormatterFactory dateFormat = new DefaultFormatterFactory(displayFormat, displayFormat, editFormat);
 			
+			NumberFormatter displayPreco = new NumberFormatter(NumberFormat.getCurrencyInstance());
+			NumberFormatter editPreco = new NumberFormatter(new java.text.DecimalFormat("#,##0.##"));
+			DefaultFormatterFactory moedaFactory = new DefaultFormatterFactory(displayPreco, displayPreco, editPreco);
+			
 			JLabel lblId = new JLabel("ID");
 			lblId.setBounds(20, 20, 46, 14);
 			getContentPane().add(lblId);
 			
-			txtId = new JFormattedTextField();
+			try {
+				txtId = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
+			} catch (ParseException e1) {
+				JOptionPane.showMessageDialog(this, "ID inválido", "O número do ID informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+				e1.printStackTrace();
+			}
 			txtId.setText("ID");
 			txtId.setBounds(20, 35, 86, 20);
 			getContentPane().add(txtId);
-			txtId.setColumns(10);
+			txtId.setColumns(6);
 			
 			txtLocal = new JTextField();
 			txtLocal.setText("Local");
@@ -57,14 +70,17 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			lblIdProduto.setBounds(20, 65, 73, 14);
 			getContentPane().add(lblIdProduto);
 			
-			txtIdProduto = new JFormattedTextField();
-			txtIdProduto.setText("ID Produto");
+			try {
+				txtIdProduto = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
+			} catch (ParseException e1) {
+				JOptionPane.showMessageDialog(this, "ID inválido", "O número do ID informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+				e1.printStackTrace();
+			}
 			txtIdProduto.setBounds(20, 80, 86, 20);
 			getContentPane().add(txtIdProduto);
-			txtIdProduto.setColumns(10);
+			txtIdProduto.setColumns(6);
 			
 			txtDescricaoProduto = new JTextField();
-			txtDescricaoProduto.setText("Descricao Produto");
 			txtDescricaoProduto.setBounds(116, 80, 361, 20);
 			getContentPane().add(txtDescricaoProduto);
 			txtDescricaoProduto.setColumns(10);
@@ -73,10 +89,15 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			lblDescricaoProtudo.setBounds(116, 66, 108, 14);
 			getContentPane().add(lblDescricaoProtudo);
 			
-			textField = new JTextField();
-			textField.setBounds(418, 35, 59, 20);
-			getContentPane().add(textField);
-			textField.setColumns(10);
+			try {
+				txtQtd = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
+			} catch (ParseException e) {
+				JOptionPane.showMessageDialog(this, "Quantidade inválida", "A quantidade informada possui um formato inválido!", JOptionPane.WARNING_MESSAGE);
+				e.printStackTrace();
+			}
+			txtQtd.setBounds(418, 35, 59, 20);
+			getContentPane().add(txtQtd);
+			txtQtd.setColumns(6);
 			
 			JLabel lblQtd = new JLabel("Qtd");
 			lblQtd.setBounds(418, 20, 46, 14);
@@ -100,10 +121,16 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			lblDtValidade.setBounds(116, 111, 66, 14);
 			getContentPane().add(lblDtValidade);
 			
-			txtPreco = new JFormattedTextField();
+			txtPreco = new JFormattedTextField(moedaFactory);
+//			try {
+//				txtPreco = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ ##.####0,00")));
+//			} catch (ParseException e) {
+//				JOptionPane.showMessageDialog(this, "Preço inválido", "O preço informado possui um formato inválido!", JOptionPane.WARNING_MESSAGE);
+//				e.printStackTrace();
+//			}
 			txtPreco.setBounds(212, 125, 86, 20);
 			getContentPane().add(txtPreco);
-			txtPreco.setColumns(10);
+			txtPreco.setColumns(8);
 			
 			JLabel lblPrecoUnit = new JLabel("Pre\u00E7o Unit.");
 			lblPrecoUnit.setBounds(212, 110, 66, 14);

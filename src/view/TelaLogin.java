@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
 public class TelaLogin extends JFrame {
@@ -55,7 +54,6 @@ public class TelaLogin extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(91, 115, 89, 23);
 		getContentPane().add(btnCancelar);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{loginField, senhaField, btnCancelar, btnLogin}));
 
 	}
 }
