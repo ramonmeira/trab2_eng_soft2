@@ -3,10 +3,13 @@ package view;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
 
 import view.models.SingletonJInternalFrame;
 
 import java.beans.PropertyVetoException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -25,6 +28,10 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 		try {
 			setMaximum(true);
 			getContentPane().setLayout(null);
+			
+			DateFormatter displayFormat = new DateFormatter(new SimpleDateFormat("dd/MM/yyyy"));
+			DateFormatter editFormat = new DateFormatter(new SimpleDateFormat("ddMMyyyy"));
+			DefaultFormatterFactory dateFormat = new DefaultFormatterFactory(displayFormat, displayFormat, editFormat);
 			
 			JLabel lblId = new JLabel("ID");
 			lblId.setBounds(20, 20, 46, 14);
@@ -75,8 +82,8 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			lblQtd.setBounds(418, 20, 46, 14);
 			getContentPane().add(lblQtd);
 			
-			JFormattedTextField frmtdtxtfldDtFabricacao = new JFormattedTextField();
-			frmtdtxtfldDtFabricacao.setText("Dt Fabricacao");
+			JFormattedTextField frmtdtxtfldDtFabricacao = new JFormattedTextField(dateFormat);
+			frmtdtxtfldDtFabricacao.setColumns(8);
 			frmtdtxtfldDtFabricacao.setBounds(20, 125, 86, 20);
 			getContentPane().add(frmtdtxtfldDtFabricacao);
 			
@@ -84,8 +91,8 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			lblDtFabricacao.setBounds(20, 110, 73, 14);
 			getContentPane().add(lblDtFabricacao);
 			
-			JFormattedTextField frmtdtxtfldDtValidade = new JFormattedTextField();
-			frmtdtxtfldDtValidade.setText("Dt Validade");
+			JFormattedTextField frmtdtxtfldDtValidade = new JFormattedTextField(dateFormat);
+			frmtdtxtfldDtValidade.setColumns(8);
 			frmtdtxtfldDtValidade.setBounds(116, 125, 86, 20);
 			getContentPane().add(frmtdtxtfldDtValidade);
 			
@@ -94,7 +101,6 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			getContentPane().add(lblDtValidade);
 			
 			txtPreco = new JFormattedTextField();
-			txtPreco.setText("Preco");
 			txtPreco.setBounds(212, 125, 86, 20);
 			getContentPane().add(txtPreco);
 			txtPreco.setColumns(10);

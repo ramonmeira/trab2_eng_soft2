@@ -1,11 +1,16 @@
 package view.models;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
@@ -13,7 +18,7 @@ import java.awt.Component;
 import javax.swing.JFormattedTextField;
 
 public class CadastroBasicoPJ extends SingletonJInternalFrame {
-	private JFormattedTextField textField;
+	private JFormattedTextField txtId;
 	private JTextField txtRazaoSocial;
 	private JTextField txtNomeFantasia;
 	private JFormattedTextField txtCnpj;
@@ -37,10 +42,15 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblId.setBounds(20, 20, 46, 14);
 		getContentPane().add(lblId);
 		
-		textField = new JFormattedTextField();
-		textField.setColumns(10);
-		textField.setBounds(20, 35, 65, 20);
-		getContentPane().add(textField);
+		try {
+			txtId = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
+		} catch (ParseException e2) {
+			JOptionPane.showMessageDialog(this, "ID inválido", "O número do ID informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e2.printStackTrace();
+		}
+		txtId.setColumns(6);
+		txtId.setBounds(20, 35, 65, 20);
+		getContentPane().add(txtId);
 		
 		txtRazaoSocial = new JTextField();
 		txtRazaoSocial.setBounds(95, 35, 581, 20);
@@ -64,10 +74,15 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblCnpj.setBounds(20, 65, 46, 14);
 		getContentPane().add(lblCnpj);
 		
-		txtCnpj = new JFormattedTextField();
+		try {
+			txtCnpj = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(this, "CNPJ inválido", "O número de CNPJ informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
+		}
 		txtCnpj.setBounds(20, 80, 125, 20);
 		getContentPane().add(txtCnpj);
-		txtCnpj.setColumns(10);
+		txtCnpj.setColumns(14);
 		
 		JLabel lblRepresentante = new JLabel("Representante");
 		lblRepresentante.setBounds(20, 110, 81, 14);
@@ -82,7 +97,12 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblCpf.setBounds(551, 110, 46, 14);
 		getContentPane().add(lblCpf);
 		
-		txtCpf = new JFormattedTextField();
+		try {
+			txtCpf = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(this, "CPF inválido", "O número de CPF informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
+		}
 		txtCpf.setBounds(551, 125, 125, 20);
 		getContentPane().add(txtCpf);
 		txtCpf.setColumns(10);
@@ -96,10 +116,15 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(txtLogradouro);
 		txtLogradouro.setColumns(10);
 		
-		txtNumero = new JFormattedTextField();
+		try {
+			txtNumero = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+		} catch (ParseException e2) {
+			JOptionPane.showMessageDialog(this, "Número residencial inválido", "O número de endereço informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e2.printStackTrace();
+		}
 		txtNumero.setBounds(611, 170, 65, 20);
 		getContentPane().add(txtNumero);
-		txtNumero.setColumns(10);
+		txtNumero.setColumns(5);
 		
 		JLabel lblN = new JLabel("N\u00BA");
 		lblN.setBounds(611, 156, 46, 14);
@@ -114,10 +139,15 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(txtComplemento);
 		txtComplemento.setColumns(10);
 		
-		txtCep = new JFormattedTextField();
+		try {
+			txtCep = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(this, "CEP inválido", "O número de CEP informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
+		}
 		txtCep.setBounds(20, 170, 119, 20);
 		getContentPane().add(txtCep);
-		txtCep.setColumns(10);
+		txtCep.setColumns(8);
 		
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setBounds(20, 156, 46, 14);
@@ -145,12 +175,22 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblTel.setBounds(20, 245, 46, 14);
 		getContentPane().add(lblTel);
 		
-		txtTelefone = new JFormattedTextField();
+		try {
+			txtTelefone = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+		} catch (ParseException e1) {
+			JOptionPane.showMessageDialog(this, "Telefone inválido", "O número de telefone informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e1.printStackTrace();
+		}
 		txtTelefone.setBounds(20, 260, 100, 20);
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
-		txtFax = new JFormattedTextField();
+		try {
+			txtFax = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+		} catch (ParseException e1) {
+			JOptionPane.showMessageDialog(this, "Fax inválido", "O número de fax informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e1.printStackTrace();
+		}
 		txtFax.setBounds(226, 260, 153, 20);
 		getContentPane().add(txtFax);
 		txtFax.setColumns(10);
@@ -160,10 +200,15 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		txtRamal = new JFormattedTextField();
+		try {
+			txtRamal = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+		} catch (ParseException e2) {
+			JOptionPane.showMessageDialog(this, "Ramal inválido", "O número do ramal possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e2.printStackTrace();
+		}
 		txtRamal.setBounds(130, 260, 86, 20);
 		getContentPane().add(txtRamal);
-		txtRamal.setColumns(10);
+		txtRamal.setColumns(3);
 		
 		JLabel lblRamal = new JLabel("Ramal");
 		lblRamal.setBounds(130, 245, 46, 14);
@@ -188,7 +233,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		JCheckBox chckbxAtivo = new JCheckBox("Ativo");
 		chckbxAtivo.setBounds(20, 287, 97, 23);
 		getContentPane().add(chckbxAtivo);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, txtRazaoSocial, txtCnpj, txtNomeFantasia, txtRepresentante, txtCpf, txtCep, txtLogradouro, txtNumero, txtComplemento, txtCidade, comboBox, txtTelefone, txtRamal, txtFax, txtEmail, chckbxAtivo, btnCancelar}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtId, txtRazaoSocial, txtCnpj, txtNomeFantasia, txtRepresentante, txtCpf, txtCep, txtLogradouro, txtNumero, txtComplemento, txtCidade, comboBox, txtTelefone, txtRamal, txtFax, txtEmail, chckbxAtivo, btnCancelar}));
 	}
 
 }

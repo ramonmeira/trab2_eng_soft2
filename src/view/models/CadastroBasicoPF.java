@@ -3,13 +3,20 @@ package view.models;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Component;
+import java.util.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import com.jgoodies.common.format.DisplayableFormat;
+
 import javax.swing.JFormattedTextField;
 
 public class CadastroBasicoPF extends SingletonJInternalFrame {
@@ -34,12 +41,20 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 	private JTextField txtEmail;
 	private JTextField textField;
 	private JFormattedTextField txtCep;
+	
+	DateFormatter displayFormat;
+	DateFormatter editFormat;
+	DefaultFormatterFactory dateFormat;
 
 	protected CadastroBasicoPF(){
 		super();
 		setBounds(100, 100, 711, 429);
 		
 		getContentPane().setLayout(null);
+		
+		displayFormat = new DateFormatter(new SimpleDateFormat("dd/MM/yyyy"));
+		editFormat = new DateFormatter(new SimpleDateFormat("ddMMyyyy"));
+		dateFormat = new DefaultFormatterFactory(displayFormat, displayFormat, editFormat);
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setBounds(100, 20, 39, 14);
@@ -87,12 +102,11 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		txtCpf.setColumns(11);
 		txtCpf.setBounds(20, 80, 150, 20);
 		getContentPane().add(txtCpf);
-		txtCpf.setColumns(11);
 		
-		dtNascimentoField = new JFormattedTextField();
+		dtNascimentoField = new JFormattedTextField(dateFormat);
 		dtNascimentoField.setBounds(20, 125, 100, 20);
 		getContentPane().add(dtNascimentoField);
-		dtNascimentoField.setColumns(10);
+		dtNascimentoField.setColumns(8);
 		
 		JComboBox cmbSexo = new JComboBox();
 		cmbSexo.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino"}));
@@ -144,7 +158,12 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(txtId);
 		txtId.setColumns(10);
 		
-		txtRg = new JFormattedTextField();
+		try {
+			txtRg = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########/##")));
+		} catch (ParseException e1) {
+			JOptionPane.showMessageDialog(this, "RG inválido", "O número de RG informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e1.printStackTrace();
+		}
 		txtRg.setBounds(180, 80, 150, 20);
 		getContentPane().add(txtRg);
 		txtRg.setColumns(10);
@@ -167,7 +186,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblDtEmissao.setBounds(576, 65, 61, 14);
 		getContentPane().add(lblDtEmissao);
 		
-		txtEmissao = new JFormattedTextField();
+		txtEmissao = new JFormattedTextField(dateFormat);
 		txtEmissao.setColumns(10);
 		txtEmissao.setBounds(576, 80, 100, 20);
 		getContentPane().add(txtEmissao);
@@ -182,11 +201,15 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		txtNaturalidade.setBounds(290, 125, 150, 20);
 		getContentPane().add(txtNaturalidade);
 		
-		txtNumero = new JFormattedTextField();
-		txtNumero.setText("Numero");
+		try {
+			txtNumero = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+		} catch (ParseException e2) {
+			JOptionPane.showMessageDialog(this, "Número residencial inválido", "O número de endereço informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e2.printStackTrace();
+		}
 		txtNumero.setBounds(611, 170, 65, 20);
 		getContentPane().add(txtNumero);
-		txtNumero.setColumns(10);
+		txtNumero.setColumns(5);
 		
 		JLabel lblN = new JLabel("N\u00BA");
 		lblN.setBounds(611, 155, 46, 14);
@@ -213,12 +236,22 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblEmail.setBounds(240, 245, 46, 14);
 		getContentPane().add(lblEmail);
 		
-		txtTelResidencial = new JFormattedTextField();
+		try {
+			txtTelResidencial = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+		} catch (ParseException e1) {
+			JOptionPane.showMessageDialog(this, "Telefone inválido", "O número de telefone informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e1.printStackTrace();
+		}
 		txtTelResidencial.setBounds(20, 260, 100, 20);
 		getContentPane().add(txtTelResidencial);
 		txtTelResidencial.setColumns(10);
 		
-		txtTelCelular = new JFormattedTextField();
+		try {
+			txtTelCelular = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
+		} catch (ParseException e1) {
+			JOptionPane.showMessageDialog(this, "Celular inválido", "O número de celular informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e1.printStackTrace();
+		}
 		txtTelCelular.setColumns(10);
 		txtTelCelular.setBounds(130, 260, 100, 20);
 		getContentPane().add(txtTelCelular);
@@ -241,10 +274,15 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		btnCancelar.setBounds(20, 365, 89, 23);
 		getContentPane().add(btnCancelar);
 		
-		txtCep = new JFormattedTextField();
+		try {
+			txtCep = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###-###")));
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(this, "CEP inválido", "O número de CEP informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
+		}
 		txtCep.setBounds(20, 170, 119, 20);
 		getContentPane().add(txtCep);
-		txtCep.setColumns(10);
+		txtCep.setColumns(8);
 		
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setBounds(20, 155, 46, 14);
