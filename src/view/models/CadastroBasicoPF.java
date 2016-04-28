@@ -6,29 +6,31 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Component;
 import javax.swing.JButton;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import javax.swing.JFormattedTextField;
 
 public class CadastroBasicoPF extends SingletonJInternalFrame {
 
 	private static final long serialVersionUID = 2528457607303713404L;
 	
 	private JTextField txtNome;
-	private JTextField txtCpf;
-	private JTextField dtNascimentoField;
+	private JFormattedTextField txtCpf;
+	private JFormattedTextField dtNascimentoField;
 	private JTextField txtCidade;
 	private JTextField txtEndereco;
 	private JTextField txtComplemento;
-	private JTextField txtId;
-	private JTextField txtRg;
+	private JFormattedTextField txtId;
+	private JFormattedTextField txtRg;
 	private JTextField txtExpedicao;
-	private JTextField txtEmissao;
+	private JFormattedTextField txtEmissao;
 	private JTextField txtNacionalidade;
 	private JTextField txtNaturalidade;
-	private JTextField txtNumero;
-	private JTextField txtTelResidencial;
-	private JTextField txtTelCelular;
+	private JFormattedTextField txtNumero;
+	private JFormattedTextField txtTelResidencial;
+	private JFormattedTextField txtTelCelular;
 	private JTextField txtEmail;
 	private JTextField textField;
-	private JTextField txtCep;
+	private JFormattedTextField txtCep;
 
 	protected CadastroBasicoPF(){
 		super();
@@ -73,12 +75,12 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
-		txtCpf = new JTextField();
+		txtCpf = new JFormattedTextField();
 		txtCpf.setBounds(20, 80, 150, 20);
 		getContentPane().add(txtCpf);
 		txtCpf.setColumns(10);
 		
-		dtNascimentoField = new JTextField();
+		dtNascimentoField = new JFormattedTextField();
 		dtNascimentoField.setBounds(20, 125, 100, 20);
 		getContentPane().add(dtNascimentoField);
 		dtNascimentoField.setColumns(10);
@@ -128,12 +130,12 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblId.setBounds(20, 20, 46, 14);
 		getContentPane().add(lblId);
 		
-		txtId = new JTextField();
+		txtId = new JFormattedTextField();
 		txtId.setBounds(20, 35, 65, 20);
 		getContentPane().add(txtId);
 		txtId.setColumns(10);
 		
-		txtRg = new JTextField();
+		txtRg = new JFormattedTextField();
 		txtRg.setBounds(180, 80, 150, 20);
 		getContentPane().add(txtRg);
 		txtRg.setColumns(10);
@@ -152,11 +154,11 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		cmbUfExpedissao.setBounds(435, 80, 131, 20);
 		getContentPane().add(cmbUfExpedissao);
 		
-		JLabel lblEmisso = new JLabel("Emiss\u00E3o");
-		lblEmisso.setBounds(576, 65, 46, 14);
-		getContentPane().add(lblEmisso);
+		JLabel lblDtEmissao = new JLabel("Dt. Emiss\u00E3o");
+		lblDtEmissao.setBounds(576, 65, 61, 14);
+		getContentPane().add(lblDtEmissao);
 		
-		txtEmissao = new JTextField();
+		txtEmissao = new JFormattedTextField();
 		txtEmissao.setColumns(10);
 		txtEmissao.setBounds(576, 80, 100, 20);
 		getContentPane().add(txtEmissao);
@@ -171,7 +173,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		txtNaturalidade.setBounds(290, 125, 150, 20);
 		getContentPane().add(txtNaturalidade);
 		
-		txtNumero = new JTextField();
+		txtNumero = new JFormattedTextField();
 		txtNumero.setText("Numero");
 		txtNumero.setBounds(611, 170, 65, 20);
 		getContentPane().add(txtNumero);
@@ -202,12 +204,12 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblEmail.setBounds(240, 245, 46, 14);
 		getContentPane().add(lblEmail);
 		
-		txtTelResidencial = new JTextField();
+		txtTelResidencial = new JFormattedTextField();
 		txtTelResidencial.setBounds(20, 260, 100, 20);
 		getContentPane().add(txtTelResidencial);
 		txtTelResidencial.setColumns(10);
 		
-		txtTelCelular = new JTextField();
+		txtTelCelular = new JFormattedTextField();
 		txtTelCelular.setColumns(10);
 		txtTelCelular.setBounds(130, 260, 100, 20);
 		getContentPane().add(txtTelCelular);
@@ -230,7 +232,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		btnCancelar.setBounds(20, 365, 89, 23);
 		getContentPane().add(btnCancelar);
 		
-		txtCep = new JTextField();
+		txtCep = new JFormattedTextField();
 		txtCep.setBounds(20, 170, 119, 20);
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
@@ -238,5 +240,6 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setBounds(20, 155, 46, 14);
 		getContentPane().add(lblCep);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtId, txtNome, txtCpf, txtRg, txtExpedicao, cmbUfExpedissao, txtEmissao, dtNascimentoField, txtNacionalidade, txtNaturalidade, cmbUfNascimento, cmbSexo, txtCep, txtEndereco, txtNumero, txtComplemento, txtCidade, cmbUfEndereco, txtTelResidencial, txtTelCelular, txtEmail, textField, btnCancelar}));
 	}
 }

@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class CadastroFuncionario extends CadastroBasicoPF {
 	private JTextField txtLogin;
@@ -62,6 +64,7 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setBounds(130, 365, 89, 23);
 		getContentPane().add(btnCadastrar);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtLogin, pwdSenha, pwdConsifrmarsenha, chckbxGerente, btnCadastrar}));
 	}
 	
 	public static CadastroFuncionario getInstance() {

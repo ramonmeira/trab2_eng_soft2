@@ -8,23 +8,26 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import javax.swing.JFormattedTextField;
 
 public class CadastroBasicoPJ extends SingletonJInternalFrame {
-	private JTextField textField;
+	private JFormattedTextField textField;
 	private JTextField txtRazaoSocial;
 	private JTextField txtNomeFantasia;
-	private JTextField txtCnpj;
+	private JFormattedTextField txtCnpj;
 	private JTextField txtRepresentante;
-	private JTextField txtCpf;
+	private JFormattedTextField txtCpf;
 	private JTextField txtLogradouro;
-	private JTextField txtNumero;
+	private JFormattedTextField txtNumero;
 	private JTextField txtComplemento;
-	private JTextField txtCep;
+	private JFormattedTextField txtCep;
 	private JTextField txtCidade;
-	private JTextField txtTelefone;
-	private JTextField txtFax;
+	private JFormattedTextField txtTelefone;
+	private JFormattedTextField txtFax;
 	private JTextField txtEmail;
-	private JTextField txtRamal;
+	private JFormattedTextField txtRamal;
 
 	public CadastroBasicoPJ() {
 		setBounds(100, 100, 711, 400);
@@ -34,7 +37,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblId.setBounds(20, 20, 46, 14);
 		getContentPane().add(lblId);
 		
-		textField = new JTextField();
+		textField = new JFormattedTextField();
 		textField.setColumns(10);
 		textField.setBounds(20, 35, 65, 20);
 		getContentPane().add(textField);
@@ -61,7 +64,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblCnpj.setBounds(20, 65, 46, 14);
 		getContentPane().add(lblCnpj);
 		
-		txtCnpj = new JTextField();
+		txtCnpj = new JFormattedTextField();
 		txtCnpj.setBounds(20, 80, 125, 20);
 		getContentPane().add(txtCnpj);
 		txtCnpj.setColumns(10);
@@ -79,7 +82,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblCpf.setBounds(551, 110, 46, 14);
 		getContentPane().add(lblCpf);
 		
-		txtCpf = new JTextField();
+		txtCpf = new JFormattedTextField();
 		txtCpf.setBounds(551, 125, 125, 20);
 		getContentPane().add(txtCpf);
 		txtCpf.setColumns(10);
@@ -93,7 +96,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(txtLogradouro);
 		txtLogradouro.setColumns(10);
 		
-		txtNumero = new JTextField();
+		txtNumero = new JFormattedTextField();
 		txtNumero.setBounds(611, 170, 65, 20);
 		getContentPane().add(txtNumero);
 		txtNumero.setColumns(10);
@@ -111,7 +114,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(txtComplemento);
 		txtComplemento.setColumns(10);
 		
-		txtCep = new JTextField();
+		txtCep = new JFormattedTextField();
 		txtCep.setBounds(20, 170, 119, 20);
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
@@ -142,12 +145,12 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblTel.setBounds(20, 245, 46, 14);
 		getContentPane().add(lblTel);
 		
-		txtTelefone = new JTextField();
+		txtTelefone = new JFormattedTextField();
 		txtTelefone.setBounds(20, 260, 100, 20);
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
-		txtFax = new JTextField();
+		txtFax = new JFormattedTextField();
 		txtFax.setBounds(226, 260, 153, 20);
 		getContentPane().add(txtFax);
 		txtFax.setColumns(10);
@@ -157,7 +160,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		txtRamal = new JTextField();
+		txtRamal = new JFormattedTextField();
 		txtRamal.setBounds(130, 260, 86, 20);
 		getContentPane().add(txtRamal);
 		txtRamal.setColumns(10);
@@ -185,6 +188,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		JCheckBox chckbxAtivo = new JCheckBox("Ativo");
 		chckbxAtivo.setBounds(20, 287, 97, 23);
 		getContentPane().add(chckbxAtivo);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, txtRazaoSocial, txtCnpj, txtNomeFantasia, txtRepresentante, txtCpf, txtCep, txtLogradouro, txtNumero, txtComplemento, txtCidade, comboBox, txtTelefone, txtRamal, txtFax, txtEmail, chckbxAtivo, btnCancelar}));
 	}
 
 }

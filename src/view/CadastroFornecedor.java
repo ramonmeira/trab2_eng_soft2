@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import view.models.CadastroBasicoPJ;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class CadastroFornecedor extends CadastroBasicoPJ {
 
@@ -20,6 +22,7 @@ public class CadastroFornecedor extends CadastroBasicoPJ {
 			JButton btnCadastrar = new JButton("Cadastrar");
 			btnCadastrar.setBounds(130, 365, 89, 23);
 			getContentPane().add(btnCadastrar);
+			setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnCadastrar}));
 		}
 		catch(PropertyVetoException e) {
 			e.printStackTrace();
