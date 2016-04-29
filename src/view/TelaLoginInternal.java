@@ -1,28 +1,20 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-
 import view.models.SingletonJInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import control.TelaPrincipalControl;
-
-import java.awt.Component;
 
 public class TelaLoginInternal extends SingletonJInternalFrame {
 	private JTextField txtLogin;
 	private JPasswordField pwdSenha;
 	
-	TelaPrincipalControl controle = null;
+	private TelaPrincipalControl controle = null;
 
 	private TelaLoginInternal() {
 		super();
@@ -58,9 +50,7 @@ public class TelaLoginInternal extends SingletonJInternalFrame {
 		});
 		btnLogin.setBounds(175, 130, 89, 23);
 		getContentPane().add(btnLogin);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblSenha, lblLogin, txtLogin, pwdSenha, btnLogin}));
 		setBounds(100, 100, 440, 220);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtLogin, lblLogin, pwdSenha, lblSenha, btnLogin, getContentPane()}));
 	}
 	
 	public static TelaLoginInternal getInstance(){

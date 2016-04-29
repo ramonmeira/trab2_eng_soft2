@@ -7,14 +7,8 @@ import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.Component;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import javax.swing.JButton;
-
-import com.jgoodies.common.format.DisplayableFormat;
 
 import javax.swing.JFormattedTextField;
 

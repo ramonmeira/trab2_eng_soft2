@@ -4,6 +4,7 @@ import java.beans.PropertyVetoException;
 
 import javax.swing.JOptionPane;
 
+import control.TelaPrincipalControl;
 import view.models.CadastroBasicoPF;
 import javax.swing.JButton;
 import java.awt.Component;
@@ -11,6 +12,8 @@ import java.awt.Component;
 public class CadastroCliente extends CadastroBasicoPF {
 
 	private static final long serialVersionUID = -8071117372959399379L;
+	
+	private TelaPrincipalControl controle;
 	
 	private CadastroCliente() {
 		super();
@@ -28,6 +31,10 @@ public class CadastroCliente extends CadastroBasicoPF {
 		}
 		
 		return (CadastroCliente) instance;
+	}
+	
+	public void setControl(TelaPrincipalControl controle) {
+		this.controle = controle;
 	}
 
 }
