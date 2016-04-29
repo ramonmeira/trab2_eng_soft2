@@ -4,11 +4,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -17,7 +21,7 @@ import java.awt.Component;
 import javax.swing.JFormattedTextField;
 
 public class CadastroBasicoPJ extends SingletonJInternalFrame {
-	private JFormattedTextField txtId;
+	private JTextField txtId;
 	private JTextField txtRazaoSocial;
 	private JTextField txtNomeFantasia;
 	private JFormattedTextField txtCnpj;
@@ -41,12 +45,8 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		lblId.setBounds(20, 20, 46, 14);
 		getContentPane().add(lblId);
 		
-		try {
-			txtId = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
-		} catch (ParseException e2) {
-			JOptionPane.showMessageDialog(this, "ID inválido", "O número do ID informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
-			e2.printStackTrace();
-		}
+		txtId = new JTextField();
+		txtId.setEnabled(false);
 		txtId.setColumns(6);
 		txtId.setBounds(20, 35, 65, 20);
 		getContentPane().add(txtId);
@@ -74,7 +74,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		getContentPane().add(lblCnpj);
 		
 		try {
-			txtCnpj = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+			txtCnpj = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##.###.###/####-##"), new MaskFormatter("##.###.###/####-##"), new MaskFormatter("##.###.###/####-##")));
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(this, "CNPJ inválido", "O número de CNPJ informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
@@ -116,7 +116,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		txtLogradouro.setColumns(10);
 		
 		try {
-			txtNumero = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+			txtNumero = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("######"), new MaskFormatter("######"),  new NumberFormatter(new DecimalFormat("#0"))));
 		} catch (ParseException e2) {
 			JOptionPane.showMessageDialog(this, "Número residencial inválido", "O número de endereço informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
 			e2.printStackTrace();
@@ -200,7 +200,7 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		txtEmail.setColumns(10);
 		
 		try {
-			txtRamal = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+			txtRamal = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("###"), new MaskFormatter("###"),  new NumberFormatter(new DecimalFormat("#0"))));
 		} catch (ParseException e2) {
 			JOptionPane.showMessageDialog(this, "Ramal inválido", "O número do ramal possui formato inválido!", JOptionPane.WARNING_MESSAGE);
 			e2.printStackTrace();

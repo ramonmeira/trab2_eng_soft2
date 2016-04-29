@@ -5,8 +5,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -22,7 +26,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 	private JTextField txtCidade;
 	private JTextField txtEndereco;
 	private JTextField txtComplemento;
-	private JFormattedTextField txtId;
+	private JTextField txtId;
 	private JFormattedTextField txtRg;
 	private JTextField txtExpedicao;
 	private JFormattedTextField txtEmissao;
@@ -148,7 +152,8 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblId.setBounds(20, 20, 46, 14);
 		getContentPane().add(lblId);
 		
-		txtId = new JFormattedTextField();
+		txtId = new JTextField();
+		txtId.setEditable(false);
 		txtId.setBounds(20, 35, 65, 20);
 		getContentPane().add(txtId);
 		txtId.setColumns(10);
@@ -197,7 +202,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(txtNaturalidade);
 		
 		try {
-			txtNumero = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+			txtNumero = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("######"), new MaskFormatter("######"),  new NumberFormatter(new DecimalFormat("#0"))));
 		} catch (ParseException e2) {
 			JOptionPane.showMessageDialog(this, "Número residencial inválido", "O número de endereço informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
 			e2.printStackTrace();
