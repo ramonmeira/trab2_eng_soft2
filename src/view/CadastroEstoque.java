@@ -7,6 +7,7 @@ import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
+import control.TelaPrincipalControl;
 import view.models.SingletonJInternalFrame;
 
 import java.beans.PropertyVetoException;
@@ -25,6 +26,8 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 	private JTextField txtDescricaoProduto;
 	private JFormattedTextField txtQtd;
 	private JFormattedTextField txtPreco;
+	
+	TelaPrincipalControl controle;
 
 	public CadastroEstoque() {
 		super();
@@ -141,5 +144,17 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(this, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
 		}
+	}
+	
+	public static CadastroEstoque getInstance() {
+		if(instance == null) {
+			instance = new CadastroEstoque();
+		}
+		
+		return (CadastroEstoque) instance;
+	}
+	
+	public void setControl(TelaPrincipalControl controle) {
+		this.controle = controle;
 	}
 }

@@ -2,6 +2,7 @@ package view;
 
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -10,6 +11,8 @@ import javax.swing.JOptionPane;
 import view.models.SingletonJInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JComboBox;
 import java.awt.Component;
 import javax.swing.JFormattedTextField;
@@ -68,10 +71,15 @@ public class CadastroProduto extends SingletonJInternalFrame {
 			lblCodEan.setBounds(20, 110, 46, 14);
 			getContentPane().add(lblCodEan);
 			
-			txtCodEan = new JFormattedTextField();
+			try {
+				txtCodEan = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
+			} catch (ParseException e) {
+				JOptionPane.showMessageDialog(this, "O código EAN informado possui formato inválido!", "Código EAN inválido", JOptionPane.WARNING_MESSAGE);
+				e.printStackTrace();
+			}
 			txtCodEan.setBounds(20, 125, 142, 20);
 			getContentPane().add(txtCodEan);
-			txtCodEan.setColumns(10);
+			txtCodEan.setColumns(13);
 			
 			JComboBox cmbFornecedor = new JComboBox();
 			cmbFornecedor.setBounds(172, 125, 307, 20);

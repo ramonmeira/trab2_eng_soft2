@@ -90,12 +90,12 @@ public class TelaPrincipal extends JFrame {
 		mntmCadastrarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controle.abreCadastroCliente();
+				controle.abrePesquisaCliente(1);
 			}
 		});
 		mntmCadastrarCliente.addMenuKeyListener(new MenuKeyListener() {
 			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.abreCadastroCliente();
+				controle.abrePesquisaCliente(1);
 			}
 			public void menuKeyReleased(MenuKeyEvent e) {
 			}
@@ -105,64 +105,148 @@ public class TelaPrincipal extends JFrame {
 		mnCliente.add(mntmCadastrarCliente);
 		
 		mntmAlterarDados = new JMenuItem("Alterar dados");
+		mntmAlterarDados.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaCliente(2);
+			}
+		});
 		mnCliente.add(mntmAlterarDados);
 		
 		mntmRemover = new JMenuItem("Remover");
+		mntmRemover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaCliente(3);
+			}
+		});
 		mnCliente.add(mntmRemover);
 		
 		mnFuncionrio = new JMenu("Funcion\u00E1rio");
 		menuBar.add(mnFuncionrio);
 		
 		mntmCadastrar = new JMenuItem("Cadastrar");
+		mntmCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaFuncionario(4);
+			}
+		});
 		mnFuncionrio.add(mntmCadastrar);
 		
 		mntmAlterarDados_1 = new JMenuItem("Alterar dados");
+		mntmAlterarDados_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaFuncionario(5);
+			}
+		});
 		mnFuncionrio.add(mntmAlterarDados_1);
 		
 		mntmPromover = new JMenuItem("Promover");
+		mntmPromover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaFuncionario(6);
+			}
+		});
 		mnFuncionrio.add(mntmPromover);
 		
 		mntmDesativar = new JMenuItem("Desativar");
+		mntmDesativar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaFuncionario(7);
+			}
+		});
 		mnFuncionrio.add(mntmDesativar);
 		
 		mnFornecedores = new JMenu("Fornecedores");
 		menuBar.add(mnFornecedores);
 		
 		mntmCadastrar_1 = new JMenuItem("Cadastrar");
+		mntmCadastrar_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaForncedor(8);
+			}
+		});
 		mnFornecedores.add(mntmCadastrar_1);
 		
 		mntmAlterarDados_2 = new JMenuItem("Alterar dados");
+		mntmAlterarDados_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaForncedor(9);
+			}
+		});
 		mnFornecedores.add(mntmAlterarDados_2);
 		
 		mntmDesativar_1 = new JMenuItem("Desativar");
+		mntmDesativar_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaForncedor(10);
+			}
+		});
 		mnFornecedores.add(mntmDesativar_1);
 		
 		mnProdutos = new JMenu("Produtos");
 		menuBar.add(mnProdutos);
 		
 		mntmCadastrar_2 = new JMenuItem("Cadastrar");
+		mntmCadastrar_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaProduto(11);
+			}
+		});
 		mnProdutos.add(mntmCadastrar_2);
 		
 		mntmRemover_1 = new JMenuItem("Remover");
+		mntmRemover_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaProduto(12);
+			}
+		});
 		mnProdutos.add(mntmRemover_1);
 		
 		mntmSolicitar = new JMenuItem("Solicitar");
+		mntmSolicitar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.abrePesquisaProduto(13);
+			}
+		});
 		mnProdutos.add(mntmSolicitar);
 		
 		mnEstoque = new JMenu("Estoque");
 		menuBar.add(mnEstoque);
 		
 		mntmCadastrar_3 = new JMenuItem("Cadastrar");
+		mntmCadastrar_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				controle.cadastraEstoque();
+			}
+		});
 		mnEstoque.add(mntmCadastrar_3);
 		
 		mntmAlterarEstoque = new JMenuItem("Alterar estoque");
+		mntmAlterarEstoque.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controle.alterarEstoque();
+			}
+		});
 		mnEstoque.add(mntmAlterarEstoque);
 		
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		//getContentPane().setLayout(null);
 		
 		desktop = new JDesktopPane();
-		add(desktop, BorderLayout.CENTER);
+		getContentPane().add(desktop, BorderLayout.CENTER);
 		//desktop.setBounds(0, 241, 434, -239);
 		//getContentPane().add(desktop);
 		ativarMenus(false);

@@ -6,6 +6,9 @@ import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
+
+import control.TelaPrincipalControl;
+
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +39,8 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 	private JFormattedTextField txtFax;
 	private JTextField txtEmail;
 	private JFormattedTextField txtRamal;
+	
+	TelaPrincipalControl controle;
 
 	public CadastroBasicoPJ() {
 		setBounds(100, 100, 711, 400);
@@ -233,5 +238,8 @@ public class CadastroBasicoPJ extends SingletonJInternalFrame {
 		chckbxAtivo.setBounds(20, 287, 97, 23);
 		getContentPane().add(chckbxAtivo);
 	}
-
+	
+	public void setControl(TelaPrincipalControl controle) {
+		this.controle = controle;
+	}
 }

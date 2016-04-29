@@ -7,6 +7,9 @@ import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
+
+import control.TelaPrincipalControl;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -42,6 +45,8 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 	DateFormatter displayFormat;
 	DateFormatter editFormat;
 	DefaultFormatterFactory dateFormat;
+	
+	TelaPrincipalControl controle;
 
 	protected CadastroBasicoPF(){
 		super();
@@ -57,34 +62,42 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setBounds(100, 20, 39, 14);
+		lblNome.setSize(lblNome.getPreferredSize());
 		getContentPane().add(lblNome);
 		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setBounds(20, 65, 28, 14);
+		lblCpf.setSize(lblCpf.getPreferredSize());
 		getContentPane().add(lblCpf);
 		
 		JLabel lblDataDeNascimento = new JLabel("Dt. Nascimento");
 		lblDataDeNascimento.setBounds(20, 110, 100, 14);
+		lblDataDeNascimento.setSize(lblDataDeNascimento.getPreferredSize());
 		getContentPane().add(lblDataDeNascimento);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setBounds(591, 110, 46, 14);
+		lblSexo.setSize(lblSexo.getPreferredSize());
 		getContentPane().add(lblSexo);
 		
-		JLabel lblEndereo = new JLabel("Logradouro");
-		lblEndereo.setBounds(149, 155, 65, 14);
-		getContentPane().add(lblEndereo);
+		JLabel lblEndereco = new JLabel("Logradouro");
+		lblEndereco.setBounds(149, 155, 65, 14);
+		lblEndereco.setSize(lblEndereco.getPreferredSize());
+		getContentPane().add(lblEndereco);
 		
 		JLabel lblComplemento = new JLabel("Complemento");
 		lblComplemento.setBounds(20, 200, 75, 14);
+		lblComplemento.setSize(lblComplemento.getPreferredSize());
 		getContentPane().add(lblComplemento);
 		
 		JLabel lblCidade = new JLabel("Cidade");
 		lblCidade.setBounds(290, 200, 46, 14);
+		lblCidade.setSize(lblCidade.getPreferredSize());
 		getContentPane().add(lblCidade);
 		
 		JLabel lblEstado = new JLabel("UF");
 		lblEstado.setBounds(450, 110, 46, 14);
+		lblEstado.setSize(lblEstado.getPreferredSize());
 		getContentPane().add(lblEstado);
 		
 		txtNome = new JTextField();
@@ -134,22 +147,27 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblNacionalidade = new JLabel("Nacionalidade");
 		lblNacionalidade.setBounds(130, 110, 75, 14);
+		lblNacionalidade.setSize(lblNacionalidade.getPreferredSize());
 		getContentPane().add(lblNacionalidade);
 		
 		JLabel lblNaturalidade = new JLabel("Naturalidade");
 		lblNaturalidade.setBounds(290, 110, 65, 14);
+		lblNaturalidade.setSize(lblNaturalidade.getPreferredSize());
 		getContentPane().add(lblNaturalidade);
 		
 		JLabel lblRg = new JLabel("RG");
 		lblRg.setBounds(180, 65, 18, 14);
+		lblRg.setSize(lblRg.getPreferredSize());
 		getContentPane().add(lblRg);
 		
 		JLabel lblExpedicao = new JLabel("Org. Expedidor");
 		lblExpedicao.setBounds(340, 65, 85, 14);
+		lblExpedicao.setSize(lblExpedicao.getPreferredSize());
 		getContentPane().add(lblExpedicao);
 		
 		JLabel lblId = new JLabel("ID");
 		lblId.setBounds(20, 20, 46, 14);
+		lblId.setSize(lblId.getPreferredSize());
 		getContentPane().add(lblId);
 		
 		txtId = new JTextField();
@@ -175,6 +193,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblUf = new JLabel("UF");
 		lblUf.setBounds(435, 65, 46, 14);
+		lblUf.setSize(lblUf.getPreferredSize());
 		getContentPane().add(lblUf);
 		
 		JComboBox cmbUfExpedissao = new JComboBox();
@@ -184,6 +203,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblDtEmissao = new JLabel("Dt. Emiss\u00E3o");
 		lblDtEmissao.setBounds(576, 65, 61, 14);
+		lblDtEmissao.setSize(lblDtEmissao.getPreferredSize());
 		getContentPane().add(lblDtEmissao);
 		
 		txtEmissao = new JFormattedTextField(dateFormat);
@@ -213,11 +233,13 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblN = new JLabel("N\u00BA");
 		lblN.setBounds(611, 155, 46, 14);
+		lblN.setSize(lblN.getPreferredSize());
 		getContentPane().add(lblN);
 		
-		JLabel label = new JLabel("UF");
-		label.setBounds(545, 200, 46, 14);
-		getContentPane().add(label);
+		JLabel lblUfEndereco = new JLabel("UF");
+		lblUfEndereco.setBounds(545, 200, 46, 14);
+		lblUfEndereco.setSize(lblUfEndereco.getPreferredSize());
+		getContentPane().add(lblUfEndereco);
 		
 		JComboBox cmbUfEndereco = new JComboBox();
 		cmbUfEndereco.setModel(new DefaultComboBoxModel(new String[] {"Acre", "Alagoas", "Amap\u00E1", "Bahia", "Cear\u00E1", "Distrito Federal", "Esp\u00EDrito Santo", "Goi\u00E1s", "Maranh\u00E3o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Par\u00E1", "Para\u00EDba", "Paran\u00E1", "Pernambuco", "Piau\u00ED", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rond\u00F4nia", "Roraima", "Santa Catarina", "S\u00E3o Paulo", "Sergipe", "Tocantins"}));
@@ -226,14 +248,17 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblTelResidencial = new JLabel("Tel. Residencial");
 		lblTelResidencial.setBounds(20, 245, 85, 14);
+		lblTelResidencial.setSize(lblTelResidencial.getPreferredSize());
 		getContentPane().add(lblTelResidencial);
 		
 		JLabel lblTelCelular = new JLabel("Tel. Celular");
 		lblTelCelular.setBounds(130, 245, 75, 14);
+		lblTelCelular.setSize(lblTelCelular.getPreferredSize());
 		getContentPane().add(lblTelCelular);
 		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setBounds(240, 245, 46, 14);
+		lblEmail.setSize(lblEmail.getPreferredSize());
 		getContentPane().add(lblEmail);
 		
 		try {
@@ -268,6 +293,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblEmailComercial = new JLabel("Email comercial");
 		lblEmailComercial.setBounds(464, 245, 75, 14);
+		lblEmailComercial.setSize(lblEmailComercial.getPreferredSize());
 		getContentPane().add(lblEmailComercial);
 		
 		try {
@@ -282,6 +308,11 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setBounds(20, 155, 46, 14);
+		lblCep.setSize(lblCep.getPreferredSize());
 		getContentPane().add(lblCep);
+	}
+	
+	public void setControl(TelaPrincipalControl controle) {
+		this.controle = controle;
 	}
 }
