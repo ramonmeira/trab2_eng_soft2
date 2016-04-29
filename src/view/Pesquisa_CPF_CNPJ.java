@@ -1,13 +1,11 @@
 package view;
 
-import java.awt.EventQueue;
 import java.text.ParseException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import control.TelaPrincipalControl;
 
@@ -15,20 +13,46 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/*
+ * Tipos de operacoes:
+ * 1 - Cadastrar cliente
+ * 2 - Alterar dados de cliente
+ * 3 - Remover Cliente
+ * 4 - Cadastrar funcionario
+ * 5 - Alterar dados do funcionario
+ * 6 - Promover funcionario
+ * 7 - Desativar funcionario
+ * 8 - Cadastrar fornecedor
+ * 9 - Alterar dados do fornecedor
+ * 10 - Desativar fornecedor
+ * 11 - Cadastrar produto
+ * 12 - Remover produto
+ * 13 - Solicitar produto
+ */
+
 public class Pesquisa_CPF_CNPJ extends JInternalFrame {
-	
+
+	private static final long serialVersionUID = 1L;
 	private TelaPrincipalControl controle;
 	private JFormattedTextField frmtdtxtfldPesquisa;
 	
-	private String tipo;
+//	private int tipoOperacao;
 	
-	public Pesquisa_CPF_CNPJ(String tipo) {
+	public Pesquisa_CPF_CNPJ(int tipoOperacao) {
 		setBounds(100, 100, 380, 195);
 		getContentPane().setLayout(null);
 		
-		setTitle("Pesquisa de " + tipo);
+		String tipo;
 		
-		this.tipo = tipo;
+		if(tipoOperacao < 8) {
+			tipo = "CPF";
+		} else if(tipoOperacao < 11) {
+			tipo = "CNPJ";
+		} else {
+			tipo = "Código EAN";
+		}
+		
+		setTitle("Pesquisa de " + tipo);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addMouseListener(new MouseAdapter() {
@@ -39,11 +63,12 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 				}
 			}
 		});
-		btnPesquisar.setBounds(142, 114, 89, 23);
+		btnPesquisar.setBounds(139, 103, 89, 23);
 		getContentPane().add(btnPesquisar);
 		
 		JLabel lblCpfCnpj = new JLabel(tipo);
-		lblCpfCnpj.setBounds(67, 46, 56, 14);
+		lblCpfCnpj.setBounds(64, 40, 56, 14);
+		lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
 		getContentPane().add(lblCpfCnpj);
 		
 		frmtdtxtfldPesquisa = new JFormattedTextField();
@@ -59,7 +84,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			JOptionPane.showMessageDialog(this, "CNPJ inválido", "O número de CNPJ informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
 		}
-		frmtdtxtfldPesquisa.setBounds(133, 43, 158, 20);
+		frmtdtxtfldPesquisa.setBounds(64, 56, 242, 20);
 		getContentPane().add(frmtdtxtfldPesquisa);
 	}
 	

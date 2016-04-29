@@ -88,10 +88,6 @@ public class TelaPrincipal extends JFrame {
 		
 		mntmCadastrarCliente = new JMenuItem("Cadastrar");
 		mntmCadastrarCliente.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				controle.abreCadastroCliente();
-//			}
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controle.abreCadastroCliente();

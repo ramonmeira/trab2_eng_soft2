@@ -14,8 +14,10 @@ public class TelaPrincipalControl {
 	
 	TelaPrincipal telaPrincipal;
 	TelaLoginInternal telaLogin;
-	Pesquisa_CPF_CNPJ pesquisaCPF = null;
-	Pesquisa_CPF_CNPJ pesquisaCNPJ = null;
+	Pesquisa_CPF_CNPJ pesquisaCliente = null;
+	Pesquisa_CPF_CNPJ pesquisaFuncionario = null;
+	Pesquisa_CPF_CNPJ pesquisaFornecedor = null;
+	Pesquisa_CPF_CNPJ pesquisaProduto = null;
 	
 	boolean usuarioLogado = false;
 	String usuario = null;
@@ -25,14 +27,29 @@ public class TelaPrincipalControl {
 	}
 	
 	public void abreCadastroCliente() {
-//		CadastroCliente cadastroCliente = CadastroCliente.getInstance();
-//		telaPrincipal.addInternalFrame(cadastroCliente);
-//		cadastroCliente.setVisible(true);
 		if(!CadastroCliente.getInstance().isVisible()) {
-			pesquisaCPF = new Pesquisa_CPF_CNPJ("CPF");
-			pesquisaCPF.setControl(this);
-			telaPrincipal.addInternalFrame(pesquisaCPF);
-			pesquisaCPF.setVisible(true);
+			pesquisaFuncionario = new Pesquisa_CPF_CNPJ(1);
+			pesquisaFuncionario.setControl(this);
+			telaPrincipal.addInternalFrame(pesquisaFuncionario);
+			pesquisaFuncionario.setVisible(true);
+		}
+	}
+	
+	public void abreAlterarDadosCliente() {
+		if(!CadastroCliente.getInstance().isVisible()) {
+			pesquisaFuncionario = new Pesquisa_CPF_CNPJ(2);
+			pesquisaFuncionario.setControl(this);
+			telaPrincipal.addInternalFrame(pesquisaFuncionario);
+			pesquisaFuncionario.setVisible(true);
+		}
+	}
+	
+	public void abreRemoverCliente() {
+		if(!CadastroCliente.getInstance().isVisible()) {
+			pesquisaFuncionario = new Pesquisa_CPF_CNPJ(3);
+			pesquisaFuncionario.setControl(this);
+			telaPrincipal.addInternalFrame(pesquisaFuncionario);
+			pesquisaFuncionario.setVisible(true);
 		}
 	}
 	
@@ -61,8 +78,8 @@ public class TelaPrincipalControl {
 	
 	public void pesquisaCPF(String CPF) {
 //		if(cpf valido){
-		pesquisaCPF.dispose();
-		pesquisaCPF = null;
+		pesquisaCliente.dispose();
+		pesquisaCliente = null;
 		CadastroCliente cadastroCliente = CadastroCliente.getInstance();
 		cadastroCliente.setControl(this);
 		telaPrincipal.addInternalFrame(cadastroCliente);
