@@ -15,6 +15,7 @@ public class TelaPrincipalControl {
 	TelaPrincipal telaPrincipal;
 	TelaLoginInternal telaLogin;
 	Pesquisa_CPF_CNPJ pesquisaCPF = null;
+	Pesquisa_CPF_CNPJ pesquisaCNPJ = null;
 	
 	boolean usuarioLogado = false;
 	String usuario = null;
@@ -27,7 +28,7 @@ public class TelaPrincipalControl {
 //		CadastroCliente cadastroCliente = CadastroCliente.getInstance();
 //		telaPrincipal.addInternalFrame(cadastroCliente);
 //		cadastroCliente.setVisible(true);
-		if(pesquisaCPF == null) {
+		if(!CadastroCliente.getInstance().isVisible()) {
 			pesquisaCPF = new Pesquisa_CPF_CNPJ("CPF");
 			pesquisaCPF.setControl(this);
 			telaPrincipal.addInternalFrame(pesquisaCPF);
