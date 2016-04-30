@@ -42,7 +42,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	
 //	private int tipoOperacao;
 	
-	public Pesquisa_CPF_CNPJ(TelaPrincipalControl controle) {
+	public Pesquisa_CPF_CNPJ(final TelaPrincipalControl controle) {
 		setClosable(true);
 		setBounds(100, 100, 380, 195);
 		getContentPane().setLayout(null);
@@ -117,7 +117,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 				frmtdtxtfldPesquisa = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
 				frmtdtxtfldPesquisa.setColumns(10);
 				break;
-			case "Código EAN":
+			case "Cï¿½digo EAN":
 				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
 				frmtdtxtfldPesquisa.setColumns(14);
 				break;
@@ -137,7 +137,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		} else if(tipoOperacao < 11) {
 			tipo = "CNPJ";
 		} else {
-			tipo = "Código EAN";
+			tipo = "Cï¿½digo EAN";
 		}
 	}
 }
