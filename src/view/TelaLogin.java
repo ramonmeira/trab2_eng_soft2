@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 
 import javax.swing.JFrame;
 
@@ -10,6 +10,13 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Component;
+
+import view.models.*;
+
+import javax.swing.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class TelaLogin extends JFrame {
 	private JTextField loginField;
@@ -50,6 +57,21 @@ public class TelaLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(158, 113, 89, 23);
 		getContentPane().add(btnLogin);
+		
+		
+		btnLogin.addActionListener(new ActionListener() {
+			protected PessoaTableModel modelP = new PessoaTableModel();
+
+			public void actionPerformed(ActionEvent e) {
+				String login = loginField.getText();
+		        String password = senhaField.getText();	
+		        //Login l = new Login() ;
+		        //int index = l.verificacao(login,password);
+		        		
+	    
+				}
+			});
+		
 
 	}
 }
