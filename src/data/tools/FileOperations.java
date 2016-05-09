@@ -11,30 +11,23 @@ import java.util.ArrayList;
 
 public class FileOperations {
 	
-	private static File clientes;
-	private static File funcionarios;
-	private static File fornecedores;
-	private static File produtos;
-	private static File estoque;
-	
 	public static void initializeFiles() {
-		clientes = createFile(clientes, "clientes.txt");
-		funcionarios = createFile(funcionarios, "funcionarios.txt");
-		fornecedores = createFile(fornecedores, "fornecedores.txt");
-		produtos = createFile(produtos, "produtos");
-		estoque = createFile(estoque, "extoque.txt");
+		createFile("clientes.txt");
+		createFile("funcionarios.txt");
+		createFile("fornecedores.txt");
+		createFile("produtos.txt");
+		createFile("estoque.txt");
 	}
 	
-	private static File createFile(File file, String fileName) {
-		file = new File(fileName);
-		if(!file.exists() && file.isDirectory()) {
+	private static void createFile(String fileName) {
+		File file = new File(fileName);
+		if(!file.exists() && !file.isDirectory()) {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		return file;
 	}
 	
 	public static void writeString(String writeStrinf, String fileName) {

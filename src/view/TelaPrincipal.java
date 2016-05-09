@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.TelaPrincipalControl;
+import data.tools.FileOperations;
+
 import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 import java.awt.event.MouseAdapter;
@@ -52,6 +54,7 @@ public class TelaPrincipal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		FileOperations.initializeFiles();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
