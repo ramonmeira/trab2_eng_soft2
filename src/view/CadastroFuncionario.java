@@ -23,14 +23,6 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		super();
 		setTitle("Cadastro de Funcion\u00E1rio");
 		
-		try {
-			setMaximum(true);
-		}
-		catch(PropertyVetoException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
-		}
-		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(20, 290, 46, 14);
 		getContentPane().add(lblLogin);
