@@ -13,7 +13,11 @@ public class Cliente extends PessoaFisica implements ObjetoPersistente{
 		
 		dados.add("NOME"); //Neste caso NOME é a chave do valor contido na variável nome.
 		dados.add(nome);
+		
+		dados.add("CPF");
 		dados.add(cpf);
+		
+		dados.add("");
 		dados.add(rg);
 		dados.add(orgaoExpedidor);
 		dados.add(ufExpepdidor);

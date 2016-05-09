@@ -8,7 +8,8 @@ public abstract class PessoaFisica {
 	protected String ufExpepdidor;
 	protected String dataEmissao;
 	protected String dataNascimento;
-	protected String dataNacionalidade;
+	protected String nacionalidade;
+	protected String naturalidade;
 	protected String ufNascimento;
 	protected String sexo;
 	protected String cep;
@@ -64,11 +65,17 @@ public abstract class PessoaFisica {
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public String getDataNacionalidade() {
-		return dataNacionalidade;
+	public String getNacionalidade() {
+		return nacionalidade;
 	}
-	public void setDataNacionalidade(String dataNacionalidade) {
-		this.dataNacionalidade = dataNacionalidade;
+	public void setDataNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
+	public String getNaturalidade() {
+		return naturalidade;
+	}
+	public void setNaturalidade(String naturalidade) {
+		this.naturalidade = naturalidade;
 	}
 	public String getUfNascimento() {
 		return ufNascimento;
