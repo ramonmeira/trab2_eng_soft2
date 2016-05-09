@@ -2,7 +2,34 @@ package data.model;
 
 import java.util.ArrayList;
 
-public class Cliente extends PessoaFisica implements ObjetoPersistente{
+public class Funcionario extends PessoaFisica implements ObjetoPersistente{
+	private String login;
+	private String senha;
+	private String gerente;
+	
+//-=-=-=-=-=-=-=-=-=-=-=-=- Getters e Setters -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getGerente() {
+		return gerente;
+	}
+	public void setGerente(String gerente) {
+		this.gerente = gerente;
+	}
+	
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 	public ArrayList<String> getDadosSerializados() {
 		ArrayList<String> dados = new ArrayList<String>();
 		
@@ -16,6 +43,9 @@ public class Cliente extends PessoaFisica implements ObjetoPersistente{
 		
 		dados.add("NOME"); //Neste caso NOME é a chave do valor contido na variável nome.
 		dados.add(nome);
+		
+		dados.add("CPF");
+		dados.add(cpf);
 		
 		dados.add("RG");
 		dados.add(rg);
@@ -74,6 +104,14 @@ public class Cliente extends PessoaFisica implements ObjetoPersistente{
 		dados.add("EMAIL COMERCIAL");
 		dados.add(emailComercial);
 		
+		dados.add("LOGIN");
+		dados.add(login);
+		
+		dados.add("SENHA");
+		dados.add(senha);
+		
+		dados.add("GERENTE");
+		dados.add(gerente);		
 		
 		return dados;
 	}
