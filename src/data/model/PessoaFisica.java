@@ -23,6 +23,8 @@ public abstract class PessoaFisica {
 	protected String email;
 	protected String emailComercial;
 	
+//-=-=-=-=-=-=-=-=-=-=-=-=- Getters e Setters -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	
 	public String getNome() {
 		return nome;
 	}
