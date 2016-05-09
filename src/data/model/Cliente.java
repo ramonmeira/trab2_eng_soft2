@@ -11,68 +11,27 @@ public class Cliente extends PessoaFisica implements ObjetoPersistente{
 		 * 1ª posição contém a chave, 2ª contém o valor
 		 */
 		
-		dados.add("CPF");
-		dados.add(cpf);
-		
-		dados.add("NOME"); //Neste caso NOME é a chave do valor contido na variável nome.
-		dados.add(nome);
-		
-		dados.add("RG");
-		dados.add(rg);
-		
-		dados.add("ORGAO EXPEDIDOR");
-		dados.add(orgaoExpedidor);
-		
-		dados.add("UF EXPEDIDOR");
-		dados.add(ufExpepdidor);
-		
-		dados.add("DATA EMISSAO");
-		dados.add(dataEmissao);
-		
-		dados.add("DATA NASCIMENTO");
-		dados.add(dataNascimento);
-		
-		dados.add("NACIONALIDADE");
-		dados.add(nacionalidade);
-		
-		dados.add("NATURALIDADE");
-		dados.add(naturalidade);
-		
-		dados.add("UF NASCIMENTO");
-		dados.add(ufNascimento);
-		
-		dados.add("SEXO");
-		dados.add(sexo);
-		
-		dados.add("CEP");
-		dados.add(cep);
-		
-		dados.add("LOGRADOURO");
-		dados.add(logradouro);
-		
-		dados.add("NUMERO");
-		dados.add(numero);
-		
-		dados.add("COMPLEMENTO");
-		dados.add(complemento);
-		
-		dados.add("CIDADE");
-		dados.add(cidade);
-		
-		dados.add("UF ENDERECO");
-		dados.add(ufEndereco);
-		
-		dados.add("TEL RESIDENCIAL");
-		dados.add(telResidencial);
-		
-		dados.add("TEL CELULAR");
-		dados.add(telCelular);
-		
-		dados.add("EMAIL");
-		dados.add(email);
-		
-		dados.add("EMAIL COMERCIAL");
-		dados.add(emailComercial);
+		dados.add("CPF="+cpf);
+		dados.add("NOME="+nome); //Neste caso NOME é a chave do valor contido na variável nome.
+		dados.add("RG="+rg);
+		dados.add("ORGAO EXPEDIDOR="+orgaoExpedidor);
+		dados.add("UF EXPEDIDOR="+ufExpepdidor);
+		dados.add("DATA EMISSAO="+dataEmissao);
+		dados.add("DATA NASCIMENTO="+dataNascimento);
+		dados.add("NACIONALIDADE="+nacionalidade);
+		dados.add("NATURALIDADE="+naturalidade);
+		dados.add("UF NASCIMENTO="+ufNascimento);
+		dados.add("SEXO="+sexo);
+		dados.add("CEP="+cep);
+		dados.add("LOGRADOURO="+logradouro);
+		dados.add("NUMERO="+numero);
+		dados.add("COMPLEMENTO="+complemento);		
+		dados.add("CIDADE="+cidade);		
+		dados.add("UF ENDERECO="+ufEndereco);
+		dados.add("TEL RESIDENCIAL="+telResidencial);		
+		dados.add("TEL CELULAR="+telCelular);
+		dados.add("EMAIL="+email);
+		dados.add("EMAIL COMERCIAL="+email);
 		
 		
 		return dados;
