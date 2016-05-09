@@ -37,11 +37,25 @@ public class FileOperations {
 		return file;
 	}
 	
-	public void writeString(String writeStrinf, String fileName) {
+	public static void writeString(String writeStrinf, String fileName) {
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName + ".txt", false));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName + ".txt", true));
 			bw.write(writeStrinf);
 			bw.newLine();
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeList(ArrayList<String> lines, String fileName) {
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName + ".txt", false));
+			for(String line : lines) {
+				bw.write(line);
+				bw.newLine();
+			}
 			bw.flush();
 			bw.close();
 		} catch (IOException e) {
