@@ -34,7 +34,6 @@ import java.awt.event.MouseEvent;
 
 public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 
-	private static final long serialVersionUID = 1L;
 	private TelaPrincipalControl controle;
 	private JFormattedTextField frmtdtxtfldPesquisa;
 	private int tipoOperacao = 1;
