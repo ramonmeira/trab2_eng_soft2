@@ -41,4 +41,14 @@ public class fileDao {
 			linhas.remove(i);
 		}	
 	}
+	
+	public boolean loginValido(String login, String senha) {
+		ArrayList<String> linhas = FileOperations.getFileLines("funcionarios");
+		if(linhas.contains("LOGIN="+login)){
+			if(linhas.get(linhas.indexOf("LOGIN="+login) + 1).substring(6).equals(senha)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

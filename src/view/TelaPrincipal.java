@@ -55,6 +55,7 @@ public class TelaPrincipal extends JFrame {
 	 */
 	public static void main(String[] args) {
 		FileOperations.initializeFiles();
+		System.out.println("SENHA=1".substring(6));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
