@@ -259,6 +259,7 @@ public class TelaPrincipal extends JFrame {
 	
 	public void addInternalFrame(JInternalFrame internalFrame) {
 		if(!internalFrame.isVisible()) {
+			desktop.remove(internalFrame);
 			desktop.add(internalFrame);
 		}
 	}

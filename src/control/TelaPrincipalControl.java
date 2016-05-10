@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 
 import view.CadastroCliente;
 import view.CadastroEstoque;
+import view.CadastroFornecedor;
 import view.CadastroFuncionario;
+import view.CadastroProduto;
 import view.Pesquisa_CPF_CNPJ;
 import view.TelaLogin;
 import view.TelaLoginInternal;
@@ -41,7 +43,7 @@ public class TelaPrincipalControl {
 	}
 	
 	public void abrePesquisaFuncionario(int tipo) {
-		if(!CadastroFuncionario.getInstance().isVisible() && pesquisaFuncionario == null) {
+		if(!CadastroFuncionario.getInstance().isVisible() && !pesquisaFuncionario.isVisible()) {
 			pesquisaFuncionario.setOperacao(tipo);
 			telaPrincipal.addInternalFrame(pesquisaFuncionario);
 			pesquisaFuncionario.setVisible(true);
@@ -49,11 +51,19 @@ public class TelaPrincipalControl {
 	}
 	
 	public void abrePesquisaForncedor(int tipo) {
-		
+		if(!CadastroFornecedor.getInstance().isVisible() && !pesquisaFornecedor.isVisible()) {
+			pesquisaFornecedor.setOperacao(tipo);
+			telaPrincipal.addInternalFrame(pesquisaFornecedor);
+			pesquisaFornecedor.setVisible(true);
+		}
 	}
 	
 	public void abrePesquisaProduto(int tipo) {
-		
+		if(!CadastroProduto.getInstance().isVisible() && !pesquisaProduto.isVisible()) {
+			pesquisaProduto.setOperacao(tipo);
+			telaPrincipal.addInternalFrame(pesquisaProduto);
+			pesquisaProduto.setVisible(true);
+		}
 	}
 	
 	public void abreTelaLogin() {
