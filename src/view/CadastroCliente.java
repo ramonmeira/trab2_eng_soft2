@@ -23,6 +23,10 @@ public class CadastroCliente extends CadastroBasicoPF {
 		btnCadastrar.setBounds(130, 365, 89, 23);
 		getContentPane().add(btnCadastrar);
 		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(22, 299, 89, 23);
+		getContentPane().add(btnSalvar);
+		
 	}
 	
 	public static CadastroCliente getInstance() {
@@ -36,5 +40,4 @@ public class CadastroCliente extends CadastroBasicoPF {
 	public void setControl(TelaPrincipalControl controle) {
 		this.controle = controle;
 	}
-
 }
