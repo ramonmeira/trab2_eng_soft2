@@ -11,7 +11,7 @@ public class Fornecedor {
 	private String numero;
 	private String complemento;
 	private String cidade;
-	private String ufEndereço;
+	private String ufEndereco;
 	private String tel;
 	private String ramal;
 	private String fax;
@@ -78,10 +78,10 @@ public class Fornecedor {
 		this.cidade = cidade;
 	}
 	public String getUfEndereço() {
-		return ufEndereço;
+		return ufEndereco;
 	}
 	public void setUfEndereço(String ufEndereço) {
-		this.ufEndereço = ufEndereço;
+		this.ufEndereco = ufEndereço;
 	}
 	public String getTel() {
 		return tel;
