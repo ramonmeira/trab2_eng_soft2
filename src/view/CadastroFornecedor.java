@@ -9,6 +9,8 @@ import view.models.CadastroBasicoPJ;
 import java.awt.Component;
 
 public class CadastroFornecedor extends CadastroBasicoPJ {
+	
+	private static CadastroFornecedor instance = null;
 
 	private static final long serialVersionUID = 1680750000093104596L;
 
@@ -24,9 +26,16 @@ public class CadastroFornecedor extends CadastroBasicoPJ {
 		}
 		catch(PropertyVetoException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Erro de maximizaï¿½ï¿½o", "Nï¿½o ï¿½ possï¿½vel maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
 		}
-
+	}
+	
+	public static CadastroFornecedor getInstance() {
+		if(instance == null) {
+			instance = new CadastroFornecedor();
+		}
+		
+		return instance;
 	}
 
 }

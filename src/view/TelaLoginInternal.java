@@ -11,6 +11,8 @@ import java.awt.event.MouseEvent;
 import control.TelaPrincipalControl;
 
 public class TelaLoginInternal extends SingletonJInternalFrame {
+	private static TelaLoginInternal instance;
+	
 	private JTextField txtLogin;
 	private JPasswordField pwdSenha;
 	
@@ -58,7 +60,7 @@ public class TelaLoginInternal extends SingletonJInternalFrame {
 			instance = new TelaLoginInternal();
 		}
 		
-		return (TelaLoginInternal) instance;
+		return instance;
 	}
 	
 	public void setControl(TelaPrincipalControl controle) {

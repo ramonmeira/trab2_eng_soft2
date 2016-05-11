@@ -18,13 +18,15 @@ import java.awt.Component;
 import javax.swing.JFormattedTextField;
 
 public class CadastroProduto extends SingletonJInternalFrame {
+	private static CadastroProduto instance = null;
+	
 	private JFormattedTextField txtId;
 	private JTextField txtDescricao;
 	private JTextField txtFabricante;
 	private JTextField txtModelo;
 	private JFormattedTextField txtCodEan;
 
-	public CadastroProduto() {
+	private CadastroProduto() {
 		super();
 		setTitle("Cadastro de Produto");
 		try {
@@ -74,7 +76,7 @@ public class CadastroProduto extends SingletonJInternalFrame {
 			try {
 				txtCodEan = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
 			} catch (ParseException e) {
-				JOptionPane.showMessageDialog(this, "O código EAN informado possui formato inválido!", "Código EAN inválido", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "O cï¿½digo EAN informado possui formato invï¿½lido!", "Cï¿½digo EAN invï¿½lido", JOptionPane.WARNING_MESSAGE);
 				e.printStackTrace();
 			}
 			txtCodEan.setBounds(20, 125, 142, 20);
@@ -99,8 +101,14 @@ public class CadastroProduto extends SingletonJInternalFrame {
 		}
 		catch(PropertyVetoException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Erro de maximizaï¿½ï¿½o", "Nï¿½o ï¿½ possï¿½vel maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
 		}
-
+	}
+	
+	public static CadastroProduto getInstance() {
+		if(instance ==null) {
+			instance = new CadastroProduto();
+		}
+		return instance;
 	}
 }
