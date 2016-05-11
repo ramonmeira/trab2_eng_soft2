@@ -23,7 +23,7 @@ public class CadastroCliente extends CadastroBasicoPF {
 	
 	private CadastroCliente() {
 		super();
-		setBounds(100, 100, 711, 360);
+		setBounds(100, 100, 711, 375);
 		setTitle("Cadastro de Cliente");
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -52,7 +52,7 @@ public class CadastroCliente extends CadastroBasicoPF {
 				cliente.setTelCelular(txtTelCelular.getText());
 				cliente.setEmail(txtEmail.getText());
 				cliente.setEmailComercial(txtEmailComercial.getText());
-				controle.cadastraCliente(cliente);
+				controle.salvaDadosCliente(cliente);
 			}
 		});
 		btnSalvar.setBounds(22, 299, 89, 23);
@@ -96,26 +96,26 @@ public class CadastroCliente extends CadastroBasicoPF {
 	}
 	
 	public void insereDados(ArrayList<String> dados) {
-		txtCpf.setText(dados.get(0).substring(dados.get(0).indexOf("=")));
-		txtNome.setText(dados.get(1).substring(dados.get(0).indexOf("=")));
-		txtRg.setText(dados.get(2).substring(dados.get(0).indexOf("=")));
-		txtExpedicao.setText(dados.get(3).substring(dados.get(0).indexOf("=")));
-		cmbUfExpedissao.setSelectedItem(dados.get(4).substring(dados.get(0).indexOf("=")));
-		txtEmissao.setText(dados.get(5).substring(dados.get(0).indexOf("=")));
-		dtNascimentoField.setText(dados.get(6).substring(dados.get(0).indexOf("=")));
-		txtNacionalidade.setText(dados.get(7).substring(dados.get(0).indexOf("=")));
-		txtNaturalidade.setText(dados.get(8).substring(dados.get(0).indexOf("=")));
-		cmbUfNascimento.setSelectedItem(dados.get(9).substring(dados.get(0).indexOf("=")));
-		cmbSexo.setSelectedItem(dados.get(10).substring(dados.get(0).indexOf("=")));
-		txtCep.setText(dados.get(11).substring(dados.get(0).indexOf("=")));
-		txtEndereco.setText(dados.get(12).substring(dados.get(0).indexOf("=")));
-		txtNumero.setText(dados.get(13).substring(dados.get(0).indexOf("=")));
-		txtComplemento.setText(dados.get(14).substring(dados.get(0).indexOf("=")));
-		txtCidade.setText(dados.get(15).substring(dados.get(0).indexOf("=")));
-		cmbUfEndereco.setSelectedItem(dados.get(16).substring(dados.get(0).indexOf("=")));
-		txtTelResidencial.setText(dados.get(17).substring(dados.get(0).indexOf("=")));
-		txtTelCelular.setText(dados.get(18).substring(dados.get(0).indexOf("=")));
-		txtEmail.setText(dados.get(19).substring(dados.get(0).indexOf("=")));
-		txtEmailComercial.setText(dados.get(20).substring(dados.get(0).indexOf("=")));
+		txtCpf.setText(dados.get(0).substring(dados.get(0).indexOf("=") + 1).replace(".", ""));
+		txtNome.setText(dados.get(1).substring(dados.get(1).indexOf("=") + 1));
+		txtRg.setText(dados.get(2).substring(dados.get(2).indexOf("=") + 1).replace("/", ""));
+		txtExpedicao.setText(dados.get(3).substring(dados.get(3).indexOf("=") + 1));
+		cmbUfExpedissao.setSelectedItem(dados.get(4).substring(dados.get(4).indexOf("=") + 1));
+		txtEmissao.setText(dados.get(5).substring(dados.get(5).indexOf("=") + 1));
+		dtNascimentoField.setText(dados.get(6).substring(dados.get(6).indexOf("=") + 1));
+		txtNacionalidade.setText(dados.get(7).substring(dados.get(7).indexOf("=") + 1));
+		txtNaturalidade.setText(dados.get(8).substring(dados.get(8).indexOf("=") + 1));
+		cmbUfNascimento.setSelectedItem(dados.get(9).substring(dados.get(9).indexOf("=") + 1));
+		cmbSexo.setSelectedItem(dados.get(10).substring(dados.get(10).indexOf("=") + 1));
+		txtCep.setText(dados.get(11).substring(dados.get(11).indexOf("=") + 1).replace("/", "").replace("-", ""));
+		txtEndereco.setText(dados.get(12).substring(dados.get(12).indexOf("=") + 1));
+		txtNumero.setText(dados.get(13).substring(dados.get(13).indexOf("=") + 1));
+		txtComplemento.setText(dados.get(14).substring(dados.get(14).indexOf("=") + 1));
+		txtCidade.setText(dados.get(15).substring(dados.get(15).indexOf("=") + 1));
+		cmbUfEndereco.setSelectedItem(dados.get(16).substring(dados.get(16).indexOf("=") + 1));
+		txtTelResidencial.setText(dados.get(17).substring(dados.get(17).indexOf("=") + 1).replace("(", "").replace(")", "").replace("-", "").replace(" ", ""));
+		txtTelCelular.setText(dados.get(18).substring(dados.get(18).indexOf("=") + 1).replace("(", "").replace(")", "").replace("-", "").replace(" ", ""));
+		txtEmail.setText(dados.get(19).substring(dados.get(19).indexOf("=") + 1));
+		txtEmailComercial.setText(dados.get(20).substring(dados.get(20).indexOf("=") + 1));
 	}
 }
