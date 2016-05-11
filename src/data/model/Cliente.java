@@ -11,28 +11,28 @@ public class Cliente extends PessoaFisica implements ObjetoPersistente{
 		 * 1ª posição contém a chave, 2ª contém o valor
 		 */
 		
-		dados.add("CPF="+cpf);
-		dados.add("NOME="+nome); //Neste caso NOME é a chave do valor contido na variável nome.
-		dados.add("RG="+rg);
-		dados.add("ORGAO EXPEDIDOR="+orgaoExpedidor);
-		dados.add("UF EXPEDIDOR="+ufExpepdidor);
-		dados.add("DATA EMISSAO="+dataEmissao);
-		dados.add("DATA NASCIMENTO="+dataNascimento);
-		dados.add("NACIONALIDADE="+nacionalidade);
-		dados.add("NATURALIDADE="+naturalidade);
-		dados.add("UF NASCIMENTO="+ufNascimento);
-		dados.add("SEXO="+sexo);
-		dados.add("CEP="+cep);
-		dados.add("LOGRADOURO="+logradouro);
-		dados.add("NUMERO="+numero);
-		dados.add("COMPLEMENTO="+complemento);		
-		dados.add("CIDADE="+cidade);		
-		dados.add("UF ENDERECO="+ufEndereco);
-		dados.add("TEL RESIDENCIAL="+telResidencial);		
-		dados.add("TEL CELULAR="+telCelular);
-		dados.add("EMAIL="+email);
-		dados.add("EMAIL COMERCIAL="+email);
-		
+		//Neste caso NOME é a chave do valor contido na variável nome.
+		dados.add("CPF="+cpf);							//0
+		dados.add("NOME="+nome); 						//1
+		dados.add("RG="+rg);							//2
+		dados.add("ORGAO EXPEDIDOR="+orgaoExpedidor);	//3
+		dados.add("UF EXPEDIDOR="+ufExpepdidor);		//4
+		dados.add("DATA EMISSAO="+dataEmissao);			//5
+		dados.add("DATA NASCIMENTO="+dataNascimento);	//6
+		dados.add("NACIONALIDADE="+nacionalidade);		//7
+		dados.add("NATURALIDADE="+naturalidade);		//8
+		dados.add("UF NASCIMENTO="+ufNascimento);		//9
+		dados.add("SEXO="+sexo);						//10
+		dados.add("CEP="+cep);							//11
+		dados.add("LOGRADOURO="+logradouro);			//12
+		dados.add("NUMERO="+numero);					//13
+		dados.add("COMPLEMENTO="+complemento);			//14
+		dados.add("CIDADE="+cidade);					//15
+		dados.add("UF ENDERECO="+ufEndereco);			//16
+		dados.add("TEL RESIDENCIAL="+telResidencial);	//17
+		dados.add("TEL CELULAR="+telCelular);			//18
+		dados.add("EMAIL="+email);						//19
+		dados.add("EMAIL COMERCIAL="+email);			//20		
 		
 		return dados;
 	}

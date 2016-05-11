@@ -92,11 +92,15 @@ public class TelaPrincipalControl {
 	}
 	
 	public boolean pesquisaCPF(String CPF) {
-		fileDao dao = new fileDao();
-		Cliente cliente = new Cliente();
-		cliente.setCpf(CPF);
-		if(dao.existeObjeto(cliente, "clientes")) {
-			return true;
+		if(CPF.isEmpty() || CPF == null  || CPF.length() < 11) {
+			JOptionPane.showMessageDialog(telaPrincipal, "CPF informado invalido!", "CPF invalido", JOptionPane.WARNING_MESSAGE);
+		} else {
+			fileDao dao = new fileDao();
+			Cliente cliente = new Cliente();
+			cliente.setCpf(CPF);
+			if(dao.existeObjeto(cliente, "clientes")) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -138,7 +142,10 @@ public class TelaPrincipalControl {
 	}
 	
 	public void atualizaCliente(Cliente cliente) {
-		
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(cliente, "clientes");
+		CadastroCliente.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroCliente.getInstance(), "Cliente cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void alteraDadosCliente(String CPF) {

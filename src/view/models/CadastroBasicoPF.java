@@ -44,6 +44,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 	protected JComboBox cmbUfExpedissao;
 	protected JComboBox cmbUfNascimento;
 	protected JComboBox cmbSexo;
+	protected JComboBox cmbUfEndereco;
 	
 	DateFormatter displayFormat;
 	DateFormatter editFormat;
@@ -244,7 +245,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblUfEndereco.setSize(lblUfEndereco.getPreferredSize());
 		getContentPane().add(lblUfEndereco);
 		
-		JComboBox cmbUfEndereco = new JComboBox();
+		cmbUfEndereco = new JComboBox();
 		cmbUfEndereco.setModel(new DefaultComboBoxModel(new String[] {"Acre", "Alagoas", "Amap\u00E1", "Bahia", "Cear\u00E1", "Distrito Federal", "Esp\u00EDrito Santo", "Goi\u00E1s", "Maranh\u00E3o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Par\u00E1", "Para\u00EDba", "Paran\u00E1", "Pernambuco", "Piau\u00ED", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rond\u00F4nia", "Roraima", "Santa Catarina", "S\u00E3o Paulo", "Sergipe", "Tocantins"}));
 		cmbUfEndereco.setBounds(545, 215, 131, 20);
 		getContentPane().add(cmbUfEndereco);
