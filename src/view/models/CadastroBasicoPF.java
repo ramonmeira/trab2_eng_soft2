@@ -23,24 +23,27 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 
 	private static final long serialVersionUID = 2528457607303713404L;
 	
-	private JTextField txtNome;
-	private JFormattedTextField txtCpf;
-	private JFormattedTextField dtNascimentoField;
-	private JTextField txtCidade;
-	private JTextField txtEndereco;
-	private JTextField txtComplemento;
-	private JTextField txtId;
-	private JFormattedTextField txtRg;
-	private JTextField txtExpedicao;
-	private JFormattedTextField txtEmissao;
-	private JTextField txtNacionalidade;
-	private JTextField txtNaturalidade;
-	private JFormattedTextField txtNumero;
-	private JFormattedTextField txtTelResidencial;
-	private JFormattedTextField txtTelCelular;
-	private JTextField txtEmail;
-	private JTextField textField;
-	private JFormattedTextField txtCep;
+	protected JTextField txtNome;
+	protected JFormattedTextField txtCpf;
+	protected JFormattedTextField dtNascimentoField;
+	protected JTextField txtCidade;
+	protected JTextField txtEndereco;
+	protected JTextField txtComplemento;
+	protected JTextField txtId;
+	protected JFormattedTextField txtRg;
+	protected JTextField txtExpedicao;
+	protected JFormattedTextField txtEmissao;
+	protected JTextField txtNacionalidade;
+	protected JTextField txtNaturalidade;
+	protected JFormattedTextField txtNumero;
+	protected JFormattedTextField txtTelResidencial;
+	protected JFormattedTextField txtTelCelular;
+	protected JTextField txtEmail;
+	protected JTextField txtEmailComercial;
+	protected JFormattedTextField txtCep;
+	protected JComboBox cmbUfExpedissao;
+	protected JComboBox cmbUfNascimento;
+	protected JComboBox cmbSexo;
 	
 	DateFormatter displayFormat;
 	DateFormatter editFormat;
@@ -120,12 +123,12 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(dtNascimentoField);
 		dtNascimentoField.setColumns(8);
 		
-		JComboBox cmbSexo = new JComboBox();
+		cmbSexo = new JComboBox();
 		cmbSexo.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino"}));
 		cmbSexo.setBounds(591, 125, 85, 20);
 		getContentPane().add(cmbSexo);
 		
-		JComboBox cmbUfNascimento = new JComboBox();
+		cmbUfNascimento = new JComboBox();
 		cmbUfNascimento.setModel(new DefaultComboBoxModel(new String[] {"Acre", "Alagoas", "Amap\u00E1", "Bahia", "Cear\u00E1", "Distrito Federal", "Esp\u00EDrito Santo", "Goi\u00E1s", "Maranh\u00E3o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Par\u00E1", "Para\u00EDba", "Paran\u00E1", "Pernambuco", "Piau\u00ED", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rond\u00F4nia", "Roraima", "Santa Catarina", "S\u00E3o Paulo", "Sergipe", "Tocantins"}));
 		cmbUfNascimento.setBounds(450, 125, 131, 20);
 		getContentPane().add(cmbUfNascimento);
@@ -196,7 +199,7 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		lblUf.setSize(lblUf.getPreferredSize());
 		getContentPane().add(lblUf);
 		
-		JComboBox cmbUfExpedissao = new JComboBox();
+		cmbUfExpedissao = new JComboBox();
 		cmbUfExpedissao.setModel(new DefaultComboBoxModel(new String[] {"Acre", "Alagoas", "Amap\u00E1", "Bahia", "Cear\u00E1", "Distrito Federal", "Esp\u00EDrito Santo", "Goi\u00E1s", "Maranh\u00E3o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Par\u00E1", "Para\u00EDba", "Paran\u00E1", "Pernambuco", "Piau\u00ED", "Rio Grande do Norte", "Rio Grande do Sul", "Rio de Janeiro", "Rond\u00F4nia", "Roraima", "Santa Catarina", "S\u00E3o Paulo", "Sergipe", "Tocantins"}));
 		cmbUfExpedissao.setBounds(435, 80, 131, 20);
 		getContentPane().add(cmbUfExpedissao);
@@ -286,10 +289,10 @@ public class CadastroBasicoPF extends SingletonJInternalFrame {
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(464, 260, 212, 20);
-		getContentPane().add(textField);
+		txtEmailComercial = new JTextField();
+		txtEmailComercial.setColumns(10);
+		txtEmailComercial.setBounds(464, 260, 212, 20);
+		getContentPane().add(txtEmailComercial);
 		
 		JLabel lblEmailComercial = new JLabel("Email comercial");
 		lblEmailComercial.setBounds(464, 245, 75, 14);
