@@ -31,6 +31,19 @@ public class fileDao {
 		}	
 	}
 	
+	public ArrayList<String> getDados(ObjetoPersistente objeto, String arquivo) {
+		ArrayList<String> dados = objeto.getDadosSerializados();		
+		ArrayList<String> linhas = FileOperations.getFileLines(arquivo);
+		int indiceChave = linhas.indexOf(dados.get(0));
+		for(int i = indiceChave + 1; i < (indiceChave + dados.size()); i++) {
+			int j = 1;
+			dados.remove(j);
+			dados.add(j, linhas.get(i));
+			j++;
+		}	
+		return dados;
+	}
+	
 	public void removeObjeto(ObjetoPersistente objeto, String arquivo) {
 		ArrayList<String> dados = objeto.getDadosSerializados();		
 		ArrayList<String> linhas = FileOperations.getFileLines(arquivo);
