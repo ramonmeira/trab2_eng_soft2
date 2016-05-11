@@ -79,8 +79,8 @@ public class TelaPrincipalControl {
 //			telaPrincipal.ativarMenus(true);
 //		};
 		
-		if(false) { //checar usuário
-			JOptionPane.showMessageDialog(telaPrincipal, "Usuário ou senha não conferem. Por favor tente novamente.", "Usuário ou senha inválido!", JOptionPane.WARNING_MESSAGE);
+		if(false) { //checar usuï¿½rio
+			JOptionPane.showMessageDialog(telaPrincipal, "Usuï¿½rio ou senha nï¿½o conferem. Por favor tente novamente.", "Usuï¿½rio ou senha invï¿½lido!", JOptionPane.WARNING_MESSAGE);
 		} else {
 			usuario = login;
 			usuarioLogado = true;
@@ -120,7 +120,7 @@ public class TelaPrincipalControl {
 			cadastroCliente.setVisible(true);
 			return;
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado já posui um cliente vinculado.", "Cliente já cadastrado", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado jï¿½ posui um cliente vinculado.", "Cliente jï¿½ cadastrado", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void alteraDadosCliente(String CPF) {
@@ -132,7 +132,7 @@ public class TelaPrincipalControl {
 			cadastroCliente.setVisible(true);
 			return;
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "Não foi encontrado nenhum cliente com o CPF informado", "Cliente não encontrado", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(pesquisaCliente, "Nï¿½o foi encontrado nenhum cliente com o CPF informado", "Cliente nï¿½o encontrado", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void removeCliente(String CPF) {
@@ -141,15 +141,29 @@ public class TelaPrincipalControl {
 			JOptionPane.showMessageDialog(pesquisaCliente, "Cliente removido com sucesso", "Cliente removido", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "Não foi encontrado nenhum cliente com o CPF informado", "Cliente não encontrado", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(pesquisaCliente, "Nï¿½o foi encontrado nenhum cliente com o CPF informado", "Cliente nï¿½o encontrado", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void cadastraFuncionario(String CPF) {
-				
+		if(!pesquisaCPF(CPF)) {
+			pesquisaCliente.dispose();
+			CadastroFuncionario.getInstance().setControl(this); //Diz qual classe vai fazer o controle do frame
+			telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
+			CadastroFuncionario.getInstance().setVisible(true);
+			return;
+		}
+		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado jï¿½ posui um cliente vinculado.", "Cliente jï¿½ cadastrado", JOptionPane.WARNING_MESSAGE);				
 	}
 	
 	public void alteraDadosFuncionario(String CPF) {
-		
+		if(!pesquisaCPF(CPF)) {
+			pesquisaCliente.dispose();
+			CadastroFuncionario.getInstance().setControl(this); //Diz qual classe vai fazer o controle do frame
+			telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
+			CadastroFuncionario.getInstance().setVisible(true);
+			return;
+		}
+		JOptionPane.showMessageDialog(pesquisaCliente, "Nï¿½o foi encontrado nenhum cliente com o CPF informado", "Cliente nï¿½o encontrado", JOptionPane.WARNING_MESSAGE);		
 	}
 	
 	public void promoveFuncionario(String CPF) {
@@ -193,7 +207,7 @@ public class TelaPrincipalControl {
 	}
 	
 	public void alterarEstoque() {
-		//Fazer uma busca para entregar o fomulário com os dados preenchidos
+		//Fazer uma busca para entregar o fomulï¿½rio com os dados preenchidos
 		CadastroEstoque cadastroEstoque = CadastroEstoque.getInstance();
 		cadastroEstoque.setControl(this);
 		telaPrincipal.addInternalFrame(cadastroEstoque);

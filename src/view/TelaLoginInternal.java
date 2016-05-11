@@ -28,6 +28,7 @@ public class TelaLoginInternal extends SingletonJInternalFrame {
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(53, 49, 31, 14);
+		lblLogin.setSize(lblLogin.getPreferredSize());
 		getContentPane().add(lblLogin);
 		
 		txtLogin = new JTextField();
@@ -37,6 +38,7 @@ public class TelaLoginInternal extends SingletonJInternalFrame {
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(53, 87, 38, 14);
+		lblSenha.setSize(lblSenha.getPreferredSize());
 		getContentPane().add(lblSenha);
 		
 		pwdSenha = new JPasswordField();
