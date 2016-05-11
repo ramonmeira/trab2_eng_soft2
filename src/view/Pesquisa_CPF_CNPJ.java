@@ -41,12 +41,12 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	
 //	private int tipoOperacao;
 	
-	public Pesquisa_CPF_CNPJ(final TelaPrincipalControl controle) {
+	public Pesquisa_CPF_CNPJ(TelaPrincipalControl controll) {
 		setClosable(true);
 		setBounds(100, 100, 380, 195);
 		getContentPane().setLayout(null);
 		
-		this.controle = controle;
+		this.controle = controll;
 		
 		setTitle("Pesquisa de " + tipo);
 		
