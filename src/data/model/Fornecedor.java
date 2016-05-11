@@ -77,11 +77,11 @@ public class Fornecedor {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	public String getUfEndereço() {
+	public String getUfEndereco() {
 		return ufEndereco;
 	}
-	public void setUfEndereço(String ufEndereço) {
-		this.ufEndereco = ufEndereço;
+	public void setUfEndereco(String ufEndereco) {
+		this.ufEndereco = ufEndereco;
 	}
 	public String getTel() {
 		return tel;
