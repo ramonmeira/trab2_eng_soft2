@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JOptionPane;
 
+import data.model.Cliente;
+import data.tools.fileDao;
 import view.CadastroCliente;
 import view.CadastroEstoque;
 import view.CadastroFornecedor;
@@ -90,9 +92,12 @@ public class TelaPrincipalControl {
 	}
 	
 	public boolean pesquisaCPF(String CPF) {
-//		if(cpf valido){
-//			return true;
-//		}
+		fileDao dao = new fileDao();
+		Cliente cliente = new Cliente();
+		cliente.setCpf(CPF);
+		if(dao.existeObjeto(cliente, "clientes")) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -110,8 +115,9 @@ public class TelaPrincipalControl {
 		return false;
 	}
 	
-	public void cadastraCliente(String CPF) {
+	public void abreCadastroCliente(String CPF) {
 		if(!pesquisaCPF(CPF)) {
+			pesquisaCliente.limpaFormulario();
 			pesquisaCliente.dispose();
 			//pesquisaCliente = null;
 			CadastroCliente cadastroCliente = CadastroCliente.getInstance();
@@ -120,7 +126,19 @@ public class TelaPrincipalControl {
 			cadastroCliente.setVisible(true);
 			return;
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado j� posui um cliente vinculado.", "Cliente j� cadastrado", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado ja posui um cliente vinculado.", "Cliente ja cadastrado", JOptionPane.WARNING_MESSAGE);
+	}
+	
+	public void cadastraCliente(Cliente cliente) {
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(cliente, "clientes");
+		CadastroCliente.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroCliente.getInstance(), "Cliente cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
+		
+	}
+	
+	public void atualizaCliente(Cliente cliente) {
+		
 	}
 	
 	public void alteraDadosCliente(String CPF) {

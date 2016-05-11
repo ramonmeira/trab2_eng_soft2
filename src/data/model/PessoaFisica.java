@@ -70,7 +70,7 @@ public abstract class PessoaFisica {
 	public String getNacionalidade() {
 		return nacionalidade;
 	}
-	public void setDataNacionalidade(String nacionalidade) {
+	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
 	public String getNaturalidade() {

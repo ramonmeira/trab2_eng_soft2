@@ -56,7 +56,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				switch(tipoOperacao) {
 				case 1:
-					controle.cadastraCliente(frmtdtxtfldPesquisa.getText());
+					controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
 					break;
 				case 2:
 					controle.alteraDadosCliente(frmtdtxtfldPesquisa.getText());
@@ -138,5 +138,13 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		} else {
 			tipo = "C�digo EAN";
 		}
+	}
+	
+	public void dispose() {
+		super.dispose();
+		limpaFormulario();
+	}
+	public void limpaFormulario() {
+		frmtdtxtfldPesquisa.setText("");
 	}
 }
