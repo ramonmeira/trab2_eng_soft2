@@ -21,22 +21,22 @@ public class fileDao {
 		ArrayList<String> dados = objeto.getDadosSerializados();		
 		ArrayList<String> linhas = FileOperations.getFileLines(arquivo);
 		int indiceChave = linhas.indexOf(dados.get(0));
-		
+		int j = 1;
 		//Apagando os dados antigos
 		for(int i = indiceChave + 1; i < (indiceChave + dados.size()); i++) {
-			int j = 1;
 			linhas.remove(i);
 			linhas.add(i, dados.get(j)); //A chave nunca é atualizada
 			j++;
 		}	
+		FileOperations.writeList(linhas, arquivo);
 	}
 	
 	public ArrayList<String> getDados(ObjetoPersistente objeto, String arquivo) {
 		ArrayList<String> dados = objeto.getDadosSerializados();		
 		ArrayList<String> linhas = FileOperations.getFileLines(arquivo);
 		int indiceChave = linhas.indexOf(dados.get(0));
+		int j = 1;
 		for(int i = indiceChave + 1; i < (indiceChave + dados.size()); i++) {
-			int j = 1;
 			dados.remove(j);
 			dados.add(j, linhas.get(i));
 			j++;
@@ -50,9 +50,10 @@ public class fileDao {
 		int indiceChave = linhas.indexOf(dados.get(0));
 		
 		//Apagando os dados antigos
-		for(int i = indiceChave; i < (indiceChave + dados.size()); i++) {
-			linhas.remove(i);
-		}	
+		for(int i = indiceChave; i < dados.size(); i++) {
+			linhas.remove(indiceChave);
+		}
+		FileOperations.writeList(linhas, arquivo);
 	}
 	
 	public boolean loginValido(String login, String senha) {

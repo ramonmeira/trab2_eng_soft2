@@ -14,6 +14,8 @@ import control.TelaPrincipalControl;
 import javax.swing.JFormattedTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /*
  * Tipos de operacoes:
@@ -54,47 +56,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				switch(tipoOperacao) {
-				case 1:
-					controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
-					break;
-				case 2:
-					controle.alteraDadosCliente(frmtdtxtfldPesquisa.getText());
-					break;
-				case 3:
-					controle.removeCliente(frmtdtxtfldPesquisa.getText());
-					break;
-				case 4:
-					controle.cadastraFuncionario(frmtdtxtfldPesquisa.getText());
-					break;
-				case 5:
-					controle.alteraDadosFuncionario(frmtdtxtfldPesquisa.getText());
-					break;
-				case 6:
-					controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
-					break;
-				case 7:
-					controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
-					break;
-				case 8:
-					controle.cadastraFornecedor(frmtdtxtfldPesquisa.getText());
-					break;
-				case 9:
-					controle.alteraDadosFornecedor(frmtdtxtfldPesquisa.getText());
-					break;
-				case 10:
-					controle.desativaFornecedor(frmtdtxtfldPesquisa.getText());
-					break;
-				case 11:
-					controle.cadastraProduto(frmtdtxtfldPesquisa.getText());
-					break;
-				case 12:
-					controle.removeProduto(frmtdtxtfldPesquisa.getText());
-					break;
-				case 13:
-					controle.solicitaProduto(frmtdtxtfldPesquisa.getText());
-					break;
-				}
+				pesquisa();
 			}
 		});
 		btnPesquisar.setBounds(139, 103, 89, 23);
@@ -106,6 +68,15 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		getContentPane().add(lblCpfCnpj);
 		
 		frmtdtxtfldPesquisa = new JFormattedTextField();
+		frmtdtxtfldPesquisa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				System.out.println(arg0.getKeyCode());
+				if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+					pesquisa();
+				}
+			}
+		});
 		try {
 			switch(tipo) {
 			case "CNPJ":
@@ -146,5 +117,49 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	}
 	public void limpaFormulario() {
 		frmtdtxtfldPesquisa.setText("");
+	}
+	
+	public void pesquisa() {
+		switch(tipoOperacao) {
+		case 1:
+			controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
+			break;
+		case 2:
+			controle.alteraDadosCliente(frmtdtxtfldPesquisa.getText());
+			break;
+		case 3:
+			controle.removeCliente(frmtdtxtfldPesquisa.getText());
+			break;
+		case 4:
+			controle.cadastraFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 5:
+			controle.alteraDadosFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 6:
+			controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 7:
+			controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 8:
+			controle.cadastraFornecedor(frmtdtxtfldPesquisa.getText());
+			break;
+		case 9:
+			controle.alteraDadosFornecedor(frmtdtxtfldPesquisa.getText());
+			break;
+		case 10:
+			controle.desativaFornecedor(frmtdtxtfldPesquisa.getText());
+			break;
+		case 11:
+			controle.cadastraProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		case 12:
+			controle.removeProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		case 13:
+			controle.solicitaProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		}
 	}
 }
