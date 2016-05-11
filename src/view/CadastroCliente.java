@@ -25,10 +25,6 @@ public class CadastroCliente extends CadastroBasicoPF {
 		setBounds(100, 100, 711, 450);
 		setTitle("Cadastro de Cliente");
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(130, 365, 89, 23);
-		getContentPane().add(btnCadastrar);
-		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
