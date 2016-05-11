@@ -13,6 +13,8 @@ public class CadastroCliente extends CadastroBasicoPF {
 
 	private static final long serialVersionUID = -8071117372959399379L;
 	
+	private static CadastroCliente instance = null;
+	
 	private TelaPrincipalControl controle;
 	
 	private CadastroCliente() {
@@ -34,7 +36,7 @@ public class CadastroCliente extends CadastroBasicoPF {
 			instance = new CadastroCliente();
 		}
 		
-		return (CadastroCliente) instance;
+		return instance;
 	}
 	
 	public void setControl(TelaPrincipalControl controle) {

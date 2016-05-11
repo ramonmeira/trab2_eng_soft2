@@ -20,6 +20,8 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 public class CadastroEstoque extends SingletonJInternalFrame {
+	private static CadastroEstoque instance = null;
+	
 	private JFormattedTextField txtId;
 	private JTextField txtLocal;
 	private JFormattedTextField txtIdProduto;
@@ -51,7 +53,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			try {
 				txtId = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
 			} catch (ParseException e1) {
-				JOptionPane.showMessageDialog(this, "ID inválido", "O número do ID informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "ID invï¿½lido", "O nï¿½mero do ID informado possui formato invï¿½lido!", JOptionPane.WARNING_MESSAGE);
 				e1.printStackTrace();
 			}
 			txtId.setText("ID");
@@ -76,7 +78,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			try {
 				txtIdProduto = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
 			} catch (ParseException e1) {
-				JOptionPane.showMessageDialog(this, "ID inválido", "O número do ID informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "ID invï¿½lido", "O nï¿½mero do ID informado possui formato invï¿½lido!", JOptionPane.WARNING_MESSAGE);
 				e1.printStackTrace();
 			}
 			txtIdProduto.setBounds(20, 80, 86, 20);
@@ -95,7 +97,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			try {
 				txtQtd = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
 			} catch (ParseException e) {
-				JOptionPane.showMessageDialog(this, "Quantidade inválida", "A quantidade informada possui um formato inválido!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Quantidade invï¿½lida", "A quantidade informada possui um formato invï¿½lido!", JOptionPane.WARNING_MESSAGE);
 				e.printStackTrace();
 			}
 			txtQtd.setBounds(418, 35, 59, 20);
@@ -128,7 +130,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 //			try {
 //				txtPreco = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ ##.####0,00")));
 //			} catch (ParseException e) {
-//				JOptionPane.showMessageDialog(this, "Preço inválido", "O preço informado possui um formato inválido!", JOptionPane.WARNING_MESSAGE);
+//				JOptionPane.showMessageDialog(this, "Preï¿½o invï¿½lido", "O preï¿½o informado possui um formato invï¿½lido!", JOptionPane.WARNING_MESSAGE);
 //				e.printStackTrace();
 //			}
 			txtPreco.setBounds(212, 125, 86, 20);
@@ -142,7 +144,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 		}
 		catch(PropertyVetoException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Erro de maximização", "Não é possível maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Erro de maximizaï¿½ï¿½o", "Nï¿½o ï¿½ possï¿½vel maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
@@ -151,7 +153,7 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 			instance = new CadastroEstoque();
 		}
 		
-		return (CadastroEstoque) instance;
+		return instance;
 	}
 	
 	public void setControl(TelaPrincipalControl controle) {

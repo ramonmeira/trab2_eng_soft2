@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.Component;
 
 public class CadastroFuncionario extends CadastroBasicoPF {
+	private static CadastroFuncionario instance = null;
+	
 	private JTextField txtLogin;
 	private JPasswordField pwdSenha;
 	private JPasswordField pwdConsifrmarsenha;
@@ -62,6 +64,6 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 			instance = new CadastroFuncionario();
 		}
 		
-		return (CadastroFuncionario) instance;
+		return instance;
 	}
 }
