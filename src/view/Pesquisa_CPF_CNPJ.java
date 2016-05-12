@@ -45,6 +45,8 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	
 	public Pesquisa_CPF_CNPJ(TelaPrincipalControl controll) {
 		setClosable(true);
+		setMaximizable(false);
+		setResizable(false);
 		setBounds(100, 100, 380, 195);
 		getContentPane().setLayout(null);
 		

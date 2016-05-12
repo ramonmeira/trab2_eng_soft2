@@ -1,16 +1,17 @@
 package view;
 
-import view.models.SingletonJInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import control.TelaPrincipalControl;
 
-public class TelaLoginInternal extends SingletonJInternalFrame {
+public class TelaLoginInternal extends JInternalFrame {
 	private static TelaLoginInternal instance;
 	
 	private JTextField txtLogin;
@@ -24,6 +25,7 @@ public class TelaLoginInternal extends SingletonJInternalFrame {
 		setResizable(false);
 		setMaximizable(false);
 		setIconifiable(false);
+		setBounds(100, 100, 440, 220);
 		getContentPane().setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login");

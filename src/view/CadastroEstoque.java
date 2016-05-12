@@ -8,18 +8,15 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
 import control.TelaPrincipalControl;
-import view.models.SingletonJInternalFrame;
 
 import java.beans.PropertyVetoException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
-
-import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JInternalFrame;
 
-public class CadastroEstoque extends SingletonJInternalFrame {
+public class CadastroEstoque extends JInternalFrame {
 	private static CadastroEstoque instance = null;
 	
 	private JFormattedTextField txtId;
@@ -32,7 +29,10 @@ public class CadastroEstoque extends SingletonJInternalFrame {
 	TelaPrincipalControl controle;
 
 	public CadastroEstoque() {
-		super();
+		setIconifiable(true);
+		setClosable(true);
+		setMaximizable(false);
+		setResizable(false);
 		setTitle("Estoque");
 		try {
 			setMaximum(true);

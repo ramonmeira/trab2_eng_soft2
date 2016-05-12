@@ -36,29 +36,11 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 		/*
 		 * Os dados são lidos da seguinte forma
 		 * 1ª posição contém a chave, 2ª contém o valor
+		 * A chave primára fica sempre na posição 0, neste caso o CPF é a chave primária
 		 */
 		
 		dados.add("CPF="+cpf);
-		dados.add("NOME="+nome); //Neste caso NOME é a chave do valor contido na variável nome.
-		dados.add("RG="+rg);
-		dados.add("ORGAO EXPEDIDOR="+orgaoExpedidor);
-		dados.add("UF EXPEDIDOR="+ufExpepdidor);
-		dados.add("DATA EMISSAO="+dataEmissao);
-		dados.add("DATA NASCIMENTO="+dataNascimento);
-		dados.add("NACIONALIDADE="+nacionalidade);
-		dados.add("NATURALIDADE="+naturalidade);
-		dados.add("UF NASCIMENTO="+ufNascimento);
-		dados.add("SEXO="+sexo);
-		dados.add("CEP="+cep);
-		dados.add("LOGRADOURO="+logradouro);
-		dados.add("NUMERO="+numero);
-		dados.add("COMPLEMENTO="+complemento);		
-		dados.add("CIDADE="+cidade);		
-		dados.add("UF ENDERECO="+ufEndereco);
-		dados.add("TEL RESIDENCIAL="+telResidencial);		
-		dados.add("TEL CELULAR="+telCelular);
-		dados.add("EMAIL="+email);
-		dados.add("EMAIL COMERCIAL="+email);
+		dados.add("NOME="+nome);
 		dados.add("LOGIN="+login);
 		dados.add("SENHA="+senha);
 		dados.add("GERENTE="+gerente);
