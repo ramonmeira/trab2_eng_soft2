@@ -162,4 +162,56 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		}
 	}
+	
+	public void dispose() {
+		super.dispose();
+		limpaFormulario();
+	}
+	public void limpaFormulario() {
+		frmtdtxtfldPesquisa.setText("");
+	}
+	
+	public void pesquisa() {
+		switch(tipoOperacao) {
+		case 1:
+			controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
+			break;
+		case 2:
+			controle.alteraDadosCliente(frmtdtxtfldPesquisa.getText());
+			break;
+		case 3:
+			controle.removeCliente(frmtdtxtfldPesquisa.getText());
+			break;
+		case 4:
+			controle.cadastraFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 5:
+			controle.alteraDadosFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 6:
+			controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 7:
+			controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
+			break;
+		case 8:
+			controle.cadastraFornecedor(frmtdtxtfldPesquisa.getText());
+			break;
+		case 9:
+			controle.alteraDadosFornecedor(frmtdtxtfldPesquisa.getText());
+			break;
+		case 10:
+			controle.desativaFornecedor(frmtdtxtfldPesquisa.getText());
+			break;
+		case 11:
+			controle.cadastraProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		case 12:
+			controle.removeProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		case 13:
+			controle.solicitaProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		}
+	}
 }
