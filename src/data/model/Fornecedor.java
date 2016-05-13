@@ -23,7 +23,7 @@ public class Fornecedor implements ObjetoPersistente{
 		return ativo;
 	}
 	public void setAtivo(String ativo) {
-		this.ativo = cnpj;
+		this.ativo = ativo;
 	}
 	public void setDados(ArrayList<String> dados) {
 		this.cnpj = dados.get(0).substring(dados.get(0).indexOf("=") + 1);

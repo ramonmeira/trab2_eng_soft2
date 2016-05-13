@@ -62,12 +62,12 @@ public class CadastroBasicoPJ extends JInternalFrame {
 			JOptionPane.showMessageDialog(this, "O numero de CNPJ informado possui formato inválido!", "CNPJ invalido", JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
 		}
-		txtCnpj.setBounds(20, 90, 125, 20);
+		txtCnpj.setBounds(20, 90, 183, 20);
 		getContentPane().add(txtCnpj);
 		txtCnpj.setColumns(14);
 		
 		chckbxAtivo = new JCheckBox("Ativo");
-		chckbxAtivo.setBounds(188, 89, 97, 23);
+		chckbxAtivo.setBounds(234, 89, 97, 23);
 		chckbxAtivo.setSize(chckbxAtivo.getPreferredSize());
 		getContentPane().add(chckbxAtivo);
 	}

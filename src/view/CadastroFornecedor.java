@@ -2,6 +2,9 @@ package view;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
+
+import control.TelaPrincipalControl;
+import data.model.Fornecedor;
 import view.models.CadastroBasicoPJ;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,6 +14,7 @@ public class CadastroFornecedor extends CadastroBasicoPJ {
 	private static CadastroFornecedor instance = null;
 	
 	private JButton btnSalvar;
+	private TelaPrincipalControl controle;
 
 	private static final long serialVersionUID = 1680750000093104596L;
 
@@ -22,6 +26,11 @@ public class CadastroFornecedor extends CadastroBasicoPJ {
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
+				Fornecedor fornecedor = new Fornecedor();
+				fornecedor.setCnpj(txtCnpj.getText());
+				fornecedor.setRazaoSocial(txtRazaoSocial.getText());
+				fornecedor.setAtivo(String.valueOf(chckbxAtivo.isSelected()));
+				controle.salvaDadosFornecedor(fornecedor);
 			}
 		});
 		btnSalvar.setBounds(20, 143, 89, 23);
@@ -34,6 +43,10 @@ public class CadastroFornecedor extends CadastroBasicoPJ {
 		}
 		
 		return instance;
+	}
+	
+	public void setControl(TelaPrincipalControl controle) {
+		this.controle = controle;
 	}
 	
 	public void limpaCampos() {

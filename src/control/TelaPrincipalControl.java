@@ -82,7 +82,7 @@ public class TelaPrincipalControl {
 //		};
 		
 		if(false) { //checar usu�rio
-			JOptionPane.showMessageDialog(telaPrincipal, "Usu�rio ou senha n�o conferem. Por favor tente novamente.", "Usu�rio ou senha inv�lido!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(telaPrincipal, "Usuario ou senha nao conferem. Por favor tente novamente.", "Usuario ou senha invalido!", JOptionPane.WARNING_MESSAGE);
 		} else {
 			usuario = login;
 			usuarioLogado = true;
@@ -128,23 +128,7 @@ public class TelaPrincipalControl {
 		} 
 		return false;
 	}
-	
-	public boolean pesquisaCNPJ(String CNPJ) {
-//		if(cnpj encontrado){
-//			return true;
-//		}
-		return false;
-	}
-	
-	public boolean pesquisaEAN(String EAN) {
-//		if(cnpj encontrado){
-//			return true;
-//		}
-		return false;
-	}
-	
-	
-	
+
 	public void abreCadastroCliente(String CPF) {
 		pesquisaCliente.limpaFormulario();
 		pesquisaCliente.dispose();
