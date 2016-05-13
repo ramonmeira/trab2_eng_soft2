@@ -33,7 +33,6 @@ public class CadastroBasicoPF extends JInternalFrame {
 
 	protected CadastroBasicoPF(){
 		super();
-		setIconifiable(true);
 		setClosable(true);
 		setMaximizable(false);
 		setResizable(false);

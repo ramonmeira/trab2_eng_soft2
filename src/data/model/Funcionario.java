@@ -6,6 +6,7 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 	private String login;
 	private String senha;
 	private String gerente;
+	private String ativo;
 	
 //-=-=-=-=-=-=-=-=-=-=-=-=- Getters e Setters -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	
@@ -27,6 +28,12 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 	public void setGerente(String gerente) {
 		this.gerente = gerente;
 	}
+	public String getAtivo() {
+		return this.ativo;
+	}
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
+	}
 	
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -39,11 +46,12 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 		 * A chave primára fica sempre na posição 0, neste caso o CPF é a chave primária
 		 */
 		
-		dados.add("CPF="+cpf);
-		dados.add("NOME="+nome);
-		dados.add("LOGIN="+login);
-		dados.add("SENHA="+senha);
-		dados.add("GERENTE="+gerente);
+		dados.add(0,"CPF="+cpf);
+		dados.add(1,"NOME="+nome);
+		dados.add(2,"LOGIN="+login);
+		dados.add(3,"SENHA="+senha);
+		dados.add(4,"GERENTE="+gerente);
+		dados.add(5,"ATIVO="+ativo);
 		
 		return dados;
 	}

@@ -1,15 +1,10 @@
 package view;
 
-import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import control.TelaPrincipalControl;
 import data.model.Cliente;
 import view.models.CadastroBasicoPF;
 import javax.swing.JButton;
-import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -45,7 +40,6 @@ public class CadastroCliente extends CadastroBasicoPF {
 		if(instance == null) {
 			instance = new CadastroCliente();
 		}
-		
 		return instance;
 	}
 	

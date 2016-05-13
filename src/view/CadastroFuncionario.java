@@ -1,46 +1,39 @@
 package view;
 
-import java.awt.EventQueue;
-import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-
-import javax.swing.JInternalFrame;
-
 import view.models.CadastroBasicoPF;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 import control.TelaPrincipalControl;
-import data.model.Cliente;
 import data.model.Funcionario;
-
 import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class CadastroFuncionario extends CadastroBasicoPF {
+	private static final long serialVersionUID = 3502310070202990472L;
 	private static CadastroFuncionario instance = null;
 	private TelaPrincipalControl controle;
-	
 	private JTextField txtLogin;
 	private JPasswordField pwdSenha;
 	private JLabel lblSenha;
 	private JCheckBox chckbxGerente;
 	private JButton btnCadastrar;
 	private JButton btnSalvaer;
+	private JCheckBox chckbxAtivo;
 
 	public CadastroFuncionario() {
 		super();
+		setBounds(100, 100, 486, 256);
 		txtCpf.setLocation(20, 90);
 		txtNome.setBounds(20, 34, 421, 20);
 		setTitle("Cadastro de Funcion\u00E1rio");
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(180, 65, 46, 14);
+		lblLogin.setSize(lblLogin.getPreferredSize());
 		getContentPane().add(lblLogin);
 		
 		txtLogin = new JTextField();
@@ -50,6 +43,7 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		
 		lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(180, 121, 46, 14);
+		lblSenha.setSize(lblSenha.getPreferredSize());
 		getContentPane().add(lblSenha);
 		
 		pwdSenha = new JPasswordField();
@@ -57,7 +51,8 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		getContentPane().add(pwdSenha);
 		
 		chckbxGerente = new JCheckBox("Gerente");
-		chckbxGerente.setBounds(20, 145, 65, 23);
+		chckbxGerente.setBounds(20, 117, 65, 23);
+		chckbxGerente.setSize(chckbxGerente.getPreferredSize());
 		getContentPane().add(chckbxGerente);
 		
 		btnCadastrar = new JButton("Cadastrar");
@@ -74,12 +69,16 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 				funcionario.setLogin(txtLogin.getText());
 				funcionario.setSenha(new String(pwdSenha.getPassword()));
 				funcionario.setGerente(String.valueOf(chckbxGerente.isSelected()));
-				//TODO fazer a persistencia de funcionario
-//				controle.salvaDadosCliente(funcionario);
+				funcionario.setAtivo(String.valueOf(chckbxAtivo.isSelected()));
+				controle.salvaDadosFuncionarios(funcionario);
 			}
 		});
 		btnSalvaer.setBounds(20, 189, 89, 23);
 		getContentPane().add(btnSalvaer);
+		
+		chckbxAtivo = new JCheckBox("Ativo");
+		chckbxAtivo.setBounds(20, 145, 97, 23);
+		getContentPane().add(chckbxAtivo);
 	}
 	
 	public static CadastroFuncionario getInstance() {

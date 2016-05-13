@@ -35,7 +35,7 @@ import java.awt.event.KeyEvent;
  */
 
 public class Pesquisa_CPF_CNPJ extends JInternalFrame {
-
+	private static final long serialVersionUID = 6203273259393355197L;
 	private TelaPrincipalControl controle;
 	private JFormattedTextField frmtdtxtfldPesquisa;
 	private int tipoOperacao = 1;
@@ -89,7 +89,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 				frmtdtxtfldPesquisa = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
 				frmtdtxtfldPesquisa.setColumns(10);
 				break;
-			case "Cï¿½digo EAN":
+			case "Código EAN":
 				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
 				frmtdtxtfldPesquisa.setColumns(14);
 				break;
@@ -124,25 +124,57 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	public void pesquisa() {
 		switch(tipoOperacao) {
 		case 1:
-			controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
+			if(!controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "clientes")) {
+				controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado ja posui um cliente vinculado.", "Cliente ja cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 2:
-			controle.alteraDadosCliente(frmtdtxtfldPesquisa.getText());
+			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "clientes")) {
+				controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado naoa possui um cliente vinculado.", "Cliente nao cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 3:
-			controle.removeCliente(frmtdtxtfldPesquisa.getText());
+			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "clientes")) {
+				controle.removeCliente(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado naoa possui um cliente vinculado.", "Cliente nao cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 4:
-			controle.cadastraFuncionario(frmtdtxtfldPesquisa.getText());
+			if(!controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				controle.abreCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado ja posui um funcionario vinculado.", "Funcionario ja cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 5:
-			controle.alteraDadosFuncionario(frmtdtxtfldPesquisa.getText());
+			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				controle.abreCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado nao posui um funcionario vinculado.", "Funcionario nao cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 6:
-			controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
+			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado nao posui um funcionario vinculado.", "Funcionario nao cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 7:
-			controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
+			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O CPF informado nao posui um funcionario vinculado.", "Funcionario nao cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 8:
 			controle.cadastraFornecedor(frmtdtxtfldPesquisa.getText());

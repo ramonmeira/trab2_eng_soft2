@@ -1,11 +1,9 @@
 package control;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import data.model.Cliente;
+import data.model.Funcionario;
 import data.tools.fileDao;
 import view.CadastroCliente;
 import view.CadastroEstoque;
@@ -91,15 +89,23 @@ public class TelaPrincipalControl {
 		}
 	}
 	
-	public boolean pesquisaCPF(String CPF) {
+	public boolean pesquisaCPF(String CPF, String arquivo) {
 		if(CPF.isEmpty() || CPF == null  || CPF.length() < 11) {
 			JOptionPane.showMessageDialog(telaPrincipal, "CPF informado invalido!", "CPF invalido", JOptionPane.WARNING_MESSAGE);
 		} else {
 			fileDao dao = new fileDao();
-			Cliente cliente = new Cliente();
-			cliente.setCpf(CPF);
-			if(dao.existeObjeto(cliente, "clientes")) {
-				return true;
+			if(arquivo.equals("clientes")) {
+				Cliente cliente = new Cliente();
+				cliente.setCpf(CPF);
+				if(dao.existeObjeto(cliente, arquivo)) {
+					return true;
+				}
+			} else {
+				Funcionario funcionario = new Funcionario();
+				funcionario.setCpf(CPF);
+				if(dao.existeObjeto(funcionario, arquivo)) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -122,23 +128,26 @@ public class TelaPrincipalControl {
 	
 	
 	public void abreCadastroCliente(String CPF) {
-		//Caso o CPF não tenha sido encontrado, abrir a tela de cadastro 
-		if(!pesquisaCPF(CPF)) {
-			pesquisaCliente.limpaFormulario();
-			pesquisaCliente.dispose();
-			CadastroCliente cadastroCliente = CadastroCliente.getInstance();
-			cadastroCliente.setControl(this); //Diz qual classe vai fazer o controle do frame
-			telaPrincipal.addInternalFrame(cadastroCliente);
-			cadastroCliente.limpaCampos();
-			cadastroCliente.setVisible(true);
-			return;
+		pesquisaCliente.limpaFormulario();
+		pesquisaCliente.dispose();
+		telaPrincipal.addInternalFrame(CadastroCliente.getInstance());
+		CadastroCliente.getInstance().setControl(this);
+		
+		if(pesquisaCPF(CPF, "clientes")) {
+			fileDao dao = new fileDao();
+			Cliente cliente = new Cliente();
+			cliente.setCpf(CPF);
+			ArrayList<String> dados = dao.getDados(cliente, "clientes");
+			CadastroCliente.getInstance().insereDados(dados);
+		} else {
+			CadastroCliente.getInstance().limpaCampos();
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado ja posui um cliente vinculado.", "Cliente ja cadastrado", JOptionPane.WARNING_MESSAGE);
+		CadastroCliente.getInstance().setVisible(true);
 	}
 	
 	public void salvaDadosCliente(Cliente cliente) {
 		ArrayList<String> dados = cliente.getDadosSerializados();
-		if(pesquisaCPF(dados.get(0).substring(dados.get(0).indexOf("=") + 1))) {
+		if(pesquisaCPF(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "clientes")) {
 			atualizaCliente(cliente);
 		} else {
 			cadastraCliente(cliente);
@@ -148,6 +157,7 @@ public class TelaPrincipalControl {
 	public void cadastraCliente(Cliente cliente) {
 		fileDao dao = new fileDao();
 		dao.adicionaObjeto(cliente, "clientes");
+		CadastroCliente.getInstance().limpaCampos();
 		CadastroCliente.getInstance().dispose();
 		JOptionPane.showMessageDialog(CadastroCliente.getInstance(), "Cliente cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
@@ -155,69 +165,95 @@ public class TelaPrincipalControl {
 	public void atualizaCliente(Cliente cliente) {
 		fileDao dao = new fileDao();
 		dao.atualizaObjeto(cliente, "clientes");
+		CadastroCliente.getInstance().limpaCampos();
 		CadastroCliente.getInstance().dispose();
-		JOptionPane.showMessageDialog(CadastroCliente.getInstance(), "Cliente cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
-	}
-	
-	public void alteraDadosCliente(String CPF) {
-		if(pesquisaCPF(CPF)) {
-			Cliente cliente = new Cliente();
-			cliente.setCpf(CPF);
-			fileDao dao = new fileDao();
-			ArrayList<String> dados = dao.getDados(cliente, "clientes");
-			pesquisaCliente.dispose();
-			CadastroCliente cadastroCliente = CadastroCliente.getInstance(); // Fazer o cadastro do cliente vir preenchido
-			cadastroCliente.setControl(this);
-			cadastroCliente.limpaCampos();
-			cadastroCliente.insereDados(dados);
-			telaPrincipal.addInternalFrame(cadastroCliente);
-			cadastroCliente.setVisible(true);
-			return;
-		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "Nao foi encontrado nenhum cliente com o CPF informado", "Cliente nao encontrado", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(CadastroCliente.getInstance(), "Dados atualizados com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void removeCliente(String CPF) {
-		if(pesquisaCPF(CPF)) {
+		fileDao dao = new fileDao();
+		Cliente cliente = new Cliente();
+		cliente.setCpf(CPF);
+		dao.removeObjeto(cliente, "clientes");
+		pesquisaCliente.limpaFormulario();
+		pesquisaCliente.dispose();
+		JOptionPane.showMessageDialog(pesquisaCliente, "Cliente removido com sucesso", "Cliente removido", JOptionPane.WARNING_MESSAGE);
+	}
+	
+	public void abreCadastroFuncionario(String CPF) {
+		pesquisaFuncionario.limpaFormulario();
+		pesquisaFuncionario.dispose();
+		telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
+		CadastroFuncionario.getInstance().setControl(this);
+		if(pesquisaCPF(CPF, "funcionarios")) {
 			fileDao dao = new fileDao();
-			Cliente cliente = new Cliente();
-			cliente.setCpf(CPF);
-			dao.removeObjeto(cliente, "clientes");
-			pesquisaCliente.dispose();
-			JOptionPane.showMessageDialog(pesquisaCliente, "Cliente removido com sucesso", "Cliente removido", JOptionPane.WARNING_MESSAGE);
-			return;
+			Funcionario funcionario = new Funcionario();
+			funcionario.setCpf(CPF);
+			ArrayList<String> dados = dao.getDados(funcionario, "funcionarios");
+			CadastroFuncionario.getInstance().insereDados(dados);
+		} else {
+			CadastroFuncionario.getInstance().limpaCampos();
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "Nao foi encontrado nenhum cliente com o CPF informado", "Cliente nao encontrado", JOptionPane.WARNING_MESSAGE);
+		CadastroFuncionario.getInstance().setVisible(true);
 	}
 	
-	public void cadastraFuncionario(String CPF) {
-		if(!pesquisaCPF(CPF)) {
-			pesquisaCliente.dispose();
-			CadastroFuncionario.getInstance().setControl(this); //Diz qual classe vai fazer o controle do frame
-			telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
-			CadastroFuncionario.getInstance().setVisible(true);
-			return;
+	public void salvaDadosFuncionarios(Funcionario funcionario) {
+		ArrayList<String> dados = funcionario.getDadosSerializados();
+		if(pesquisaCPF(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "funcionarios")) {
+			atualizaFuncionario(funcionario);
+		} else {
+			cadastraFuncionario(funcionario);
 		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "O CPF informado jï¿½ posui um cliente vinculado.", "Cliente jï¿½ cadastrado", JOptionPane.WARNING_MESSAGE);				
 	}
 	
-	public void alteraDadosFuncionario(String CPF) {
-		if(!pesquisaCPF(CPF)) {
-			pesquisaCliente.dispose();
-			CadastroFuncionario.getInstance().setControl(this); //Diz qual classe vai fazer o controle do frame
-			telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
-			CadastroFuncionario.getInstance().setVisible(true);
-			return;
-		}
-		JOptionPane.showMessageDialog(pesquisaCliente, "Nï¿½o foi encontrado nenhum cliente com o CPF informado", "Cliente nï¿½o encontrado", JOptionPane.WARNING_MESSAGE);		
+	public void cadastraFuncionario(Funcionario funcionario) {
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(funcionario, "funcionarios");
+		CadastroFuncionario.getInstance().limpaCampos();
+		CadastroFuncionario.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);				
+	}
+	
+	public void atualizaFuncionario(Funcionario funcionario) {
+		fileDao dao = new fileDao();
+		dao.atualizaObjeto(funcionario, "funcionarios");
+		CadastroCliente.getInstance().limpaCampos();
+		CadastroCliente.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Dados atualizados com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void promoveFuncionario(String CPF) {
-		
+		fileDao dao = new fileDao();
+		Funcionario funcionario = new Funcionario();
+		funcionario.setCpf(CPF);
+		ArrayList<String> dados = dao.getDados(funcionario, "funcionarios");
+		if(dados.get(4).equals("false")) {
+			dados.remove(4);
+			dados.add(4,"true");
+			pesquisaFuncionario.limpaFormulario();
+			pesquisaFuncionario.dispose();
+			dao.atualizaObjeto(funcionario, "funcionarios");
+			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario promovido com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Este funcionario ja e um gerente", "Erro!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 	
 	public void desativaFuncionario(String CPF) {
-		
+		fileDao dao = new fileDao();
+		Funcionario funcionario = new Funcionario();
+		funcionario.setCpf(CPF);
+		ArrayList<String> dados = dao.getDados(funcionario, "funcionarios");
+		if(dados.get(5).equals("true")) {
+			dados.remove(5);
+			dados.add(5,"falase");
+			pesquisaFuncionario.limpaFormulario();
+			pesquisaFuncionario.dispose();
+			dao.atualizaObjeto(funcionario, "funcionarios");
+			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario desativado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Este funcionario ja esta desativado", "Erro!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 	
 	public void cadastraFornecedor(String CNPJ) {
