@@ -90,19 +90,19 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 				else setTitle("Pesquisa de CPF de funcionario");
 				lblCpfCnpj.setText("CPJ");
 				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
 				frmtdtxtfldPesquisa.setColumns(10);
 			} else if(tipoOperacao < 11) {
 				setTitle("Pesquisa de CNPJ de forncedor");
 				lblCpfCnpj.setText("CNPJ");
 				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##.###.###/####-##")));
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##.###.###/####-##")));
 				frmtdtxtfldPesquisa.setColumns(14);
 			} else {
 				setTitle("Pesquisa de Codigo EAN");
 				lblCpfCnpj.setText("Codigo EAN");
 				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#############")));
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
 				frmtdtxtfldPesquisa.setColumns(14);
 			}
 		} catch (ParseException e) {
