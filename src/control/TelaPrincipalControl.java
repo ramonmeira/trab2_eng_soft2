@@ -217,8 +217,8 @@ public class TelaPrincipalControl {
 	public void atualizaFuncionario(Funcionario funcionario) {
 		fileDao dao = new fileDao();
 		dao.atualizaObjeto(funcionario, "funcionarios");
-		CadastroCliente.getInstance().limpaCampos();
-		CadastroCliente.getInstance().dispose();
+		CadastroFuncionario.getInstance().limpaCampos();
+		CadastroFuncionario.getInstance().dispose();
 		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Dados atualizados com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
 	
@@ -227,11 +227,12 @@ public class TelaPrincipalControl {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setCpf(CPF);
 		ArrayList<String> dados = dao.getDados(funcionario, "funcionarios");
-		if(dados.get(4).equals("false")) {
+		if(dados.get(4).equals("GERENTE=false")) {
 			dados.remove(4);
-			dados.add(4,"true");
+			dados.add(4,"GERENTE=true");
 			pesquisaFuncionario.limpaFormulario();
 			pesquisaFuncionario.dispose();
+			funcionario.setDados(dados);
 			dao.atualizaObjeto(funcionario, "funcionarios");
 			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario promovido com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 		} else {
@@ -244,11 +245,12 @@ public class TelaPrincipalControl {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setCpf(CPF);
 		ArrayList<String> dados = dao.getDados(funcionario, "funcionarios");
-		if(dados.get(5).equals("true")) {
+		if(dados.get(5).equals("ATIVO=true")) {
 			dados.remove(5);
-			dados.add(5,"falase");
+			dados.add(5,"ATIVO=false");
 			pesquisaFuncionario.limpaFormulario();
 			pesquisaFuncionario.dispose();
+			funcionario.setDados(dados);
 			dao.atualizaObjeto(funcionario, "funcionarios");
 			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario desativado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 		} else {

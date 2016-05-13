@@ -1,6 +1,6 @@
 CPF=555.555.555-55
-NOME=FUNCIONARIO ATIVO
-LOGIN=login1
+NOME=Funcionario 1
+LOGIN=funcionario
 SENHA=1
 GERENTE=true
-ATIVO=true
+ATIVO=false

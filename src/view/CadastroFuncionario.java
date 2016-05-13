@@ -106,6 +106,11 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		txtNome.setText(dados.get(1).substring(dados.get(1).indexOf("=") + 1));
 		txtLogin.setText(dados.get(2).substring(dados.get(2).indexOf("=") + 1));
 		pwdSenha.setText(dados.get(3).substring(dados.get(3).indexOf("=") + 1));
-		chckbxGerente.setSelected(Boolean.getBoolean(dados.get(4).substring(dados.get(4).indexOf("=") + 1)));
+//		chckbxGerente.setSelected(Boolean.getBoolean(dados.get(4).substring(dados.get(4).indexOf("=") + 1)));
+//		chckbxAtivo.setSelected(Boolean.getBoolean(dados.get(5).substring(dados.get(5).indexOf("=") + 1)));
+		if(dados.get(4).substring(dados.get(4).indexOf("=") + 1).equals("true")) chckbxGerente.setSelected(true);
+		else chckbxGerente.setSelected(false);
+		if(dados.get(5).substring(dados.get(5).indexOf("=") + 1).equals("true")) chckbxAtivo.setSelected(true);
+		else chckbxAtivo.setSelected(false);
 	}
 }
