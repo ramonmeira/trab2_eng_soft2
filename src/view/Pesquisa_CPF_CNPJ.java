@@ -116,12 +116,14 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	}
 	public void limpaFormulario() {
 		frmtdtxtfldPesquisa.setText("");
+//		frmtdtxtfldPesquisa.
 	}
 	
 	public void pesquisa() {
 		switch(tipoOperacao) {
 		case 1:
 			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "clientes")) {
+				limpaFormulario();
 				controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado ja posui um cliente vinculado.", "Cliente ja cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -129,6 +131,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 2:
 			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "clientes")) {
+				limpaFormulario();
 				controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado naoa possui um cliente vinculado.", "Cliente nao cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -136,6 +139,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 3:
 			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "clientes")) {
+				limpaFormulario();
 				controle.removeCliente(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado naoa possui um cliente vinculado.", "Cliente nao cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -143,7 +147,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 4:
 			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
-				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				limpaFormulario();
 				controle.abreCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado ja posui um funcionario vinculado.", "Funcionario ja cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -151,7 +155,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 5:
 			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
-				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				limpaFormulario();
 				controle.abreCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado nao posui um funcionario vinculado.", "Funcionario nao cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -159,7 +163,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 6:
 			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
-				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				limpaFormulario();
 				controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado nao posui um funcionario vinculado.", "Funcionario nao cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -167,7 +171,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 7:
 			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
-				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
+				limpaFormulario();
 				controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado nao posui um funcionario vinculado.", "Funcionario nao cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -175,6 +179,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 8:
 			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "fornecedores")) {
+				limpaFormulario();
 				controle.abreCadastroFornecedor(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CNPJ informado ja posui um fornecedor vinculado.", "Fornecedor ja cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -182,6 +187,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 9:
 			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "fornecedores")) {
+				limpaFormulario();
 				controle.abreCadastroFornecedor(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CNPJ informado nao posui um fornecedor vinculado.", "Fornecedor nao cadastrado", JOptionPane.WARNING_MESSAGE);
@@ -189,6 +195,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			break;
 		case 10:
 			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "fornecedores")) {
+				limpaFormulario();
 				controle.desativaFornecedor(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CNPJ informado ja posui um fornecedor vinculado.", "Fornecedor ja cadastrado", JOptionPane.WARNING_MESSAGE);
