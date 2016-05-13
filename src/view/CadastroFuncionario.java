@@ -21,7 +21,7 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 	private JLabel lblSenha;
 	private JCheckBox chckbxGerente;
 	private JButton btnCadastrar;
-	private JButton btnSalvaer;
+	private JButton btnSalvar;
 	private JCheckBox chckbxAtivo;
 
 	public CadastroFuncionario() {
@@ -59,8 +59,8 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		btnCadastrar.setBounds(130, 365, 89, 23);
 		getContentPane().add(btnCadastrar);
 		
-		btnSalvaer = new JButton("Salvar");
-		btnSalvaer.addMouseListener(new MouseAdapter() {
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				Funcionario funcionario = new Funcionario();
@@ -73,8 +73,8 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 				controle.salvaDadosFuncionarios(funcionario);
 			}
 		});
-		btnSalvaer.setBounds(20, 189, 89, 23);
-		getContentPane().add(btnSalvaer);
+		btnSalvar.setBounds(20, 189, 89, 23);
+		getContentPane().add(btnSalvar);
 		
 		chckbxAtivo = new JCheckBox("Ativo");
 		chckbxAtivo.setBounds(20, 145, 97, 23);
@@ -106,8 +106,6 @@ public class CadastroFuncionario extends CadastroBasicoPF {
 		txtNome.setText(dados.get(1).substring(dados.get(1).indexOf("=") + 1));
 		txtLogin.setText(dados.get(2).substring(dados.get(2).indexOf("=") + 1));
 		pwdSenha.setText(dados.get(3).substring(dados.get(3).indexOf("=") + 1));
-//		chckbxGerente.setSelected(Boolean.getBoolean(dados.get(4).substring(dados.get(4).indexOf("=") + 1)));
-//		chckbxAtivo.setSelected(Boolean.getBoolean(dados.get(5).substring(dados.get(5).indexOf("=") + 1)));
 		if(dados.get(4).substring(dados.get(4).indexOf("=") + 1).equals("true")) chckbxGerente.setSelected(true);
 		else chckbxGerente.setSelected(false);
 		if(dados.get(5).substring(dados.get(5).indexOf("=") + 1).equals("true")) chckbxAtivo.setSelected(true);

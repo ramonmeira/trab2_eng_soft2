@@ -124,28 +124,28 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	public void pesquisa() {
 		switch(tipoOperacao) {
 		case 1:
-			if(!controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "clientes")) {
+			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "clientes")) {
 				controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado ja posui um cliente vinculado.", "Cliente ja cadastrado", JOptionPane.WARNING_MESSAGE);
 			}
 			break;
 		case 2:
-			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "clientes")) {
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "clientes")) {
 				controle.abreCadastroCliente(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado naoa possui um cliente vinculado.", "Cliente nao cadastrado", JOptionPane.WARNING_MESSAGE);
 			}
 			break;
 		case 3:
-			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "clientes")) {
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "clientes")) {
 				controle.removeCliente(frmtdtxtfldPesquisa.getText());
 			} else {
 				JOptionPane.showMessageDialog(this, "O CPF informado naoa possui um cliente vinculado.", "Cliente nao cadastrado", JOptionPane.WARNING_MESSAGE);
 			}
 			break;
 		case 4:
-			if(!controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
 				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 				controle.abreCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
@@ -153,7 +153,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 5:
-			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
 				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 				controle.abreCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
@@ -161,7 +161,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 6:
-			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
 				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 				controle.promoveFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
@@ -169,7 +169,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 7:
-			if(controle.pesquisaCPF(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "funcionarios")) {
 				//controle.abreaCadastroFuncionario(frmtdtxtfldPesquisa.getText());
 				controle.desativaFuncionario(frmtdtxtfldPesquisa.getText());
 			} else {
@@ -177,10 +177,10 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 8:
-			controle.cadastraFornecedor(frmtdtxtfldPesquisa.getText());
+			controle.abreCadastroFornecedor(frmtdtxtfldPesquisa.getText());
 			break;
 		case 9:
-			controle.alteraDadosFornecedor(frmtdtxtfldPesquisa.getText());
+			controle.abreCadastroFornecedor(frmtdtxtfldPesquisa.getText());
 			break;
 		case 10:
 			controle.desativaFornecedor(frmtdtxtfldPesquisa.getText());

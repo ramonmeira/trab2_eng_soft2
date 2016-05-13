@@ -3,7 +3,9 @@ package control;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import data.model.Cliente;
+import data.model.Fornecedor;
 import data.model.Funcionario;
+import data.model.ObjetoPersistente;
 import data.tools.fileDao;
 import view.CadastroCliente;
 import view.CadastroEstoque;
@@ -89,25 +91,41 @@ public class TelaPrincipalControl {
 		}
 	}
 	
-	public boolean pesquisaCPF(String CPF, String arquivo) {
-		if(CPF.isEmpty() || CPF == null  || CPF.length() < 11) {
-			JOptionPane.showMessageDialog(telaPrincipal, "CPF informado invalido!", "CPF invalido", JOptionPane.WARNING_MESSAGE);
+	public boolean pesquisaChave(String chave, String arquivo) {
+		fileDao dao = new fileDao();
+		ObjetoPersistente objeto = null;
+		if(arquivo.equals("clientes")) {
+			Cliente cliente = new Cliente();
+			cliente.setCpf(chave);
+			if(dao.existeObjeto(cliente, arquivo)) {
+				return true;
+			}
 		} else {
-			fileDao dao = new fileDao();
-			if(arquivo.equals("clientes")) {
-				Cliente cliente = new Cliente();
-				cliente.setCpf(CPF);
-				if(dao.existeObjeto(cliente, arquivo)) {
-					return true;
-				}
-			} else {
-				Funcionario funcionario = new Funcionario();
-				funcionario.setCpf(CPF);
-				if(dao.existeObjeto(funcionario, arquivo)) {
-					return true;
-				}
+			Funcionario funcionario = new Funcionario();
+			funcionario.setCpf(chave);
+			if(dao.existeObjeto(funcionario, arquivo)) {
+				return true;
 			}
 		}
+		switch(arquivo) {
+		case "clientes":
+			Cliente cliente = new Cliente();
+			cliente.setCpf(chave);
+			objeto = cliente;
+			break;
+		case "funcionarios":
+			Funcionario funcionario = new Funcionario();
+			funcionario.setCpf(chave);
+			objeto = funcionario;
+			break;
+		case "fornecedores":
+			Fornecedor fornecedor = new Fornecedor();
+			fornecedor.setCnpj(chave);
+			objeto = fornecedor;
+		}
+		if(dao.existeObjeto(objeto, arquivo)) {
+			return true;
+		} 
 		return false;
 	}
 	
@@ -133,7 +151,7 @@ public class TelaPrincipalControl {
 		telaPrincipal.addInternalFrame(CadastroCliente.getInstance());
 		CadastroCliente.getInstance().setControl(this);
 		
-		if(pesquisaCPF(CPF, "clientes")) {
+		if(pesquisaChave(CPF, "clientes")) {
 			fileDao dao = new fileDao();
 			Cliente cliente = new Cliente();
 			cliente.setCpf(CPF);
@@ -147,7 +165,7 @@ public class TelaPrincipalControl {
 	
 	public void salvaDadosCliente(Cliente cliente) {
 		ArrayList<String> dados = cliente.getDadosSerializados();
-		if(pesquisaCPF(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "clientes")) {
+		if(pesquisaChave(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "clientes")) {
 			atualizaCliente(cliente);
 		} else {
 			cadastraCliente(cliente);
@@ -185,7 +203,7 @@ public class TelaPrincipalControl {
 		pesquisaFuncionario.dispose();
 		telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
 		CadastroFuncionario.getInstance().setControl(this);
-		if(pesquisaCPF(CPF, "funcionarios")) {
+		if(pesquisaChave(CPF, "funcionarios")) {
 			fileDao dao = new fileDao();
 			Funcionario funcionario = new Funcionario();
 			funcionario.setCpf(CPF);
@@ -199,7 +217,7 @@ public class TelaPrincipalControl {
 	
 	public void salvaDadosFuncionarios(Funcionario funcionario) {
 		ArrayList<String> dados = funcionario.getDadosSerializados();
-		if(pesquisaCPF(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "funcionarios")) {
+		if(pesquisaChave(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "funcionarios")) {
 			atualizaFuncionario(funcionario);
 		} else {
 			cadastraFuncionario(funcionario);
@@ -258,16 +276,64 @@ public class TelaPrincipalControl {
 		}
 	}
 	
-	public void cadastraFornecedor(String CNPJ) {
-		
+	public void abreCadastroFornecedor(String CNPJ) {
+		pesquisaFornecedor.limpaFormulario();
+		pesquisaFornecedor.dispose();
+		telaPrincipal.addInternalFrame(CadastroFornecedor.getInstance());
+		CadastroFornecedor.getInstance().setControl(this);
+		if(pesquisaChave(CNPJ, "fornecedores")) {
+			fileDao dao = new fileDao();
+			Fornecedor fornecedor = new Fornecedor();
+			fornecedor.setCnpj(CNPJ);
+			ArrayList<String> dados = dao.getDados(fornecedor, "fornecedores");
+			CadastroFornecedor.getInstance().insereDados(dados);
+		} else {
+			CadastroFornecedor.getInstance().limpaCampos();
+		}
+		CadastroFornecedor.getInstance().setVisible(true);
 	}
 	
-	public void alteraDadosFornecedor(String CNPJ) {
-		
+	public void salvaDadosFornecedor(Fornecedor fornecedor) {
+		ArrayList<String> dados = fornecedor.getDadosSerializados();
+		if(pesquisaChave(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "fornecedores")) {
+			atualizaFornecedor(fornecedor);
+		} else {
+			cadastraFornecedor(fornecedor);
+		}
+	}
+	
+	public void cadastraFornecedor(Fornecedor fornecedor) {
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(fornecedor, "fornecedores");
+		CadastroFornecedor.getInstance().limpaCampos();
+		CadastroFornecedor.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Fornecedor cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);	
+	}
+	
+	public void atualizaFornecedor(Fornecedor fornecedor) {
+		fileDao dao = new fileDao();
+		dao.atualizaObjeto(fornecedor, "fornecedores");
+		CadastroFornecedor.getInstance().limpaCampos();
+		CadastroFornecedor.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Dados atualizados com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void desativaFornecedor(String CNPJ) {
-		
+		fileDao dao = new fileDao();
+		Fornecedor fornecedor = new Fornecedor();
+		fornecedor.setCnpj(CNPJ);
+		ArrayList<String> dados = dao.getDados(fornecedor, "fornecedores");
+		if(dados.get(2).equals("ATIVO=true")) {
+			dados.remove(2);
+			dados.add(2,"ATIVO=false");
+			pesquisaFornecedor.limpaFormulario();
+			pesquisaFornecedor.dispose();
+			fornecedor.setDados(dados);
+			dao.atualizaObjeto(fornecedor, "fornecedores");
+			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Fornecedor desativado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Este fornecedor ja esta desativado", "Erro!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 	
 	public void cadastraProduto(String EAN) {

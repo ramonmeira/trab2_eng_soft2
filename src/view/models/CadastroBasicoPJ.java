@@ -25,8 +25,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 
 public class CadastroBasicoPJ extends JInternalFrame {
-	private JTextField txtRazaoSocial;
-	private JFormattedTextField txtCnpj;
+	protected JTextField txtRazaoSocial;
+	protected JFormattedTextField txtCnpj;
+	protected JCheckBox chckbxAtivo;
+	protected JLabel lblRazaoSocial;
+	protected JLabel lblCnpj;
 	
 	TelaPrincipalControl controle;
 
@@ -43,12 +46,14 @@ public class CadastroBasicoPJ extends JInternalFrame {
 		getContentPane().add(txtRazaoSocial);
 		txtRazaoSocial.setColumns(10);
 		
-		JLabel lblRazoSocial = new JLabel("Raz\u00E3o Social");
-		lblRazoSocial.setBounds(20, 11, 93, 14);
-		getContentPane().add(lblRazoSocial);
+		lblRazaoSocial = new JLabel("Raz\u00E3o Social");
+		lblRazaoSocial.setBounds(20, 11, 93, 14);
+		lblRazaoSocial.setSize(lblRazaoSocial.getPreferredSize());
+		getContentPane().add(lblRazaoSocial);
 		
-		JLabel lblCnpj = new JLabel("CNPJ");
+		lblCnpj = new JLabel("CNPJ");
 		lblCnpj.setBounds(20, 65, 46, 14);
+		lblCnpj.setSize(lblCnpj.getPreferredSize());
 		getContentPane().add(lblCnpj);
 		
 		try {
@@ -61,8 +66,9 @@ public class CadastroBasicoPJ extends JInternalFrame {
 		getContentPane().add(txtCnpj);
 		txtCnpj.setColumns(14);
 		
-		JCheckBox chckbxAtivo = new JCheckBox("Ativo");
+		chckbxAtivo = new JCheckBox("Ativo");
 		chckbxAtivo.setBounds(188, 89, 97, 23);
+		chckbxAtivo.setSize(chckbxAtivo.getPreferredSize());
 		getContentPane().add(chckbxAtivo);
 	}
 	
