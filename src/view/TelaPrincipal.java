@@ -221,7 +221,7 @@ public class TelaPrincipal extends JFrame {
 		mntmCadastrar_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				controle.cadastraEstoque();
+				controle.abrePesquisaProduto(13);
 			}
 		});
 		mnEstoque.add(mntmCadastrar_3);
@@ -230,7 +230,7 @@ public class TelaPrincipal extends JFrame {
 		mntmAlterarEstoque.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controle.alterarEstoque();
+				controle.abrePesquisaProduto(14);
 			}
 		});
 		mnEstoque.add(mntmAlterarEstoque);

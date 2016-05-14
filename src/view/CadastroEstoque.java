@@ -5,147 +5,90 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
 import control.TelaPrincipalControl;
+import data.model.Estoque;
+import data.model.Produto;
 
 import java.beans.PropertyVetoException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CadastroEstoque extends JInternalFrame {
 	private static CadastroEstoque instance = null;
 	
-	private JFormattedTextField txtId;
-	private JTextField txtLocal;
-	private JFormattedTextField txtIdProduto;
-	private JTextField txtDescricaoProduto;
-	private JFormattedTextField txtQtd;
-	private JFormattedTextField txtPreco;
-	
 	TelaPrincipalControl controle;
+	private JTextField txtModelo;
+	private JFormattedTextField txtCodEan;
+	private JTextField txtQtd;
 
 	public CadastroEstoque() {
 		setIconifiable(true);
 		setClosable(true);
 		setMaximizable(false);
 		setResizable(false);
-		setTitle("Estoque");
+		setBounds(100, 100, 368, 215);
+		
+		setTitle("Cadastro de estoque");
+		
+		getContentPane().setLayout(null);
+		
+		JLabel lblCodigoEan = new JLabel("Codigo EAN");
+		lblCodigoEan.setBounds(10, 67, 67, 14);
+		getContentPane().add(lblCodigoEan);
+		
+		JLabel lblModelo = new JLabel("Modelo");
+		lblModelo.setBounds(10, 11, 46, 14);
+		getContentPane().add(lblModelo);
+		
+		JLabel lblQuantidade = new JLabel("Quantidade");
+		lblQuantidade.setBounds(239, 67, 73, 14);
+		getContentPane().add(lblQuantidade);
+		
+		txtModelo = new JTextField();
+		txtModelo.setBounds(10, 36, 315, 20);
+		getContentPane().add(txtModelo);
+		txtModelo.setColumns(10);
+		
 		try {
-			setMaximum(true);
-			getContentPane().setLayout(null);
-			
-			DateFormatter displayFormat = new DateFormatter(new SimpleDateFormat("dd/MM/yyyy"));
-			DateFormatter editFormat = new DateFormatter(new SimpleDateFormat("ddMMyyyy"));
-			DefaultFormatterFactory dateFormat = new DefaultFormatterFactory(displayFormat, displayFormat, editFormat);
-			
-			NumberFormatter displayPreco = new NumberFormatter(NumberFormat.getCurrencyInstance());
-			NumberFormatter editPreco = new NumberFormatter(new java.text.DecimalFormat("#,##0.##"));
-			DefaultFormatterFactory moedaFactory = new DefaultFormatterFactory(displayPreco, displayPreco, editPreco);
-			
-			JLabel lblId = new JLabel("ID");
-			lblId.setBounds(20, 20, 46, 14);
-			getContentPane().add(lblId);
-			
-			try {
-				txtId = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
-			} catch (ParseException e1) {
-				JOptionPane.showMessageDialog(this, "ID inv�lido", "O n�mero do ID informado possui formato inv�lido!", JOptionPane.WARNING_MESSAGE);
-				e1.printStackTrace();
-			}
-			txtId.setText("ID");
-			txtId.setBounds(20, 35, 86, 20);
-			getContentPane().add(txtId);
-			txtId.setColumns(6);
-			
-			txtLocal = new JTextField();
-			txtLocal.setText("Local");
-			txtLocal.setBounds(116, 35, 292, 20);
-			getContentPane().add(txtLocal);
-			txtLocal.setColumns(10);
-			
-			JLabel lblLocal = new JLabel("Local");
-			lblLocal.setBounds(116, 20, 46, 14);
-			getContentPane().add(lblLocal);
-			
-			JLabel lblIdProduto = new JLabel("ID Produto");
-			lblIdProduto.setBounds(20, 65, 73, 14);
-			getContentPane().add(lblIdProduto);
-			
-			try {
-				txtIdProduto = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
-			} catch (ParseException e1) {
-				JOptionPane.showMessageDialog(this, "ID inv�lido", "O n�mero do ID informado possui formato inv�lido!", JOptionPane.WARNING_MESSAGE);
-				e1.printStackTrace();
-			}
-			txtIdProduto.setBounds(20, 80, 86, 20);
-			getContentPane().add(txtIdProduto);
-			txtIdProduto.setColumns(6);
-			
-			txtDescricaoProduto = new JTextField();
-			txtDescricaoProduto.setBounds(116, 80, 361, 20);
-			getContentPane().add(txtDescricaoProduto);
-			txtDescricaoProduto.setColumns(10);
-			
-			JLabel lblDescricaoProtudo = new JLabel("Descri\u00E7\u00E3o Protudo");
-			lblDescricaoProtudo.setBounds(116, 66, 108, 14);
-			getContentPane().add(lblDescricaoProtudo);
-			
-			try {
-				txtQtd = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
-			} catch (ParseException e) {
-				JOptionPane.showMessageDialog(this, "Quantidade inv�lida", "A quantidade informada possui um formato inv�lido!", JOptionPane.WARNING_MESSAGE);
-				e.printStackTrace();
-			}
-			txtQtd.setBounds(418, 35, 59, 20);
-			getContentPane().add(txtQtd);
-			txtQtd.setColumns(6);
-			
-			JLabel lblQtd = new JLabel("Qtd");
-			lblQtd.setBounds(418, 20, 46, 14);
-			getContentPane().add(lblQtd);
-			
-			JFormattedTextField frmtdtxtfldDtFabricacao = new JFormattedTextField(dateFormat);
-			frmtdtxtfldDtFabricacao.setColumns(8);
-			frmtdtxtfldDtFabricacao.setBounds(20, 125, 86, 20);
-			getContentPane().add(frmtdtxtfldDtFabricacao);
-			
-			JLabel lblDtFabricacao = new JLabel("Dt. Fabrica\u00E7\u00E3o");
-			lblDtFabricacao.setBounds(20, 110, 73, 14);
-			getContentPane().add(lblDtFabricacao);
-			
-			JFormattedTextField frmtdtxtfldDtValidade = new JFormattedTextField(dateFormat);
-			frmtdtxtfldDtValidade.setColumns(8);
-			frmtdtxtfldDtValidade.setBounds(116, 125, 86, 20);
-			getContentPane().add(frmtdtxtfldDtValidade);
-			
-			JLabel lblDtValidade = new JLabel("Dt. Validade");
-			lblDtValidade.setBounds(116, 111, 66, 14);
-			getContentPane().add(lblDtValidade);
-			
-			txtPreco = new JFormattedTextField(moedaFactory);
-//			try {
-//				txtPreco = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ ##.####0,00")));
-//			} catch (ParseException e) {
-//				JOptionPane.showMessageDialog(this, "Pre�o inv�lido", "O pre�o informado possui um formato inv�lido!", JOptionPane.WARNING_MESSAGE);
-//				e.printStackTrace();
-//			}
-			txtPreco.setBounds(212, 125, 86, 20);
-			getContentPane().add(txtPreco);
-			txtPreco.setColumns(8);
-			
-			JLabel lblPrecoUnit = new JLabel("Pre\u00E7o Unit.");
-			lblPrecoUnit.setBounds(212, 110, 66, 14);
-			getContentPane().add(lblPrecoUnit);
-			
-		}
-		catch(PropertyVetoException e) {
+			txtCodEan = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##############")));
+			txtCodEan.setColumns(14);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(this, "O codigo EAN informado possui formato invalido!", "Codigo EAN invalido", JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Erro de maximiza��o", "N�o � poss�vel maximizar esta tela!", JOptionPane.WARNING_MESSAGE);
 		}
+		txtCodEan.setBounds(10, 92, 223, 20);
+		getContentPane().add(txtCodEan);
+		txtCodEan.setColumns(10);
+		
+		txtQtd = new JTextField();
+		txtQtd.setBounds(239, 92, 86, 20);
+		getContentPane().add(txtQtd);
+		txtQtd.setColumns(10);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				Estoque estoque = new Estoque();
+				estoque.setCodEan(txtCodEan.getText());
+				estoque.setModelo(txtModelo.getText());
+				estoque.setQtd(txtQtd.getText());
+				controle.salvaDadosEstoque(estoque);
+			}
+		});
+		btnSalvar.setBounds(10, 141, 89, 23);
+		getContentPane().add(btnSalvar);
 	}
 	
 	public static CadastroEstoque getInstance() {
@@ -158,5 +101,17 @@ public class CadastroEstoque extends JInternalFrame {
 	
 	public void setControl(TelaPrincipalControl controle) {
 		this.controle = controle;
+	}
+	
+	public void limpaCampos() {
+		txtCodEan.setText("");
+		txtModelo.setText("");
+		txtQtd.setText("");
+	}
+	
+	public void insereDados(ArrayList<String> dados) {
+		txtCodEan.setText(dados.get(0).substring(dados.get(0).indexOf("=") + 1));
+		txtModelo.setText(dados.get(1).substring(dados.get(1).indexOf("=") + 1));
+		txtQtd.setText(dados.get(2).substring(dados.get(2).indexOf("=") + 1));
 	}
 }

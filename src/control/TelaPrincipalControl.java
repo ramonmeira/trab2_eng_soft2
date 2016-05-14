@@ -3,6 +3,7 @@ package control;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import data.model.Cliente;
+import data.model.Estoque;
 import data.model.Fornecedor;
 import data.model.Funcionario;
 import data.model.ObjetoPersistente;
@@ -67,7 +68,7 @@ public class TelaPrincipalControl {
 	public void abrePesquisaProduto(int tipo) {
 		if(!CadastroProduto.getInstance().isVisible() && !pesquisaProduto.isVisible()) {
 //			pesquisaProduto.setOperacao(tipo);
-			pesquisaFornecedor = new Pesquisa_CPF_CNPJ(this, tipo);
+			pesquisaProduto = new Pesquisa_CPF_CNPJ(this, tipo);
 			telaPrincipal.addInternalFrame(pesquisaProduto);
 			pesquisaProduto.setVisible(true);
 		}
@@ -99,19 +100,6 @@ public class TelaPrincipalControl {
 	public boolean pesquisaChave(String chave, String arquivo) {
 		fileDao dao = new fileDao();
 		ObjetoPersistente objeto = null;
-		if(arquivo.equals("clientes")) {
-			Cliente cliente = new Cliente();
-			cliente.setCpf(chave);
-			if(dao.existeObjeto(cliente, arquivo)) {
-				return true;
-			}
-		} else {
-			Funcionario funcionario = new Funcionario();
-			funcionario.setCpf(chave);
-			if(dao.existeObjeto(funcionario, arquivo)) {
-				return true;
-			}
-		}
 		switch(arquivo) {
 		case "clientes":
 			Cliente cliente = new Cliente();
@@ -127,6 +115,17 @@ public class TelaPrincipalControl {
 			Fornecedor fornecedor = new Fornecedor();
 			fornecedor.setCnpj(chave);
 			objeto = fornecedor;
+			break;
+		case "produtos":
+			Produto produto = new Produto();
+			produto.setCodEan(chave);
+			objeto = produto;
+			break;
+		case "estoque":
+			Estoque estoque = new Estoque();
+			estoque.setCodEan(chave);
+			objeto = estoque;
+			break;
 		}
 		if(dao.existeObjeto(objeto, arquivo)) {
 			return true;
@@ -361,21 +360,47 @@ public class TelaPrincipalControl {
 		JOptionPane.showMessageDialog(pesquisaProduto, "Produto removido com sucesso", "Produto removido", JOptionPane.WARNING_MESSAGE);
 	}
 	
-	public void cadastraEstoque() {
-		CadastroEstoque cadastroEstoque = CadastroEstoque.getInstance();
-		cadastroEstoque.setControl(this);
-		telaPrincipal.addInternalFrame(cadastroEstoque);
-		cadastroEstoque.setVisible(true);
-		return;
+	public void abreCadastroEstoque(String EAN) {
+		pesquisaProduto.limpaFormulario();
+		pesquisaProduto.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaProduto);
+		telaPrincipal.addInternalFrame(CadastroEstoque.getInstance());
+		CadastroEstoque.getInstance().setControl(this);		
+		if(pesquisaChave(EAN, "estoque")) {
+			fileDao dao = new fileDao();
+			Estoque estoque = new Estoque();
+			estoque.setCodEan(EAN);
+			ArrayList<String> dados = dao.getDados(estoque, "estoque");
+			CadastroEstoque.getInstance().insereDados(dados);
+		} else {
+			CadastroEstoque.getInstance().limpaCampos();
+		}
+		CadastroEstoque.getInstance().setVisible(true);
 	}
 	
-	public void alterarEstoque() {
-		//Fazer uma busca para entregar o fomul�rio com os dados preenchidos
-		CadastroEstoque cadastroEstoque = CadastroEstoque.getInstance();
-		cadastroEstoque.setControl(this);
-		telaPrincipal.addInternalFrame(cadastroEstoque);
-		cadastroEstoque.setVisible(true);
-		return;		
+	public void salvaDadosEstoque(Estoque estoque) {
+		ArrayList<String> dados = estoque.getDadosSerializados();
+		if(pesquisaChave(dados.get(0).substring(dados.get(0).indexOf("=") + 1), "estoque")) {
+			alterarEstoque(estoque);
+		} else {
+			cadastraEstoque(estoque);
+		}
+	}
+	
+	public void cadastraEstoque(Estoque estoque) {
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(estoque, "estoque");
+		CadastroEstoque.getInstance().limpaCampos();
+		CadastroEstoque.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Estoque cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
+	}
+	
+	public void alterarEstoque(Estoque estoque) {
+		fileDao dao = new fileDao();
+		dao.atualizaObjeto(estoque, "estoque");
+		CadastroEstoque.getInstance().limpaCampos();
+		CadastroEstoque.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Estoque alterado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);	
 	}
 	
 }

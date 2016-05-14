@@ -35,13 +35,13 @@ public class CadastroProduto extends JInternalFrame {
 		setClosable(true);
 		setMaximizable(false);
 		setResizable(false);
+		setBounds(100, 100, 360, 200);
 		setTitle("Cadastro de Produto");
 		getContentPane().setLayout(null);
 		
 		txtModelo = new JTextField();
-		txtModelo.setBounds(20, 36, 263, 20);
+		txtModelo.setBounds(20, 36, 302, 20);
 		getContentPane().add(txtModelo);
-		txtModelo.setColumns(10);
 		
 		JLabel lblModelo = new JLabel("Modelo");
 		lblModelo.setBounds(20, 11, 46, 14);
@@ -52,7 +52,8 @@ public class CadastroProduto extends JInternalFrame {
 		getContentPane().add(lblCodEan);
 		
 		try {
-			txtCodEan = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
+			txtCodEan = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##############")));
+			txtCodEan.setColumns(14);
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(this, "O codigo EAN informado possui formato invalido!", "Codigo EAN invalido", JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
@@ -68,15 +69,15 @@ public class CadastroProduto extends JInternalFrame {
 				Produto produto = new Produto();
 				produto.setCodEan(txtCodEan.getText());
 				produto.setModelo(txtModelo.getText());
-//				controle.salvaDadosFuncionarios(funcionario);
+				controle.cadastraProduto(produto);
 			}
 		});
-		btnSalvar.setBounds(20, 123, 89, 23);
+		btnSalvar.setBounds(20, 136, 89, 23);
 		getContentPane().add(btnSalvar);
 	}
 	
 	public static CadastroProduto getInstance() {
-		if(instance ==null) {
+		if(instance == null) {
 			instance = new CadastroProduto();
 		}
 		return instance;

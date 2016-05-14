@@ -17,6 +17,7 @@ public class FileOperations {
 		createFile("fornecedores.txt");
 		createFile("produtos.txt");
 		createFile("estoque.txt");
+		createFile("vendas.txt");
 	}
 	
 	private static void createFile(String fileName) {

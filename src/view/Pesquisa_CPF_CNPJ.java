@@ -107,10 +107,6 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		getContentPane().add(frmtdtxtfldPesquisa);
 	}
 	
-	public void setOperacao(int tipoOperacao) {
-		this.tipoOperacao = tipoOperacao;		
-	}
-	
 	public void dispose() {
 		super.dispose();
 		limpaFormulario();
@@ -217,8 +213,18 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 13:
+			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "estoque")) {
+				controle.abreCadastroEstoque(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O codigo EAN ja possui um estoque cadastrado.", "Estoque ja cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 14:
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "estoque")) {
+				controle.abreCadastroEstoque(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O codigo EAN nao possui um estoque cadastrado.", "Estoque ja cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		}
 	}
