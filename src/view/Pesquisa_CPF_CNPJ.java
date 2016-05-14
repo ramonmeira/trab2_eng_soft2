@@ -31,7 +31,8 @@ import java.awt.event.KeyEvent;
  * 10 - Desativar fornecedor
  * 11 - Cadastrar produto
  * 12 - Remover produto
- * 13 - Solicitar produto
+ * 13 - Cadastrar estoque
+ * 14 - Alterar estoque
  */
 
 public class Pesquisa_CPF_CNPJ extends JInternalFrame {
@@ -88,7 +89,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 				setTitle("Pesquisa de Codigo EAN");
 				lblCpfCnpj.setText("Codigo EAN");
 				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##############")));
 				frmtdtxtfldPesquisa.setColumns(14);
 			}
 		} catch (ParseException e) {
@@ -107,31 +108,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	}
 	
 	public void setOperacao(int tipoOperacao) {
-		this.tipoOperacao = tipoOperacao;
-		try {
-			if(tipoOperacao < 8) {
-				if(tipoOperacao < 4) setTitle("Pesquisa de CPF de cliente");
-				else setTitle("Pesquisa de CPF de funcionario");
-				lblCpfCnpj.setText("CPJ");
-				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-				frmtdtxtfldPesquisa.setColumns(10);
-			} else if(tipoOperacao < 11) {
-				setTitle("Pesquisa de CNPJ de forncedor");
-				lblCpfCnpj.setText("CNPJ");
-				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##.###.###/####-##")));
-				frmtdtxtfldPesquisa.setColumns(14);
-			} else {
-				setTitle("Pesquisa de Codigo EAN");
-				lblCpfCnpj.setText("Codigo EAN");
-				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
-				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
-				frmtdtxtfldPesquisa.setColumns(14);
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}		
+		this.tipoOperacao = tipoOperacao;		
 	}
 	
 	public void dispose() {
@@ -218,7 +195,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 10:
-			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "fornecedores")) {
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "fornecedores")) {
 				limpaFormulario();
 				controle.desativaFornecedor(frmtdtxtfldPesquisa.getText());
 			} else {
@@ -226,13 +203,22 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 			}
 			break;
 		case 11:
-			controle.cadastraProduto(frmtdtxtfldPesquisa.getText());
+			if(!controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "produtos")) {
+				controle.abreCadastroProduto(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O codigo EAN informado ja posui um produto vinculado.", "Produto ja cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 12:
-			controle.removeProduto(frmtdtxtfldPesquisa.getText());
+			if(controle.pesquisaChave(frmtdtxtfldPesquisa.getText(), "produtos")) {
+				controle.removeProduto(frmtdtxtfldPesquisa.getText());
+			} else {
+				JOptionPane.showMessageDialog(this, "O codigo EAN informado nao posui um produto vinculado.", "Produto nao cadastrado", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case 13:
-			controle.solicitaProduto(frmtdtxtfldPesquisa.getText());
+			break;
+		case 14:
 			break;
 		}
 	}

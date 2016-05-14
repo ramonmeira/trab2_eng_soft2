@@ -1,24 +1,11 @@
 package data.model;
 
-public class Produto {
-	private String descricao;
-	private String fabricante;
+import java.util.ArrayList;
+
+public class Produto implements ObjetoPersistente{
 	private String modelo;
 	private String codEan;
-	private String fornecedor;
 	
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public String getFabricante() {
-		return fabricante;
-	}
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
-	}
 	public String getModelo() {
 		return modelo;
 	}
@@ -31,10 +18,19 @@ public class Produto {
 	public void setCodEan(String codEan) {
 		this.codEan = codEan;
 	}
-	public String getFornecedor() {
-		return fornecedor;
+	
+	public ArrayList<String> getDadosSerializados() {
+		ArrayList<String> dados = new ArrayList<String>();
+		
+		/*
+		 * Os dados são lidos da seguinte forma
+		 * 1ª posição contém a chave, 2ª contém o valor
+		 * A chave primára fica sempre na posição 0, neste caso o CPF é a chave primária
+		 */
+		
+		dados.add(0,"CODIGO EAN="+codEan);
+		dados.add(1,"MODELO="+modelo);
+		
+		return dados;
 	}
-	public void setFornecedor(String fornecedor) {
-		this.fornecedor = fornecedor;
-	}	
 }

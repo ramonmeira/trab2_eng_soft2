@@ -6,6 +6,7 @@ import data.model.Cliente;
 import data.model.Fornecedor;
 import data.model.Funcionario;
 import data.model.ObjetoPersistente;
+import data.model.Produto;
 import data.tools.fileDao;
 import view.CadastroCliente;
 import view.CadastroEstoque;
@@ -65,7 +66,8 @@ public class TelaPrincipalControl {
 	
 	public void abrePesquisaProduto(int tipo) {
 		if(!CadastroProduto.getInstance().isVisible() && !pesquisaProduto.isVisible()) {
-			pesquisaProduto.setOperacao(tipo);
+//			pesquisaProduto.setOperacao(tipo);
+			pesquisaFornecedor = new Pesquisa_CPF_CNPJ(this, tipo);
 			telaPrincipal.addInternalFrame(pesquisaProduto);
 			pesquisaProduto.setVisible(true);
 		}
@@ -330,16 +332,33 @@ public class TelaPrincipalControl {
 		}
 	}
 	
-	public void cadastraProduto(String EAN) {
-		
+	public void abreCadastroProduto(String EAN) {
+		pesquisaProduto.limpaFormulario();
+		pesquisaProduto.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaProduto);
+		telaPrincipal.addInternalFrame(CadastroProduto.getInstance());
+		CadastroProduto.getInstance().setControl(this);
+		CadastroProduto.getInstance().limpaCampos();
+		CadastroProduto.getInstance().setVisible(true);
+	}
+	
+	public void cadastraProduto(Produto produto) {
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(produto, "produtos");
+		CadastroProduto.getInstance().limpaCampos();
+		CadastroProduto.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Produto cadastrado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);	
 	}
 	
 	public void removeProduto(String EAN) {
-		
-	}
-	
-	public void solicitaProduto(String EAN) {
-		
+		fileDao dao = new fileDao();
+		Produto produto = new Produto();
+		produto.setCodEan(EAN);
+		dao.removeObjeto(produto, "produtos");
+		pesquisaProduto.limpaFormulario();
+		pesquisaProduto.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaProduto);
+		JOptionPane.showMessageDialog(pesquisaProduto, "Produto removido com sucesso", "Produto removido", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void cadastraEstoque() {

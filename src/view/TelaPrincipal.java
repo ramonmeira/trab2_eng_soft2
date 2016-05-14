@@ -42,7 +42,6 @@ public class TelaPrincipal extends JFrame {
 	private JMenu mnProdutos;
 	private JMenuItem mntmCadastrar_2;
 	private JMenuItem mntmRemover_1;
-	private JMenuItem mntmSolicitar;
 	private JMenu mnEstoque;
 	private JMenuItem mntmCadastrar_3;
 	private JMenuItem mntmAlterarEstoque;
@@ -215,15 +214,6 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnProdutos.add(mntmRemover_1);
 		
-		mntmSolicitar = new JMenuItem("Solicitar");
-		mntmSolicitar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.abrePesquisaProduto(13);
-			}
-		});
-		mnProdutos.add(mntmSolicitar);
-		
 		mnEstoque = new JMenu("Estoque");
 		menuBar.add(mnEstoque);
 		
@@ -284,7 +274,6 @@ public class TelaPrincipal extends JFrame {
 		mnProdutos.setEnabled(ativar);
 		mntmCadastrar_2.setEnabled(ativar);
 		mntmRemover_1.setEnabled(ativar);
-		mntmSolicitar.setEnabled(ativar);
 		mnEstoque.setEnabled(ativar);
 		mntmCadastrar_3.setEnabled(ativar);
 		mntmAlterarEstoque.setEnabled(ativar);
