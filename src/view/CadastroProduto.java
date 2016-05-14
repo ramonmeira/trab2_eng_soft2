@@ -45,10 +45,12 @@ public class CadastroProduto extends JInternalFrame {
 		
 		JLabel lblModelo = new JLabel("Modelo");
 		lblModelo.setBounds(20, 11, 46, 14);
+		lblModelo.setSize(lblModelo.getPreferredSize());
 		getContentPane().add(lblModelo);
 		
 		JLabel lblCodEan = new JLabel("Cod. EAN");
 		lblCodEan.setBounds(20, 67, 46, 14);
+		lblCodEan.setSize(lblCodEan.getPreferredSize());
 		getContentPane().add(lblCodEan);
 		
 		try {

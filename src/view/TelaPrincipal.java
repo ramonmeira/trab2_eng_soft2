@@ -239,6 +239,12 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnVendas);
 		
 		JMenuItem mntmCadastrar_4 = new JMenuItem("Cadastrar");
+		mntmCadastrar_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				controle.abreCadastroVenda();
+			}
+		});
 		mnVendas.add(mntmCadastrar_4);
 		
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);

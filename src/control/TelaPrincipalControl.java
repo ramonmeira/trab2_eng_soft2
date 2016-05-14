@@ -8,12 +8,14 @@ import data.model.Fornecedor;
 import data.model.Funcionario;
 import data.model.ObjetoPersistente;
 import data.model.Produto;
+import data.model.Venda;
 import data.tools.fileDao;
 import view.CadastroCliente;
 import view.CadastroEstoque;
 import view.CadastroFornecedor;
 import view.CadastroFuncionario;
 import view.CadastroProduto;
+import view.CadastroVenda;
 import view.Pesquisa_CPF_CNPJ;
 import view.TelaLoginInternal;
 import view.TelaPrincipal;
@@ -403,4 +405,18 @@ public class TelaPrincipalControl {
 		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Estoque alterado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);	
 	}
 	
+	public void abreCadastroVenda() {
+		telaPrincipal.addInternalFrame(CadastroVenda.getInstance());
+		CadastroVenda.getInstance().setControl(this);
+		CadastroVenda.getInstance().limpaCampos();
+		CadastroVenda.getInstance().setVisible(true);
+	}
+	
+	public void cadastraVenda(Venda venda) {
+		fileDao dao = new fileDao();
+		dao.adicionaObjeto(venda, "vendas");
+		CadastroVenda.getInstance().limpaCampos();
+		CadastroVenda.getInstance().dispose();
+		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Venda cadastrada com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
+	}
 }

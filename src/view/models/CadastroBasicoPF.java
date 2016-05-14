@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+
 import control.TelaPrincipalControl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -60,7 +62,7 @@ public class CadastroBasicoPF extends JInternalFrame {
 		txtNome.setColumns(10);
 		
 		try {
-			txtCpf = new JFormattedTextField(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+			txtCpf = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(this, "CPF inválido", "O número de CPF informado possui formato inválido!", JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
