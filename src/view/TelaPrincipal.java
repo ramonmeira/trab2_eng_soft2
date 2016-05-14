@@ -235,6 +235,12 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnEstoque.add(mntmAlterarEstoque);
 		
+		JMenu mnVendas = new JMenu("Vendas");
+		menuBar.add(mnVendas);
+		
+		JMenuItem mntmCadastrar_4 = new JMenuItem("Cadastrar");
+		mnVendas.add(mntmCadastrar_4);
+		
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		//getContentPane().setLayout(null);
 		
