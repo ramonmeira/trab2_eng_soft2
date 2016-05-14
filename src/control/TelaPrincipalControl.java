@@ -30,15 +30,16 @@ public class TelaPrincipalControl {
 	
 	public TelaPrincipalControl(TelaPrincipal telaPrincipal) {
 		this.telaPrincipal = telaPrincipal;
-		pesquisaCliente = new Pesquisa_CPF_CNPJ(this);
-		pesquisaFuncionario = new Pesquisa_CPF_CNPJ(this);
-		pesquisaFornecedor = new Pesquisa_CPF_CNPJ(this);
-		pesquisaProduto = new Pesquisa_CPF_CNPJ(this);
+		pesquisaCliente = new Pesquisa_CPF_CNPJ(this, 1);
+		pesquisaFuncionario = new Pesquisa_CPF_CNPJ(this, 4);
+		pesquisaFornecedor = new Pesquisa_CPF_CNPJ(this, 8);
+		pesquisaProduto = new Pesquisa_CPF_CNPJ(this, 11);
 	}
 	
 	public void abrePesquisaCliente(int tipo) {
 		if(!CadastroCliente.getInstance().isVisible() && !pesquisaCliente.isVisible()) {
-			pesquisaCliente.setOperacao(tipo);
+//			pesquisaCliente.setOperacao(tipo);
+			pesquisaCliente = new Pesquisa_CPF_CNPJ(this, tipo);
 			telaPrincipal.addInternalFrame(pesquisaCliente);
 			pesquisaCliente.setVisible(true);
 		}
@@ -46,7 +47,8 @@ public class TelaPrincipalControl {
 	
 	public void abrePesquisaFuncionario(int tipo) {
 		if(!CadastroFuncionario.getInstance().isVisible() && !pesquisaFuncionario.isVisible()) {
-			pesquisaFuncionario.setOperacao(tipo);
+//			pesquisaFuncionario.setOperacao(tipo);
+			pesquisaFuncionario = new Pesquisa_CPF_CNPJ(this, tipo);
 			telaPrincipal.addInternalFrame(pesquisaFuncionario);
 			pesquisaFuncionario.setVisible(true);
 		}
@@ -54,7 +56,8 @@ public class TelaPrincipalControl {
 	
 	public void abrePesquisaForncedor(int tipo) {
 		if(!CadastroFornecedor.getInstance().isVisible() && !pesquisaFornecedor.isVisible()) {
-			pesquisaFornecedor.setOperacao(tipo);
+//			pesquisaFornecedor.setOperacao(tipo);
+			pesquisaFornecedor = new Pesquisa_CPF_CNPJ(this, tipo);
 			telaPrincipal.addInternalFrame(pesquisaFornecedor);
 			pesquisaFornecedor.setVisible(true);
 		}
@@ -132,6 +135,7 @@ public class TelaPrincipalControl {
 	public void abreCadastroCliente(String CPF) {
 		pesquisaCliente.limpaFormulario();
 		pesquisaCliente.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaCliente);
 		telaPrincipal.addInternalFrame(CadastroCliente.getInstance());
 		CadastroCliente.getInstance().setControl(this);
 		
@@ -179,12 +183,14 @@ public class TelaPrincipalControl {
 		dao.removeObjeto(cliente, "clientes");
 		pesquisaCliente.limpaFormulario();
 		pesquisaCliente.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaCliente);
 		JOptionPane.showMessageDialog(pesquisaCliente, "Cliente removido com sucesso", "Cliente removido", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	public void abreCadastroFuncionario(String CPF) {
 		pesquisaFuncionario.limpaFormulario();
 		pesquisaFuncionario.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaFuncionario);
 		telaPrincipal.addInternalFrame(CadastroFuncionario.getInstance());
 		CadastroFuncionario.getInstance().setControl(this);
 		if(pesquisaChave(CPF, "funcionarios")) {
@@ -234,6 +240,7 @@ public class TelaPrincipalControl {
 			dados.add(4,"GERENTE=true");
 			pesquisaFuncionario.limpaFormulario();
 			pesquisaFuncionario.dispose();
+			telaPrincipal.removeInternalFrame(pesquisaFuncionario);
 			funcionario.setDados(dados);
 			dao.atualizaObjeto(funcionario, "funcionarios");
 			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario promovido com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
@@ -252,6 +259,7 @@ public class TelaPrincipalControl {
 			dados.add(5,"ATIVO=false");
 			pesquisaFuncionario.limpaFormulario();
 			pesquisaFuncionario.dispose();
+			telaPrincipal.removeInternalFrame(pesquisaFuncionario);
 			funcionario.setDados(dados);
 			dao.atualizaObjeto(funcionario, "funcionarios");
 			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Funcionario desativado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
@@ -263,6 +271,7 @@ public class TelaPrincipalControl {
 	public void abreCadastroFornecedor(String CNPJ) {
 		pesquisaFornecedor.limpaFormulario();
 		pesquisaFornecedor.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaFornecedor);
 		telaPrincipal.addInternalFrame(CadastroFornecedor.getInstance());
 		CadastroFornecedor.getInstance().setControl(this);
 		if(pesquisaChave(CNPJ, "fornecedores")) {
@@ -312,6 +321,7 @@ public class TelaPrincipalControl {
 			dados.add(2,"ATIVO=false");
 			pesquisaFornecedor.limpaFormulario();
 			pesquisaFornecedor.dispose();
+			telaPrincipal.removeInternalFrame(pesquisaFornecedor);
 			fornecedor.setDados(dados);
 			dao.atualizaObjeto(fornecedor, "fornecedores");
 			JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Fornecedor desativado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);

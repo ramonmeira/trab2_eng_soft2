@@ -45,7 +45,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 	
 //	private int tipoOperacao;
 	
-	public Pesquisa_CPF_CNPJ(TelaPrincipalControl controll) {
+	public Pesquisa_CPF_CNPJ(TelaPrincipalControl controll, int tipoOperacao) {
 		setClosable(true);
 		setMaximizable(false);
 		setResizable(false);
@@ -53,6 +53,7 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		this.controle = controll;
+		this.tipoOperacao = tipoOperacao;
 		
 		btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addMouseListener(new MouseAdapter() {
@@ -69,7 +70,30 @@ public class Pesquisa_CPF_CNPJ extends JInternalFrame {
 		lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
 		getContentPane().add(lblCpfCnpj);
 		
-		frmtdtxtfldPesquisa = new JFormattedTextField();
+		try {
+			if(tipoOperacao < 8) {
+				if(tipoOperacao < 4) setTitle("Pesquisa de CPF de cliente");
+				else setTitle("Pesquisa de CPF de funcionario");
+				lblCpfCnpj.setText("CPJ");
+				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
+				frmtdtxtfldPesquisa.setColumns(10);
+			} else if(tipoOperacao < 11) {
+				setTitle("Pesquisa de CNPJ de forncedor");
+				lblCpfCnpj.setText("CNPJ");
+				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("##.###.###/####-##")));
+				frmtdtxtfldPesquisa.setColumns(14);
+			} else {
+				setTitle("Pesquisa de Codigo EAN");
+				lblCpfCnpj.setText("Codigo EAN");
+				lblCpfCnpj.setSize(lblCpfCnpj.getPreferredSize());
+				frmtdtxtfldPesquisa = new JFormattedTextField(new DefaultFormatterFactory(new MaskFormatter("#############")));
+				frmtdtxtfldPesquisa.setColumns(14);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		frmtdtxtfldPesquisa.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
