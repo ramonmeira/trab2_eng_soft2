@@ -29,6 +29,7 @@ public class CadastroVenda extends JInternalFrame {
 	private JFormattedTextField txtCpfVendedor;
 	private JTextField txtNomeVendedor;
 	private JTextArea txtrProdutos;
+	private Venda venda;
 	
 	private CadastroVenda() {
 		setTitle("Cadastro de venda");
@@ -38,6 +39,8 @@ public class CadastroVenda extends JInternalFrame {
 		setResizable(false);
 		setBounds(100, 100, 575, 438);
 		getContentPane().setLayout(null);
+		
+		venda = new Venda();
 		
 		JLabel lblCpfCliente = new JLabel("CPF cliente");
 		lblCpfCliente.setBounds(10, 11, 64, 14);
@@ -87,36 +90,40 @@ public class CadastroVenda extends JInternalFrame {
 		getContentPane().add(txtNomeVendedor);
 		txtNomeVendedor.setColumns(10);
 		
-		txtrProdutos = new JTextArea();
-		txtrProdutos.setBounds(10, 148, 490, 197);
-		getContentPane().add(txtrProdutos);
-		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				Venda venda = new Venda();
 				venda.setCpfCliente(txtCpfCliente.getText());
 				venda.setClienteNome(txtNomeCliente.getText());
 				venda.setCpfVendedor(txtCpfVendedor.getText());
 				venda.setVendedorNome(txtNomeVendedor.getText());
-				for(int i = 0; i < txtrProdutos.getLineCount(); i++) {
-					try {
-						venda.adicionaProduto(txtrProdutos.getText(txtrProdutos.getLineStartOffset(i), txtrProdutos.getLineEndOffset(i)));
-					} catch (BadLocationException e) {
-						e.printStackTrace();
-					};
-				}
 				controle.cadastraVenda(venda);
 			}
 		});
-		btnSalvar.setBounds(10, 371, 89, 23);
+		btnSalvar.setBounds(178, 371, 89, 23);
 		getContentPane().add(btnSalvar);
 		
 		JLabel lblProdutos = new JLabel("Produtos");
 		lblProdutos.setBounds(10, 123, 76, 14);
 		lblProdutos.setSize(lblProdutos.getPreferredSize());
 		getContentPane().add(lblProdutos);
+		
+		txtrProdutos = new JTextArea();
+		txtrProdutos.setEditable(false);
+		txtrProdutos.setWrapStyleWord(true);
+		txtrProdutos.setBounds(10, 148, 490, 212);
+		getContentPane().add(txtrProdutos);
+		
+		JButton btnAdicionarProduto = new JButton("Adicionar Produto");
+		btnAdicionarProduto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				controle.abreInsereProduto();
+			}
+		});
+		btnAdicionarProduto.setBounds(10, 371, 145, 23);
+		getContentPane().add(btnAdicionarProduto);
 	}
 	
 	public static CadastroVenda getInstance() {
@@ -137,5 +144,10 @@ public class CadastroVenda extends JInternalFrame {
 		txtCpfVendedor.setText("");
 		txtNomeVendedor.setText("");
 		txtrProdutos.setText("");
+	}
+	
+	public void adicionaProduto(String produto) {
+		venda.adicionaProduto(produto);
+		txtrProdutos.setText(txtrProdutos.getText() + produto + "\n");
 	}
 }

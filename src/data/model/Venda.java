@@ -43,7 +43,7 @@ public class Venda implements ObjetoPersistente{
 	}
 	
 	public void adicionaProduto(String produto) {
-		produtos.add(produto.replace("\n", ""));
+		produtos.add(produto);
 	}
 	
 	public Venda() {
@@ -59,7 +59,7 @@ public class Venda implements ObjetoPersistente{
 		if(produtos.size() > 0) {
 			int i = 0;
 			for(String produto : produtos) {
-				dados.add(i+4,"PRODUTO" + String.valueOf(i) + "=" + produto);
+				dados.add(i+4,"PRODUTO " + String.valueOf(i + 1) + "=" + produto);
 				i++;
 			}
 		}		

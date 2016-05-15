@@ -16,18 +16,20 @@ import view.CadastroFornecedor;
 import view.CadastroFuncionario;
 import view.CadastroProduto;
 import view.CadastroVenda;
+import view.InsereProduto;
 import view.Pesquisa_CPF_CNPJ;
 import view.TelaLoginInternal;
 import view.TelaPrincipal;
 
 public class TelaPrincipalControl {
 	
-	TelaPrincipal telaPrincipal;
-	TelaLoginInternal telaLogin;
-	Pesquisa_CPF_CNPJ pesquisaCliente = null;
-	Pesquisa_CPF_CNPJ pesquisaFuncionario = null;
-	Pesquisa_CPF_CNPJ pesquisaFornecedor = null;
-	Pesquisa_CPF_CNPJ pesquisaProduto = null;
+	private TelaPrincipal telaPrincipal;
+	private TelaLoginInternal telaLogin;
+	private Pesquisa_CPF_CNPJ pesquisaCliente = null;
+	private Pesquisa_CPF_CNPJ pesquisaFuncionario = null;
+	private Pesquisa_CPF_CNPJ pesquisaFornecedor = null;
+	private Pesquisa_CPF_CNPJ pesquisaProduto = null;
+	private InsereProduto insereProduto = null;	
 	
 	boolean usuarioLogado = false;
 	String usuario = null;
@@ -38,6 +40,7 @@ public class TelaPrincipalControl {
 		pesquisaFuncionario = new Pesquisa_CPF_CNPJ(this, 4);
 		pesquisaFornecedor = new Pesquisa_CPF_CNPJ(this, 8);
 		pesquisaProduto = new Pesquisa_CPF_CNPJ(this, 11);
+		insereProduto = new InsereProduto(this);
 	}
 	
 	public void abrePesquisaCliente(int tipo) {
@@ -419,4 +422,28 @@ public class TelaPrincipalControl {
 		CadastroVenda.getInstance().dispose();
 		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Venda cadastrada com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);
 	}
+	
+	public void abreInsereProduto() {
+		if(!insereProduto.isVisible()){
+			telaPrincipal.remove(insereProduto);
+			CadastroVenda.getInstance().setIconifiable(false);
+			CadastroVenda.getInstance().setClosable(false);
+			insereProduto = new InsereProduto(this);
+			telaPrincipal.addInternalFrame(insereProduto);
+			insereProduto.setVisible(true);
+		}
+	}
+	
+	public void fechaInsereProduto() {
+		telaPrincipal.remove(insereProduto);
+		insereProduto.dispose();
+		CadastroVenda.getInstance().setIconifiable(true);
+		CadastroVenda.getInstance().setClosable(true);
+	}
+	
+	public void insereProduto(String produto) {
+		CadastroVenda.getInstance().adicionaProduto(produto);
+		fechaInsereProduto();
+	}
 }
+ 

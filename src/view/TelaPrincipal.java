@@ -45,7 +45,8 @@ public class TelaPrincipal extends JFrame {
 	private JMenu mnEstoque;
 	private JMenuItem mntmCadastrar_3;
 	private JMenuItem mntmAlterarEstoque;
-	JDesktopPane desktop;
+	private JMenu mnVendas;
+	private JDesktopPane desktop;
 	
 	TelaPrincipalControl controle;
 
@@ -235,7 +236,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnEstoque.add(mntmAlterarEstoque);
 		
-		JMenu mnVendas = new JMenu("Vendas");
+		mnVendas = new JMenu("Vendas");
 		menuBar.add(mnVendas);
 		
 		JMenuItem mntmCadastrar_4 = new JMenuItem("Cadastrar");
@@ -289,5 +290,6 @@ public class TelaPrincipal extends JFrame {
 		mnEstoque.setEnabled(ativar);
 		mntmCadastrar_3.setEnabled(ativar);
 		mntmAlterarEstoque.setEnabled(ativar);
+		mnVendas.setEnabled(ativar);
 	}
 }
