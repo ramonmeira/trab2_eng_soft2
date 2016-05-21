@@ -15,6 +15,7 @@ import view.CadastroProduto;
 import view.Pesquisa_CPF_CNPJ;
 import view.TelaLoginInternal;
 import view.TelaPrincipal;
+import view.TelaRelatorio;
 
 public class TelaPrincipalControl {
 	
@@ -122,7 +123,7 @@ public class TelaPrincipalControl {
 	
 	
 	public void abreCadastroCliente(String CPF) {
-		//Caso o CPF não tenha sido encontrado, abrir a tela de cadastro 
+		//Caso o CPF nï¿½o tenha sido encontrado, abrir a tela de cadastro 
 		if(!pesquisaCPF(CPF)) {
 			pesquisaCliente.limpaFormulario();
 			pesquisaCliente.dispose();
@@ -260,5 +261,51 @@ public class TelaPrincipalControl {
 		cadastroEstoque.setVisible(true);
 		return;		
 	}
+
+    public void relatorioTop3Compradores() {
+        abrirTelaRelatorios(1);
+    }
+
+    public void relatorioTop3Vendedores() {
+        abrirTelaRelatorios(2);
+    }
+
+    public void relatorioTopMaisVendidos() {
+        abrirTelaRelatorios(3);
+    }
+
+    public void relatorioClientesCadastrados() {
+        abrirTelaRelatorios(4);
+    }
+
+    public void relatorioEstoque() {
+        abrirTelaRelatorios(5);
+    }
+
+    public void relatorioFuncionariosCadastrados() {
+        abrirTelaRelatorios(6);
+    }
+
+    public void relatorioFuncionariosInativos() {
+        abrirTelaRelatorios(7);
+    }
+
+    public void relatorioVendas() {
+        abrirTelaRelatorios(8);
+    }
+
+    public void relatorioFornecedoresAtivos() {
+        abrirTelaRelatorios(9);
+    }
+
+    public void relatorioProdutos() {
+        abrirTelaRelatorios(10);
+    }
+    
+    public void abrirTelaRelatorios(int i){
+        TelaRelatorio relatorio = new TelaRelatorio(i);
+        telaPrincipal.addInternalFrame(relatorio);
+        relatorio.setVisible(true);
+    }
 	
 }
