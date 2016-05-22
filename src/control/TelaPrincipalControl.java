@@ -20,6 +20,7 @@ import view.InsereProduto;
 import view.Pesquisa_CPF_CNPJ;
 import view.TelaLoginInternal;
 import view.TelaPrincipal;
+import view.TelaRelatorio;
 
 public class TelaPrincipalControl {
 	
@@ -139,20 +140,16 @@ public class TelaPrincipalControl {
 	}
 
 	public void abreCadastroCliente(String CPF) {
-		pesquisaCliente.limpaFormulario();
-		pesquisaCliente.dispose();
-		telaPrincipal.removeInternalFrame(pesquisaCliente);
-		telaPrincipal.addInternalFrame(CadastroCliente.getInstance());
-		CadastroCliente.getInstance().setControl(this);
-		
-		if(pesquisaChave(CPF, "clientes")) {
-			fileDao dao = new fileDao();
-			Cliente cliente = new Cliente();
-			cliente.setCpf(CPF);
-			ArrayList<String> dados = dao.getDados(cliente, "clientes");
-			CadastroCliente.getInstance().insereDados(dados);
-		} else {
-			CadastroCliente.getInstance().limpaCampos();
+		//Caso o CPF n�o tenha sido encontrado, abrir a tela de cadastro 
+		if(!pesquisaCPF(CPF)) {
+			pesquisaCliente.limpaFormulario();
+			pesquisaCliente.dispose();
+			CadastroCliente cadastroCliente = CadastroCliente.getInstance();
+			cadastroCliente.setControl(this); //Diz qual classe vai fazer o controle do frame
+			telaPrincipal.addInternalFrame(cadastroCliente);
+			cadastroCliente.limpaCampos();
+			cadastroCliente.setVisible(true);
+			return;
 		}
 		CadastroCliente.getInstance().setVisible(true);
 	}
@@ -407,6 +404,52 @@ public class TelaPrincipalControl {
 		CadastroEstoque.getInstance().dispose();
 		JOptionPane.showMessageDialog(CadastroFuncionario.getInstance(), "Estoque alterado com sucesso!", "Sucesso!", JOptionPane.WARNING_MESSAGE);	
 	}
+
+    public void relatorioTop3Compradores() {
+        abrirTelaRelatorios(1);
+    }
+
+    public void relatorioTop3Vendedores() {
+        abrirTelaRelatorios(2);
+    }
+
+    public void relatorioTopMaisVendidos() {
+        abrirTelaRelatorios(3);
+    }
+
+    public void relatorioClientesCadastrados() {
+        abrirTelaRelatorios(4);
+    }
+
+    public void relatorioEstoque() {
+        abrirTelaRelatorios(5);
+    }
+
+    public void relatorioFuncionariosCadastrados() {
+        abrirTelaRelatorios(6);
+    }
+
+    public void relatorioFuncionariosInativos() {
+        abrirTelaRelatorios(7);
+    }
+
+    public void relatorioVendas() {
+        abrirTelaRelatorios(8);
+    }
+
+    public void relatorioFornecedoresAtivos() {
+        abrirTelaRelatorios(9);
+    }
+
+    public void relatorioProdutos() {
+        abrirTelaRelatorios(10);
+    }
+    
+    public void abrirTelaRelatorios(int i){
+        TelaRelatorio relatorio = new TelaRelatorio(i);
+        telaPrincipal.addInternalFrame(relatorio);
+        relatorio.setVisible(true);
+    }
 	
 	public void abreCadastroVenda() {
 		telaPrincipal.addInternalFrame(CadastroVenda.getInstance());

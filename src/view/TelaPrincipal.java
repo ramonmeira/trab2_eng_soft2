@@ -47,6 +47,7 @@ public class TelaPrincipal extends JFrame {
 	private JMenuItem mntmAlterarEstoque;
 	private JMenu mnVendas;
 	private JDesktopPane desktop;
+	JDesktopPane desktop;
 	
 	TelaPrincipalControl controle;
 
@@ -235,6 +236,9 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		mnEstoque.add(mntmAlterarEstoque);
+                
+                mnRelatorio = new JMenu("Relatórios");
+		menuBar.add(mnRelatorio);
 		
 		mnVendas = new JMenu("Vendas");
 		menuBar.add(mnVendas);
@@ -248,6 +252,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnVendas.add(mntmCadastrar_4);
 		
+||||||| merged common ancestors
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		//getContentPane().setLayout(null);
 		
@@ -289,7 +294,18 @@ public class TelaPrincipal extends JFrame {
 		mntmRemover_1.setEnabled(ativar);
 		mnEstoque.setEnabled(ativar);
 		mntmCadastrar_3.setEnabled(ativar);
-		mntmAlterarEstoque.setEnabled(ativar);
-		mnVendas.setEnabled(ativar);
+		mntmAlterarEstoque.setEnabled(ativar);  
+		mnVendas.setEnabled(ativar);              
+        mnRelatorio.setEnabled(ativar);
+        mntmRelatorioTop3Compradores.setEnabled(ativar);
+        mntmRelatorioTop3Vendedores.setEnabled(ativar);
+        mntmRelatorioTopMaisVendidos.setEnabled(ativar);
+        mntmRelatorioClientesCadastrados.setEnabled(ativar);
+        mntmRelatorioEstoque.setEnabled(ativar);
+        mntmRelatorioFuncionariosCadastrados.setEnabled(ativar);
+        mntmRelatorioFuncionariosInativos.setEnabled(ativar);
+        mntmRelatorioVendas.setEnabled(ativar);
+        mntmRelatorioFornecedoresAtivos.setEnabled(ativar);
+        mntmRelatorioProdutos.setEnabled(ativar);
 	}
 }
