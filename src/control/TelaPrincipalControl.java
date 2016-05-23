@@ -140,16 +140,20 @@ public class TelaPrincipalControl {
 	}
 
 	public void abreCadastroCliente(String CPF) {
-		//Caso o CPF n�o tenha sido encontrado, abrir a tela de cadastro 
-		if(!pesquisaCPF(CPF)) {
-			pesquisaCliente.limpaFormulario();
-			pesquisaCliente.dispose();
-			CadastroCliente cadastroCliente = CadastroCliente.getInstance();
-			cadastroCliente.setControl(this); //Diz qual classe vai fazer o controle do frame
-			telaPrincipal.addInternalFrame(cadastroCliente);
-			cadastroCliente.limpaCampos();
-			cadastroCliente.setVisible(true);
-			return;
+		pesquisaCliente.limpaFormulario();
+		pesquisaCliente.dispose();
+		telaPrincipal.removeInternalFrame(pesquisaCliente);
+		telaPrincipal.addInternalFrame(CadastroCliente.getInstance());
+		CadastroCliente.getInstance().setControl(this);
+		
+		if(pesquisaChave(CPF, "clientes")) {
+			fileDao dao = new fileDao();
+			Cliente cliente = new Cliente();
+			cliente.setCpf(CPF);
+			ArrayList<String> dados = dao.getDados(cliente, "clientes");
+			CadastroCliente.getInstance().insereDados(dados);
+		} else {
+			CadastroCliente.getInstance().limpaCampos();
 		}
 		CadastroCliente.getInstance().setVisible(true);
 	}
