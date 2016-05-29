@@ -42,10 +42,10 @@ public class TelaPrincipal extends JFrame {
 	private JMenu mnProdutos;
 	private JMenuItem mntmCadastrar_2;
 	private JMenuItem mntmRemover_1;
-	private JMenuItem mntmSolicitar;
 	private JMenu mnEstoque;
 	private JMenuItem mntmCadastrar_3;
 	private JMenuItem mntmAlterarEstoque;
+	private JMenu mnVendas;
         private JMenu mnRelatorio;
         private JMenuItem mntmRelatorioTop3Compradores;
         private JMenuItem mntmRelatorioTop3Vendedores;
@@ -57,7 +57,7 @@ public class TelaPrincipal extends JFrame {
         private JMenuItem mntmRelatorioVendas;
         private JMenuItem mntmRelatorioFornecedoresAtivos;
         private JMenuItem mntmRelatorioProdutos;
-	JDesktopPane desktop;
+	private JDesktopPane desktop;
 	
 	TelaPrincipalControl controle;
 
@@ -226,15 +226,6 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnProdutos.add(mntmRemover_1);
 		
-		mntmSolicitar = new JMenuItem("Solicitar");
-		mntmSolicitar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.abrePesquisaProduto(13);
-			}
-		});
-		mnProdutos.add(mntmSolicitar);
-		
 		mnEstoque = new JMenu("Estoque");
 		menuBar.add(mnEstoque);
 		
@@ -242,7 +233,7 @@ public class TelaPrincipal extends JFrame {
 		mntmCadastrar_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				controle.cadastraEstoque();
+				controle.abrePesquisaProduto(13);
 			}
 		});
 		mnEstoque.add(mntmCadastrar_3);
@@ -251,194 +242,208 @@ public class TelaPrincipal extends JFrame {
 		mntmAlterarEstoque.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controle.alterarEstoque();
+				controle.abrePesquisaProduto(14);
 			}
 		});
 		mnEstoque.add(mntmAlterarEstoque);
                 
+                
+                
+		mnVendas = new JMenu("Vendas");
+		menuBar.add(mnVendas);
+		
+		JMenuItem mntmCadastrar_4 = new JMenuItem("Cadastrar");
+		mntmCadastrar_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				controle.abreCadastroVenda();
+			}
+		});
+		mnVendas.add(mntmCadastrar_4);
+                
                 mnRelatorio = new JMenu("Relatórios");
 		menuBar.add(mnRelatorio);
 		
-		mntmRelatorioTop3Compradores = new JMenuItem("Top 3 compradores");
-		mntmRelatorioTop3Compradores.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioTop3Compradores();
-			}
-		});
-		mntmRelatorioTop3Compradores.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioTop3Compradores();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioTop3Compradores);
+                mntmRelatorioTop3Compradores = new JMenuItem("Top 3 compradores");
+ 		mntmRelatorioTop3Compradores.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioTop3Compradores();
+ 			}
+ 		});
+ 		mntmRelatorioTop3Compradores.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioTop3Compradores();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioTop3Compradores);
                 
                 mntmRelatorioTop3Vendedores = new JMenuItem("Top 3 vendedores");
-		mntmRelatorioTop3Vendedores.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioTop3Vendedores();
-			}
-		});
-		mntmRelatorioTop3Vendedores.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioTop3Vendedores();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioTop3Vendedores);
+ 		mntmRelatorioTop3Vendedores.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioTop3Vendedores();
+ 			}
+ 		});
+ 		mntmRelatorioTop3Vendedores.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioTop3Vendedores();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioTop3Vendedores);
                 
                 mntmRelatorioTopMaisVendidos = new JMenuItem("Top mais vendidos");
-		mntmRelatorioTopMaisVendidos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioTopMaisVendidos();
-			}
-		});
-		mntmRelatorioTopMaisVendidos.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioTopMaisVendidos();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioTopMaisVendidos);
+ 		mntmRelatorioTopMaisVendidos.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioTopMaisVendidos();
+ 			}
+ 		});
+ 		mntmRelatorioTopMaisVendidos.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioTopMaisVendidos();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioTopMaisVendidos);
                 
                 mntmRelatorioClientesCadastrados = new JMenuItem("Clientes Cadastrados");
-		mntmRelatorioClientesCadastrados.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioClientesCadastrados();
-			}
-		});
-		mntmRelatorioClientesCadastrados.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioClientesCadastrados();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioClientesCadastrados);
+ 		mntmRelatorioClientesCadastrados.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioClientesCadastrados();
+ 			}
+ 		});
+ 		mntmRelatorioClientesCadastrados.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioClientesCadastrados();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioClientesCadastrados);
                 
                 mntmRelatorioEstoque = new JMenuItem("Estoque");
-		mntmRelatorioEstoque.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioEstoque();
-			}
-		});
-		mntmRelatorioEstoque.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioEstoque();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioEstoque);
+ 		mntmRelatorioEstoque.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioEstoque();
+ 			}
+ 		});
+ 		mntmRelatorioEstoque.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioEstoque();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioEstoque);
                 
                 mntmRelatorioFuncionariosCadastrados = new JMenuItem("Funcionários Cadastrados");
-		mntmRelatorioFuncionariosCadastrados.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioFuncionariosCadastrados();
-			}
-		});
-		mntmRelatorioFuncionariosCadastrados.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioFuncionariosCadastrados();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioFuncionariosCadastrados);
+ 		mntmRelatorioFuncionariosCadastrados.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioFuncionariosCadastrados();
+ 			}
+ 		});
+ 		mntmRelatorioFuncionariosCadastrados.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioFuncionariosCadastrados();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioFuncionariosCadastrados);
                 
                 mntmRelatorioFuncionariosInativos = new JMenuItem("Funcionários Inativos");
-		mntmRelatorioFuncionariosInativos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioFuncionariosInativos();
-			}
-		});
-		mntmRelatorioFuncionariosInativos.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioFuncionariosInativos();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioFuncionariosInativos);
+ 		mntmRelatorioFuncionariosInativos.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioFuncionariosInativos();
+ 			}
+ 		});
+ 		mntmRelatorioFuncionariosInativos.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioFuncionariosInativos();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioFuncionariosInativos);
                 
                 mntmRelatorioVendas = new JMenuItem("Vendas");
-		mntmRelatorioVendas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioVendas();
-			}
-		});
-		mntmRelatorioVendas.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioVendas();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioVendas);
+ 		mntmRelatorioVendas.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioVendas();
+ 			}
+ 		});
+ 		mntmRelatorioVendas.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioVendas();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioVendas);
                 
                 mntmRelatorioFornecedoresAtivos = new JMenuItem("Fornecedores Ativos");
-		mntmRelatorioFornecedoresAtivos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioFornecedoresAtivos();
-			}
-		});
-		mntmRelatorioFornecedoresAtivos.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioFornecedoresAtivos();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioFornecedoresAtivos);
+ 		mntmRelatorioFornecedoresAtivos.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioFornecedoresAtivos();
+ 			}
+ 		});
+ 		mntmRelatorioFornecedoresAtivos.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioFornecedoresAtivos();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioFornecedoresAtivos);
                 
                 mntmRelatorioProdutos = new JMenuItem("Produtos");
-		mntmRelatorioProdutos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controle.relatorioProdutos();
-			}
-		});
-		mntmRelatorioProdutos.addMenuKeyListener(new MenuKeyListener() {
-			public void menuKeyPressed(MenuKeyEvent e) {
-				controle.relatorioProdutos();
-			}
-			public void menuKeyReleased(MenuKeyEvent e) {
-			}
-			public void menuKeyTyped(MenuKeyEvent e) {
-			}
-		});
-		mnRelatorio.add(mntmRelatorioProdutos);
-                
+ 		mntmRelatorioProdutos.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mousePressed(MouseEvent e) {
+ 				controle.relatorioProdutos();
+ 			}
+ 		});
+ 		mntmRelatorioProdutos.addMenuKeyListener(new MenuKeyListener() {
+ 			public void menuKeyPressed(MenuKeyEvent e) {
+ 				controle.relatorioProdutos();
+ 			}
+ 			public void menuKeyReleased(MenuKeyEvent e) {
+ 			}
+ 			public void menuKeyTyped(MenuKeyEvent e) {
+ 			}
+ 		});
+ 		mnRelatorio.add(mntmRelatorioProdutos);
+		
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		//getContentPane().setLayout(null);
 		
@@ -452,9 +457,12 @@ public class TelaPrincipal extends JFrame {
 	
 	public void addInternalFrame(JInternalFrame internalFrame) {
 		if(!internalFrame.isVisible()) {
-			desktop.remove(internalFrame);
 			desktop.add(internalFrame);
 		}
+	}
+	
+	public void removeInternalFrame(JInternalFrame internalFrame) {
+		desktop.remove(internalFrame);
 	}
 	
 	public void ativarMenus(boolean ativar) {
@@ -475,10 +483,10 @@ public class TelaPrincipal extends JFrame {
 		mnProdutos.setEnabled(ativar);
 		mntmCadastrar_2.setEnabled(ativar);
 		mntmRemover_1.setEnabled(ativar);
-		mntmSolicitar.setEnabled(ativar);
 		mnEstoque.setEnabled(ativar);
 		mntmCadastrar_3.setEnabled(ativar);
-		mntmAlterarEstoque.setEnabled(ativar);                
+		mntmAlterarEstoque.setEnabled(ativar);  
+		mnVendas.setEnabled(ativar);              
                 mnRelatorio.setEnabled(ativar);
                 mntmRelatorioTop3Compradores.setEnabled(ativar);
                 mntmRelatorioTop3Vendedores.setEnabled(ativar);

@@ -6,6 +6,7 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 	private String login;
 	private String senha;
 	private String gerente;
+	private String ativo;
 	
 //-=-=-=-=-=-=-=-=-=-=-=-=- Getters e Setters -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	
@@ -27,6 +28,20 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 	public void setGerente(String gerente) {
 		this.gerente = gerente;
 	}
+	public String getAtivo() {
+		return this.ativo;
+	}
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
+	}
+	public void setDados(ArrayList<String> dados) {
+		this.cpf = dados.get(0).substring(dados.get(0).indexOf("=") + 1);
+		this.nome = dados.get(1).substring(dados.get(1).indexOf("=") + 1);
+		this.login = dados.get(2).substring(dados.get(2).indexOf("=") + 1);
+		this.senha = dados.get(3).substring(dados.get(3).indexOf("=") + 1);
+		this.gerente = dados.get(4).substring(dados.get(4).indexOf("=") + 1);
+		this.ativo = dados.get(5).substring(dados.get(5).indexOf("=") + 1);
+	}
 	
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -36,32 +51,15 @@ public class Funcionario extends PessoaFisica implements ObjetoPersistente{
 		/*
 		 * Os dados são lidos da seguinte forma
 		 * 1ª posição contém a chave, 2ª contém o valor
+		 * A chave primára fica sempre na posição 0, neste caso o CPF é a chave primária
 		 */
 		
-		dados.add("CPF="+cpf);
-		dados.add("NOME="+nome); //Neste caso NOME é a chave do valor contido na variável nome.
-		dados.add("RG="+rg);
-		dados.add("ORGAO EXPEDIDOR="+orgaoExpedidor);
-		dados.add("UF EXPEDIDOR="+ufExpepdidor);
-		dados.add("DATA EMISSAO="+dataEmissao);
-		dados.add("DATA NASCIMENTO="+dataNascimento);
-		dados.add("NACIONALIDADE="+nacionalidade);
-		dados.add("NATURALIDADE="+naturalidade);
-		dados.add("UF NASCIMENTO="+ufNascimento);
-		dados.add("SEXO="+sexo);
-		dados.add("CEP="+cep);
-		dados.add("LOGRADOURO="+logradouro);
-		dados.add("NUMERO="+numero);
-		dados.add("COMPLEMENTO="+complemento);		
-		dados.add("CIDADE="+cidade);		
-		dados.add("UF ENDERECO="+ufEndereco);
-		dados.add("TEL RESIDENCIAL="+telResidencial);		
-		dados.add("TEL CELULAR="+telCelular);
-		dados.add("EMAIL="+email);
-		dados.add("EMAIL COMERCIAL="+email);
-		dados.add("LOGIN="+login);
-		dados.add("SENHA="+senha);
-		dados.add("GERENTE="+gerente);
+		dados.add(0,"CPF="+cpf);
+		dados.add(1,"NOME="+nome);
+		dados.add(2,"LOGIN="+login);
+		dados.add(3,"SENHA="+senha);
+		dados.add(4,"GERENTE="+gerente);
+		dados.add(5,"ATIVO="+ativo);
 		
 		return dados;
 	}
